@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.neoforged.neoforge.items.IItemHandlerModifiable;

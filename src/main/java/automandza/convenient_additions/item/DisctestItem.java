@@ -1,4 +1,4 @@
-package automandza.convenientadditions.item;
+package automandza.convenient_additions.item;
 
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Item;
@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.registries.Registries;
 
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 public class DisctestItem extends Item {
 	public DisctestItem(Item.Properties properties) {

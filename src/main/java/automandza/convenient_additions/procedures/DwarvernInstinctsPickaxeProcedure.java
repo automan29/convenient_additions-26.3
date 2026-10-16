@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -26,7 +26,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModItems;
+import automandza.convenient_additions.init.ConvenientAdditionsModItems;
 
 
 

@@ -1,7 +1,7 @@
 /*
  *    MCreator note: This file will be REGENERATED on each build.
  */
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -16,8 +16,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.core.registries.BuiltInRegistries;
 
-import automandza.convenientadditions.block.entity.*;
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.block.entity.*;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 @EventBusSubscriber
 public class ConvenientAdditionsModBlockEntities {

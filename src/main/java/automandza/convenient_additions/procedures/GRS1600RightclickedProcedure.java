@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
@@ -11,8 +11,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.BlockPos;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModParticleTypes;
-import automandza.convenientadditions.init.ConvenientAdditionsModItems;
+import automandza.convenient_additions.init.ConvenientAdditionsModParticleTypes;
+import automandza.convenient_additions.init.ConvenientAdditionsModItems;
 
 public class GRS1600RightclickedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {

@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.renderer;
+package automandza.convenient_additions.client.renderer;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.renderer.entity.state.CreeperRenderState;
@@ -9,7 +9,7 @@ import net.minecraft.client.model.CreeperModel;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import automandza.convenientadditions.entity.SnowCreeperEntity;
+import automandza.convenient_additions.entity.SnowCreeperEntity;
 
 public class SnowCreeperRenderer extends MobRenderer<SnowCreeperEntity, CreeperRenderState, CreeperModel> {
 	private SnowCreeperEntity entity = null;

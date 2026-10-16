@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.particle;
+package automandza.convenient_additions.client.particle;
 
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.client.particle.TextureSheetParticle;

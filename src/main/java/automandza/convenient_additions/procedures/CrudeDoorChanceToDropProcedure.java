@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Block;
@@ -7,7 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.Mth;
 import net.minecraft.core.BlockPos;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModBlocks;
+import automandza.convenient_additions.init.ConvenientAdditionsModBlocks;
 
 public class CrudeDoorChanceToDropProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {

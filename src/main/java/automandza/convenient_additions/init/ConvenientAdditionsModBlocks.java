@@ -1,7 +1,7 @@
 /*
  *    MCreator note: This file will be REGENERATED on each build.
  */
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -11,8 +11,8 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.function.Function;
 
-import automandza.convenientadditions.block.*;
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.block.*;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 public class ConvenientAdditionsModBlocks {
 	public static final DeferredRegister.Blocks REGISTRY = DeferredRegister.createBlocks(ConvenientAdditionsMod.MODID);

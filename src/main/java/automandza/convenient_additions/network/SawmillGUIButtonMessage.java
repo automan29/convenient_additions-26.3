@@ -1,4 +1,4 @@
-package automandza.convenientadditions.network;
+package automandza.convenient_additions.network;
 
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -15,11 +15,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.core.SectionPos;
 
-import automandza.convenientadditions.procedures.SawmillSetSplitProcedure;
-import automandza.convenientadditions.procedures.SawmillSetDoProcedure;
-import automandza.convenientadditions.procedures.SawmillSetDefaultProcedure;
-import automandza.convenientadditions.procedures.SawmillSetCutProcedure;
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.procedures.SawmillSetSplitProcedure;
+import automandza.convenient_additions.procedures.SawmillSetDoProcedure;
+import automandza.convenient_additions.procedures.SawmillSetDefaultProcedure;
+import automandza.convenient_additions.procedures.SawmillSetCutProcedure;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 @EventBusSubscriber
 public record SawmillGUIButtonMessage(int buttonID, int x, int y, int z) implements CustomPacketPayload {

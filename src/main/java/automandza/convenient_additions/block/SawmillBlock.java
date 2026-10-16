@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block;
+package automandza.convenient_additions.block;
 
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -30,9 +30,9 @@ import net.minecraft.core.BlockPos;
 
 import io.netty.buffer.Unpooled;
 
-import automandza.convenientadditions.world.inventory.SawmillGUIMenu;
-import automandza.convenientadditions.procedures.StandingOnSawmillProcedure;
-import automandza.convenientadditions.block.entity.SawmillBlockEntity;
+import automandza.convenient_additions.world.inventory.SawmillGUIMenu;
+import automandza.convenient_additions.procedures.StandingOnSawmillProcedure;
+import automandza.convenient_additions.block.entity.SawmillBlockEntity;
 
 public class SawmillBlock extends Block implements EntityBlock {
 	private static final VoxelShape SHAPE = box(0, 0, 0, 16, 9, 16);

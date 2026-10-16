@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.gui;
+package automandza.convenient_additions.client.gui;
 
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
@@ -13,10 +13,10 @@ import net.minecraft.client.gui.components.PlainTextButton;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.GuiGraphics;
 
-import automandza.convenientadditions.world.inventory.SawmillGUIMenu;
-import automandza.convenientadditions.procedures.PremiumSawmillCheckProcedure;
-import automandza.convenientadditions.network.SawmillGUIButtonMessage;
-import automandza.convenientadditions.init.ConvenientAdditionsModScreens;
+import automandza.convenient_additions.world.inventory.SawmillGUIMenu;
+import automandza.convenient_additions.procedures.PremiumSawmillCheckProcedure;
+import automandza.convenient_additions.network.SawmillGUIButtonMessage;
+import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
 
 public class SawmillGUIScreen extends AbstractContainerScreen<SawmillGUIMenu> implements ConvenientAdditionsModScreens.ScreenAccessor {
 	private final Level world;

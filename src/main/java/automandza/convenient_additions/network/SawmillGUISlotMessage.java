@@ -1,4 +1,4 @@
-package automandza.convenientadditions.network;
+package automandza.convenient_additions.network;
 
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -15,9 +15,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.core.SectionPos;
 
-import automandza.convenientadditions.procedures.SawmillTakeOutputProcedure;
-import automandza.convenientadditions.procedures.SawmillShiftClickOutputProcedure;
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.procedures.SawmillTakeOutputProcedure;
+import automandza.convenient_additions.procedures.SawmillShiftClickOutputProcedure;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 @EventBusSubscriber
 public record SawmillGUISlotMessage(int slotID, int x, int y, int z, int changeType, int meta) implements CustomPacketPayload {

@@ -1,4 +1,4 @@
-package automandza.convenientadditions.network;
+package automandza.convenient_additions.network;
 
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -14,9 +14,9 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.client.Minecraft;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModScreens;
-import automandza.convenientadditions.init.ConvenientAdditionsModMenus;
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
+import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 @EventBusSubscriber
 public record MenuStateUpdateMessage(int elementType, String name, Object elementState) implements CustomPacketPayload {

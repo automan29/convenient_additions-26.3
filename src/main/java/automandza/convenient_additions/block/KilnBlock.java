@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block;
+package automandza.convenient_additions.block;
 
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -30,9 +30,9 @@ import net.minecraft.core.BlockPos;
 
 import io.netty.buffer.Unpooled;
 
-import automandza.convenientadditions.world.inventory.KilnGUIMenu;
-import automandza.convenientadditions.procedures.KilnTickProcedure;
-import automandza.convenientadditions.block.entity.KilnBlockEntity;
+import automandza.convenient_additions.world.inventory.KilnGUIMenu;
+import automandza.convenient_additions.procedures.KilnTickProcedure;
+import automandza.convenient_additions.block.entity.KilnBlockEntity;
 
 public class KilnBlock extends Block implements EntityBlock {
 	public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;

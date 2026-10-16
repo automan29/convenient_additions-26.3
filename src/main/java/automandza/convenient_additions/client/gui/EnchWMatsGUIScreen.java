@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.gui;
+package automandza.convenient_additions.client.gui;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.GuiGraphics;
 
-import automandza.convenientadditions.world.inventory.EnchWMatsGUIMenu;
-import automandza.convenientadditions.init.ConvenientAdditionsModScreens;
+import automandza.convenient_additions.world.inventory.EnchWMatsGUIMenu;
+import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
 
 public class EnchWMatsGUIScreen extends AbstractContainerScreen<EnchWMatsGUIMenu> implements ConvenientAdditionsModScreens.ScreenAccessor {
 	private final Level world;

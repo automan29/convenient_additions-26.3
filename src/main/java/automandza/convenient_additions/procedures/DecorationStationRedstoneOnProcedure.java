@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -6,7 +6,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.Level;
-import automandza.convenientadditions.procedures.CeilingLampLuminanceProcedure;
+import automandza.convenient_additions.procedures.CeilingLampLuminanceProcedure;
 
 
 

@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.model.animations;
+package automandza.convenient_additions.client.model.animations;
 
 import net.minecraft.client.animation.KeyframeAnimations;
 import net.minecraft.client.animation.Keyframe;

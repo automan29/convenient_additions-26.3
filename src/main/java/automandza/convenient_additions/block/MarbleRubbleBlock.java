@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block;
+package automandza.convenient_additions.block;
 
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;

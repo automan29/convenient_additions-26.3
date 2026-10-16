@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.renderer.block;
+package automandza.convenient_additions.client.renderer.block;
 
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -24,11 +24,11 @@ import com.mojang.math.Axis;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModBlockEntities;
-import automandza.convenientadditions.client.model.animations.itemEnhancementMachineAnimation;
-import automandza.convenientadditions.client.model.ModelitemEnhancementMachine;
-import automandza.convenientadditions.block.entity.MaterialsToEnchantmentMachineBlockEntity;
-import automandza.convenientadditions.block.MaterialsToEnchantmentMachineBlock;
+import automandza.convenient_additions.init.ConvenientAdditionsModBlockEntities;
+import automandza.convenient_additions.client.model.animations.itemEnhancementMachineAnimation;
+import automandza.convenient_additions.client.model.ModelitemEnhancementMachine;
+import automandza.convenient_additions.block.entity.MaterialsToEnchantmentMachineBlockEntity;
+import automandza.convenient_additions.block.MaterialsToEnchantmentMachineBlock;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class MaterialsToEnchantmentMachineRenderer implements BlockEntityRenderer<MaterialsToEnchantmentMachineBlockEntity> {

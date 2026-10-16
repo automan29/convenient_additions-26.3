@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.minecraft.network.chat.Component;
@@ -11,8 +11,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModMenus;
-import automandza.convenientadditions.init.ConvenientAdditionsModGameRules;
+import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
+import automandza.convenient_additions.init.ConvenientAdditionsModGameRules;
 
 import java.util.Arrays;
 import java.util.ArrayList;

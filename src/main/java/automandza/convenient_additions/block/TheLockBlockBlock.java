@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block;
+package automandza.convenient_additions.block;
 
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;

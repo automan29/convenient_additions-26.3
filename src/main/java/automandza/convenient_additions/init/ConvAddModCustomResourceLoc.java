@@ -1,4 +1,4 @@
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 import net.minecraft.resources.ResourceLocation;
 

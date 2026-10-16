@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block;
+package automandza.convenient_additions.block;
 
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.redstone.Orientation;
@@ -26,10 +26,10 @@ import javax.annotation.Nullable;
 
 import io.netty.buffer.Unpooled;
 
-import automandza.convenientadditions.world.inventory.DecorationStationGUIMenu;
-import automandza.convenientadditions.procedures.DecorationStationRedstoneOnProcedure;
-import automandza.convenientadditions.procedures.DecorationStationRedstoneOffProcedure;
-import automandza.convenientadditions.block.entity.DecorationStationBlockEntity;
+import automandza.convenient_additions.world.inventory.DecorationStationGUIMenu;
+import automandza.convenient_additions.procedures.DecorationStationRedstoneOnProcedure;
+import automandza.convenient_additions.procedures.DecorationStationRedstoneOffProcedure;
+import automandza.convenient_additions.block.entity.DecorationStationBlockEntity;
 
 public class DecorationStationBlock extends Block implements EntityBlock {
 	public DecorationStationBlock(BlockBehaviour.Properties properties) {

@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.minecraft.world.level.block.state.BlockState;
@@ -8,14 +8,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import automandza.convenientadditions.procedures.CeilingLampLuminanceProcedure;
+import automandza.convenient_additions.procedures.CeilingLampLuminanceProcedure;
 
 
 
 
 public class CeilingLampRightclickedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-		if (entity == null) return;
+		if (entity == null)
+ return;
 
 		String currentLightBlockPositions;
 		String decorationBlockPosString = entity.getPersistentData().getStringOr("decBlockPos", "NOT GOOD");
@@ -45,7 +46,8 @@ public class CeilingLampRightclickedProcedure {
 				_blockEntity.getPersistentData().putString("lightPositions", currentLightBlockPositions);
 			}
 			
-			if (world instanceof Level _level){
+			if (world instanceof Level _level)
+{
 				_level.sendBlockUpdated(decBp, _bs, _bs, 3);
 				_level.setBlock(BlockPos.containing(x, y, z), _level.getBlockState(BlockPos.containing(x, y, z)).cycle(BlockStateProperties.LIT), 2);
 			}
@@ -56,7 +58,8 @@ public class CeilingLampRightclickedProcedure {
 	private static String getBlockNBTString(LevelAccessor world, BlockPos pos, String tag) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		
-		if (blockEntity != null){
+		if (blockEntity != null)
+{
 			return blockEntity.getPersistentData().getStringOr(tag, "");
 		}
 		return "";

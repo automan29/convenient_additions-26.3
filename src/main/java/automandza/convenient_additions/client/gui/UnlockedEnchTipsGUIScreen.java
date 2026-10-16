@@ -1,7 +1,7 @@
-package automandza.convenientadditions.client.gui;
+package automandza.convenient_additions.client.gui;
 
 //imports
-import automandza.convenientadditions.network.EnchResearchGUIButtonMessage;
+import automandza.convenient_additions.network.EnchResearchGUIButtonMessage;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.world.level.Level;
@@ -13,10 +13,10 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.GuiGraphics;
 
-import automandza.convenientadditions.world.inventory.UnlockedEnchTipsGUIMenu;
-import automandza.convenientadditions.init.ConvenientAdditionsModScreens;
-import automandza.convenientadditions.init.ConvAddModCustomResourceLoc;
-import automandza.convenientadditions.procedures.EnchResearchTickProcedure;
+import automandza.convenient_additions.world.inventory.UnlockedEnchTipsGUIMenu;
+import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
+import automandza.convenient_additions.init.ConvAddModCustomResourceLoc;
+import automandza.convenient_additions.procedures.EnchResearchTickProcedure;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import org.jetbrains.annotations.NotNull;
 

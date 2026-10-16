@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.resources.ResourceLocation;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModMenus;
+import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
 
 
 

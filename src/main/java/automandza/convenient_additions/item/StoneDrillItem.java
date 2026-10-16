@@ -1,4 +1,4 @@
-package automandza.convenientadditions.item;
+package automandza.convenient_additions.item;
 
 //imports
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,7 +36,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundSource;
-import automandza.convenientadditions.init.ConvenientAdditionsModBlocks;
+import automandza.convenient_additions.init.ConvenientAdditionsModBlocks;
 import net.minecraft.world.InteractionHand;
 import java.util.Random;
 

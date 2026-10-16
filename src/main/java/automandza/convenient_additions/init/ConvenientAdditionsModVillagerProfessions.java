@@ -1,7 +1,7 @@
 /*
  *    MCreator note: This file will be REGENERATED on each build.
  */
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 import com.google.common.collect.ImmutableSet;
 
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 @EventBusSubscriber
 public class ConvenientAdditionsModVillagerProfessions {

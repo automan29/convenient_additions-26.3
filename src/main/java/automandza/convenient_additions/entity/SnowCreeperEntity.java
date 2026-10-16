@@ -1,4 +1,4 @@
-package automandza.convenientadditions.entity;
+package automandza.convenient_additions.entity;
 
 import net.minecraft.world.entity.monster.Creeper;
 

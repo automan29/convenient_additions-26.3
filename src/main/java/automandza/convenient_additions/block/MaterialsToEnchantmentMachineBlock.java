@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block;
+package automandza.convenient_additions.block;
 
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -29,8 +29,8 @@ import net.minecraft.core.BlockPos;
 
 import io.netty.buffer.Unpooled;
 
-import automandza.convenientadditions.world.inventory.EnchWMatsGUIMenu;
-import automandza.convenientadditions.block.entity.MaterialsToEnchantmentMachineBlockEntity;
+import automandza.convenient_additions.world.inventory.EnchWMatsGUIMenu;
+import automandza.convenient_additions.block.entity.MaterialsToEnchantmentMachineBlockEntity;
 
 public class MaterialsToEnchantmentMachineBlock extends Block implements EntityBlock {
 	public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;

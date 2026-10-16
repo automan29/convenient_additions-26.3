@@ -1,4 +1,4 @@
-package automandza.convenientadditions.item;
+package automandza.convenient_additions.item;
 
 import net.neoforged.neoforge.registries.DeferredHolder;
 

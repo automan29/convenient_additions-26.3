@@ -1,4 +1,4 @@
-package automandza.convenientadditions.command;
+package automandza.convenient_additions.command;
 
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
@@ -11,7 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.Direction;
 import net.minecraft.commands.Commands;
 
-import automandza.convenientadditions.procedures.AwManProcedureProcedure;
+import automandza.convenient_additions.procedures.AwManProcedureProcedure;
 
 @EventBusSubscriber
 public class AwManCommand {

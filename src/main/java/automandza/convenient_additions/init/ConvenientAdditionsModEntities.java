@@ -1,7 +1,7 @@
 /*
  *    MCreator note: This file will be REGENERATED on each build.
  */
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -17,8 +17,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.registries.Registries;
 
-import automandza.convenientadditions.entity.SnowCreeperEntity;
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.entity.SnowCreeperEntity;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 @EventBusSubscriber
 public class ConvenientAdditionsModEntities {

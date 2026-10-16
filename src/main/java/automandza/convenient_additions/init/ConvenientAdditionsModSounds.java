@@ -1,7 +1,7 @@
 /*
  *    MCreator note: This file will be REGENERATED on each build.
  */
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -10,7 +10,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.Registries;
 
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 public class ConvenientAdditionsModSounds {
 	public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(Registries.SOUND_EVENT, ConvenientAdditionsMod.MODID);

@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.minecraft.world.phys.Vec3;
@@ -25,10 +25,12 @@ public class PutOutFiresProcedure {
 	private static final int fireExtinguishArea = 3;
 	
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, ItemStack itemstack) {
-		if (entity == null){
+		if (entity == null)
+{
 			return;
 		}
-		if (world instanceof ServerLevel _level){
+		if (world instanceof ServerLevel _level)
+{
 			// spawn particles
 			BlockPos closeParticlePos = getBlockPosFromEntDir(entity, 1);
 			BlockPos medParticlePos = getBlockPosFromEntDir(entity, 4);
@@ -45,7 +47,9 @@ public class PutOutFiresProcedure {
 					for (int _iz = -fireExtinguishArea; _iz < fireExtinguishArea; _iz++){
 						BlockPos blkPsi = new BlockPos(extinguishCenterPos.getX()+_ix, extinguishCenterPos.getY()+_iy, extinguishCenterPos.getZ()+_iz);
 						if (world.getBlockState(blkPsi).getBlock() == Blocks.FIRE){
-							world.setBlock(blkPsi, Blocks.AIR.defaultBlockState(), 3);
+							world.setBlock(
+blkPsi,
+ Blocks.AIR.defaultBlockState(), 3);
 						}
 					}
 				}

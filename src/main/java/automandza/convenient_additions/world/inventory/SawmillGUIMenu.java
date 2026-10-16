@@ -1,4 +1,4 @@
-package automandza.convenientadditions.world.inventory;
+package automandza.convenient_additions.world.inventory;
 
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.items.SlotItemHandler;
@@ -30,10 +30,10 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
 
-import automandza.convenientadditions.procedures.SawmillGUIThisGUIIsClosedProcedure;
-import automandza.convenientadditions.procedures.SawmillCraftingProcedure;
-import automandza.convenientadditions.network.SawmillGUISlotMessage;
-import automandza.convenientadditions.init.ConvenientAdditionsModMenus;
+import automandza.convenient_additions.procedures.SawmillGUIThisGUIIsClosedProcedure;
+import automandza.convenient_additions.procedures.SawmillCraftingProcedure;
+import automandza.convenient_additions.network.SawmillGUISlotMessage;
+import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
 
 @EventBusSubscriber
 public class SawmillGUIMenu extends AbstractContainerMenu implements ConvenientAdditionsModMenus.MenuAccessor {

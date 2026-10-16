@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block;
+package automandza.convenient_additions.block;
 
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -13,7 +13,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.entity.player.Player;
@@ -32,9 +31,9 @@ import java.util.function.Consumer;
 
 import io.netty.buffer.Unpooled;
 
-import automandza.convenientadditions.world.inventory.EnchResearchGUIMenu;
-import automandza.convenientadditions.init.ConvenientAdditionsModBlocks;
-import automandza.convenientadditions.block.entity.EnchScienceResearchTableBlockEntity;
+import automandza.convenient_additions.world.inventory.EnchResearchGUIMenu;
+import automandza.convenient_additions.init.ConvenientAdditionsModBlocks;
+import automandza.convenient_additions.block.entity.EnchScienceResearchTableBlockEntity;
 
 public class EnchScienceResearchTableBlock extends Block implements EntityBlock {
 	public EnchScienceResearchTableBlock(BlockBehaviour.Properties properties) {
@@ -96,10 +95,10 @@ public class EnchScienceResearchTableBlock extends Block implements EntityBlock 
 	@Override
 	public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
 		BlockEntity tileentity = world.getBlockEntity(pos);
-		if (tileentity instanceof EnchScienceResearchTableBlockEntity be)
+		if (tileentity instanceof EnchScienceResearchTableBlockEntity be) {
 			return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
-		else
-			return 0;
+		}
+		return 0;
 	}
 
 	public static class Item extends BlockItem {

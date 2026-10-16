@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block;
+package automandza.convenient_additions.block;
 
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.redstone.Orientation;
@@ -22,9 +22,9 @@ import net.minecraft.core.BlockPos;
 
 import javax.annotation.Nullable;
 
-import automandza.convenientadditions.procedures.LockedDoorOnBlockRightclickedProcedure;
-import automandza.convenientadditions.procedures.LockedDoorIgnoreRedstoneProcedure;
-import automandza.convenientadditions.block.entity.LockedDoorBlockEntity;
+import automandza.convenient_additions.procedures.LockedDoorOnBlockRightclickedProcedure;
+import automandza.convenient_additions.procedures.LockedDoorIgnoreRedstoneProcedure;
+import automandza.convenient_additions.block.entity.LockedDoorBlockEntity;
 
 public class LockedDoorBlock extends DoorBlock implements EntityBlock {
 	public LockedDoorBlock(BlockBehaviour.Properties properties) {

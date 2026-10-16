@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -27,7 +27,8 @@ public class PlayerTickProcedure {
 	}
 
 	private static void execute(@Nullable Event event, Entity entity) {
-		if (entity == null){
+		if (entity == null)
+{
 			return;
 		}
 		if (entity.getPersistentData().getBooleanOr("poison_immune", false)) {

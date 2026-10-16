@@ -1,10 +1,10 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModMenus;
+import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
 
 public class SawmillGUIThisGUIIsClosedProcedure {
 	public static void execute(Entity entity) {

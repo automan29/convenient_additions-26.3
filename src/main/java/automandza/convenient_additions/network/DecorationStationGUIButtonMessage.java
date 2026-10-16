@@ -1,4 +1,4 @@
-package automandza.convenientadditions.network;
+package automandza.convenient_additions.network;
 
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -15,9 +15,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.core.SectionPos;
 
-import automandza.convenientadditions.procedures.DoneLightsProcedureProcedure;
-import automandza.convenientadditions.procedures.AddLightsProcedureProcedure;
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.procedures.DoneLightsProcedureProcedure;
+import automandza.convenient_additions.procedures.AddLightsProcedureProcedure;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 @EventBusSubscriber
 public record DecorationStationGUIButtonMessage(int buttonID, int x, int y, int z) implements CustomPacketPayload {

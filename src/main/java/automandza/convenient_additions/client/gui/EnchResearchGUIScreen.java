@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.gui;
+package automandza.convenient_additions.client.gui;
 
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
@@ -14,9 +14,9 @@ import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.GuiGraphics;
 
-import automandza.convenientadditions.world.inventory.EnchResearchGUIMenu;
-import automandza.convenientadditions.network.EnchResearchGUIButtonMessage;
-import automandza.convenientadditions.init.ConvenientAdditionsModScreens;
+import automandza.convenient_additions.world.inventory.EnchResearchGUIMenu;
+import automandza.convenient_additions.network.EnchResearchGUIButtonMessage;
+import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 

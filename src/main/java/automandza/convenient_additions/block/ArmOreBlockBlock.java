@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block;
+package automandza.convenient_additions.block;
 
 import net.neoforged.neoforge.common.util.DeferredSoundType;
 
@@ -9,11 +9,11 @@ import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.util.ARGB;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.BlockPos;
 
 import com.mojang.serialization.MapCodec;
+import static net.minecraft.world.level.levelgen.structure.Structure.simpleCodec;
 
 public class ArmOreBlockBlock extends FallingBlock {
 	public static final MapCodec<ArmOreBlockBlock> CODEC = simpleCodec(ArmOreBlockBlock::new);

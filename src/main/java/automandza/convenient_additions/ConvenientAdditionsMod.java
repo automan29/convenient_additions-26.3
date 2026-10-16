@@ -1,5 +1,6 @@
-package automandza.convenientadditions;
+package automandza.convenient_additions;
 
+//imports
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -36,8 +37,11 @@ import java.lang.invoke.MethodHandle;
 import it.unimi.dsi.fastutil.ints.IntObjectPair;
 import it.unimi.dsi.fastutil.ints.IntObjectImmutablePair;
 
-import automandza.convenientadditions.world.structure.ConvAdditionsStructures;
-import automandza.convenientadditions.init.*;
+import automandza.convenient_additions.world.structure.ConvAdditionsStructures;
+import automandza.convenient_additions.init.*;
+
+
+
 
 @Mod("convenient_additions")
 public class ConvenientAdditionsMod {
@@ -105,6 +109,10 @@ public class ConvenientAdditionsMod {
 		}
 	}
 
+
+
+
+/*
 	private static Object minecraft;
 	private static MethodHandle playerHandle;
 
@@ -126,4 +134,7 @@ public class ConvenientAdditionsMod {
 			return null;
 		}
 	}
+ */
+
+
 }

@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.minecraft.server.level.ServerLevel;
@@ -16,7 +16,7 @@ import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.AdvancementHolder;
 
 
-import automandza.convenientadditions.init.ConvenientAdditionsModMenus;
+import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
 
 
 

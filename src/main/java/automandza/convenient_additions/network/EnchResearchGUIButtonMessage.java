@@ -1,6 +1,6 @@
-package automandza.convenientadditions.network;
+package automandza.convenient_additions.network;
 
-import automandza.convenientadditions.world.inventory.EnchResearchGUIMenu;
+import automandza.convenient_additions.world.inventory.EnchResearchGUIMenu;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -16,9 +16,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.core.SectionPos;
 
-import automandza.convenientadditions.procedures.EnchResearchTickProcedure;
-import automandza.convenientadditions.ConvenientAdditionsMod;
-import automandza.convenientadditions.world.inventory.UnlockedEnchTipsGUIMenu;
+import automandza.convenient_additions.procedures.EnchResearchTickProcedure;
+import automandza.convenient_additions.ConvenientAdditionsMod;
+import automandza.convenient_additions.world.inventory.UnlockedEnchTipsGUIMenu;
 import net.minecraft.core.BlockPos;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.FriendlyByteBuf;

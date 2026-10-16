@@ -1,4 +1,4 @@
-package automandza.convenientadditions.world.inventory;
+package automandza.convenient_additions.world.inventory;
 
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.items.SlotItemHandler;
@@ -31,9 +31,9 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
 
-import automandza.convenientadditions.procedures.EnchWMatsOpenTickProcedure;
-import automandza.convenientadditions.network.EnchWMatsGUISlotMessage;
-import automandza.convenientadditions.init.ConvenientAdditionsModMenus;
+import automandza.convenient_additions.procedures.EnchWMatsOpenTickProcedure;
+import automandza.convenient_additions.network.EnchWMatsGUISlotMessage;
+import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
 
 @EventBusSubscriber
 public class EnchWMatsGUIMenu extends AbstractContainerMenu implements ConvenientAdditionsModMenus.MenuAccessor {

@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -16,7 +16,8 @@ public class GlobalPutItemIntoFacingInputProcedure {
 			System.out.println("Warning! input ItemStack was empty");
 			return;
 		}
-		if (direction == null){
+		if (direction == null)
+{
 			System.out.println("ERROR! invalid direction");
 			return;
 		}

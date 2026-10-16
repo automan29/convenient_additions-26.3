@@ -1,10 +1,10 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModItems;
+import automandza.convenient_additions.init.ConvenientAdditionsModItems;
 
 public class DrillShowFuelUIProcedure {
 	public static boolean execute(Entity entity) {

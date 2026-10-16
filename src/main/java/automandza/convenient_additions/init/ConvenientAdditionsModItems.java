@@ -1,7 +1,7 @@
 /*
  *    MCreator note: This file will be REGENERATED on each build.
  */
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -15,9 +15,9 @@ import net.minecraft.world.item.BlockItem;
 
 import java.util.function.Function;
 
-import automandza.convenientadditions.item.*;
-import automandza.convenientadditions.block.EnchScienceResearchTableBlock;
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.item.*;
+import automandza.convenient_additions.block.EnchScienceResearchTableBlock;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 public class ConvenientAdditionsModItems {
 	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(ConvenientAdditionsMod.MODID);

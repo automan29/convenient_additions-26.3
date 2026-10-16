@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.minecraft.world.entity.player.Player;
@@ -6,7 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.network.chat.Component;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModItems;
+import automandza.convenient_additions.init.ConvenientAdditionsModItems;
 
 
 

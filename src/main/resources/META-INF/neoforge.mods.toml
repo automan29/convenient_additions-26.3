@@ -10,7 +10,7 @@ authors="automan29"
 [[dependencies.convenient_additions]]
 modId="neoforge"
 type="required"
-versionRange="[26.3.0.56-beta,)"
+versionRange="[26.3.0.86,)"
 ordering="AFTER"
 side="BOTH"
 

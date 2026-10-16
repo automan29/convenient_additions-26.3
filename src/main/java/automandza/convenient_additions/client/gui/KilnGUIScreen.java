@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.gui;
+package automandza.convenient_additions.client.gui;
 
 //imports
 import net.minecraft.world.level.Level;
@@ -10,8 +10,8 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.GuiGraphics;
 
-import automandza.convenientadditions.world.inventory.KilnGUIMenu;
-import automandza.convenientadditions.init.ConvenientAdditionsModScreens;
+import automandza.convenient_additions.world.inventory.KilnGUIMenu;
+import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.LevelAccessor;

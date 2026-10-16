@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.screens;
+package automandza.convenient_additions.client.screens;
 
 //imports
 import net.neoforged.neoforge.client.event.RenderGuiEvent;
@@ -12,9 +12,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.Minecraft;
 
-import automandza.convenientadditions.procedures.DrillShowFuelUIProcedure;
+import automandza.convenient_additions.procedures.DrillShowFuelUIProcedure;
 import net.minecraft.world.item.ItemStack;
-import automandza.convenientadditions.item.StoneDrillItem;
+import automandza.convenient_additions.item.StoneDrillItem;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.core.component.DataComponents;
 

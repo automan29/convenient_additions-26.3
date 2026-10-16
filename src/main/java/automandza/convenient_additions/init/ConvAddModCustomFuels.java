@@ -1,4 +1,4 @@
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 //imports
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;

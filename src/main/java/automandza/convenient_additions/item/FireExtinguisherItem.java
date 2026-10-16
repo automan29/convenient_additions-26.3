@@ -1,4 +1,4 @@
-package automandza.convenientadditions.item;
+package automandza.convenient_additions.item;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.Level;
@@ -17,7 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.BlockPos;
 
-import automandza.convenientadditions.procedures.PutOutFiresProcedure;
+import automandza.convenient_additions.procedures.PutOutFiresProcedure;
 
 public class FireExtinguisherItem extends Item {
 	public FireExtinguisherItem(Item.Properties properties) {

@@ -1,4 +1,4 @@
-package automandza.convenientadditions.command;
+package automandza.convenient_additions.command;
 
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
@@ -12,7 +12,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.Commands;
 
-import automandza.convenientadditions.procedures.ResetUnlockedEnchtsProcedure;
+import automandza.convenient_additions.procedures.ResetUnlockedEnchtsProcedure;
 
 @EventBusSubscriber
 public class ResetUnlockedEnchantmentsCommand {

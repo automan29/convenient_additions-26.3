@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 
 //imports
@@ -28,7 +28,7 @@ import net.minecraft.core.component.DataComponents;
 
 import javax.annotation.Nullable;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModItems;
+import automandza.convenient_additions.init.ConvenientAdditionsModItems;
 
 import java.util.Objects;
 

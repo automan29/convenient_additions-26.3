@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block.entity;
+package automandza.convenient_additions.block.entity;
 
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.level.storage.ValueInput;
@@ -24,8 +24,8 @@ import java.util.stream.IntStream;
 
 import io.netty.buffer.Unpooled;
 
-import automandza.convenientadditions.world.inventory.DecorationStationGUIMenu;
-import automandza.convenientadditions.init.ConvenientAdditionsModBlockEntities;
+import automandza.convenient_additions.world.inventory.DecorationStationGUIMenu;
+import automandza.convenient_additions.init.ConvenientAdditionsModBlockEntities;
 
 public class DecorationStationBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 	private NonNullList<ItemStack> stacks = NonNullList.withSize(1, ItemStack.EMPTY);

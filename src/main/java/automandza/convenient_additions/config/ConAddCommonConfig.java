@@ -1,4 +1,4 @@
-package automandza.convenientadditions.config;
+package automandza.convenient_additions.config;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 

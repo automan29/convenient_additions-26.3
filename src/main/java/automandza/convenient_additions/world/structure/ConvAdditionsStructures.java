@@ -1,4 +1,4 @@
-package automandza.convenientadditions.world.structure;
+package automandza.convenient_additions.world.structure;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.Registries;
@@ -6,7 +6,7 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 public class ConvAdditionsStructures {
 	/**

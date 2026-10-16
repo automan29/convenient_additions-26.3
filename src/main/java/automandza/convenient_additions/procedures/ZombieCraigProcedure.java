@@ -1,7 +1,7 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
-import automandza.convenientadditions.init.ConvenientAdditionsModEntities;
+import automandza.convenient_additions.init.ConvenientAdditionsModEntities;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;

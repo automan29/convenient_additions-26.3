@@ -1,4 +1,4 @@
-package automandza.convenientadditions.procedures;
+package automandza.convenient_additions.procedures;
 
 //imports
 import net.minecraft.world.phys.Vec3;
@@ -15,7 +15,8 @@ import net.minecraft.world.entity.player.Player;
 
 public class ThrowFlameChargeProcedure {
 	public static void execute(Entity entity, ItemStack itemstack) {
-		if (entity == null){
+		if (entity == null)
+{
 			return;
 		}
 		

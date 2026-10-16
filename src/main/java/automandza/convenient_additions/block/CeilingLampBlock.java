@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block;
+package automandza.convenient_additions.block;
 
 //imports
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -28,7 +28,7 @@ import net.minecraft.core.BlockPos;
 import java.util.function.ToIntFunction;
 import net.minecraft.server.level.ServerLevel;
 
-import automandza.convenientadditions.procedures.CeilingLampRightclickedProcedure;
+import automandza.convenient_additions.procedures.CeilingLampRightclickedProcedure;
 
 
 

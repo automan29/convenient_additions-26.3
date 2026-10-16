@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.gui;
+package automandza.convenient_additions.client.gui;
 
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
@@ -12,9 +12,9 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.GuiGraphics;
 
-import automandza.convenientadditions.world.inventory.DecorationStationGUIMenu;
-import automandza.convenientadditions.network.DecorationStationGUIButtonMessage;
-import automandza.convenientadditions.init.ConvenientAdditionsModScreens;
+import automandza.convenient_additions.world.inventory.DecorationStationGUIMenu;
+import automandza.convenient_additions.network.DecorationStationGUIButtonMessage;
+import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
 
 public class DecorationStationGUIScreen extends AbstractContainerScreen<DecorationStationGUIMenu> implements ConvenientAdditionsModScreens.ScreenAccessor {
 	private final Level world;

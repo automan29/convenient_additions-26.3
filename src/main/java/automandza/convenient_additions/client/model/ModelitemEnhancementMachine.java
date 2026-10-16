@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.model;
+package automandza.convenient_additions.client.model;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;

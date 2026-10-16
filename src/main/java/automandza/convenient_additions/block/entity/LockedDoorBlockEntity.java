@@ -1,4 +1,4 @@
-package automandza.convenientadditions.block.entity;
+package automandza.convenient_additions.block.entity;
 
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.level.storage.ValueInput;
@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 
 import java.util.stream.IntStream;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModBlockEntities;
+import automandza.convenient_additions.init.ConvenientAdditionsModBlockEntities;
 
 public class LockedDoorBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 	private NonNullList<ItemStack> stacks = NonNullList.withSize(9, ItemStack.EMPTY);

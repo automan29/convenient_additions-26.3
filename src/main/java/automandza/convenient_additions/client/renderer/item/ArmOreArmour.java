@@ -1,4 +1,4 @@
-package automandza.convenientadditions.client.renderer.item;
+package automandza.convenient_additions.client.renderer.item;
 
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModItems;
+import automandza.convenient_additions.init.ConvenientAdditionsModItems;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class ArmOreArmour {

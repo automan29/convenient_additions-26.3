@@ -1,14 +1,14 @@
 /*
  *	MCreator note: This file will be REGENERATED on each build.
  */
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.api.distmarker.Dist;
 
-import automandza.convenientadditions.client.gui.*;
+import automandza.convenient_additions.client.gui.*;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class ConvenientAdditionsModScreens {

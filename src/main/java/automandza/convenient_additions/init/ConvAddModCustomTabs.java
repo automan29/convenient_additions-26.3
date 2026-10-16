@@ -1,4 +1,4 @@
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 //imports
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.core.registries.Registries;
 
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 
 

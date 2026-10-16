@@ -1,4 +1,4 @@
-package automandza.convenientadditions.world.inventory;
+package automandza.convenient_additions.world.inventory;
 
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
 
-import automandza.convenientadditions.init.ConvenientAdditionsModMenus;
+import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
 
 public class DecorationStationGUIMenu extends AbstractContainerMenu implements ConvenientAdditionsModMenus.MenuAccessor {
 	public final Map<String, Object> menuState = new HashMap<>() {

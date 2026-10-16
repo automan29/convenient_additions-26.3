@@ -1,7 +1,7 @@
 /*
  *	MCreator note: This file will be REGENERATED on each build.
  */
-package automandza.convenientadditions.init;
+package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -18,9 +18,9 @@ import net.minecraft.client.Minecraft;
 
 import java.util.Map;
 
-import automandza.convenientadditions.world.inventory.*;
-import automandza.convenientadditions.network.MenuStateUpdateMessage;
-import automandza.convenientadditions.ConvenientAdditionsMod;
+import automandza.convenient_additions.world.inventory.*;
+import automandza.convenient_additions.network.MenuStateUpdateMessage;
+import automandza.convenient_additions.ConvenientAdditionsMod;
 
 public class ConvenientAdditionsModMenus {
 	public static final DeferredRegister<MenuType<?>> REGISTRY = DeferredRegister.create(Registries.MENU, ConvenientAdditionsMod.MODID);

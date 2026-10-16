@@ -1,4 +1,4 @@
-package automandza.convenientadditions.item;
+package automandza.convenient_additions.item;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.ItemUseAnimation;
@@ -8,7 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 
-import automandza.convenientadditions.procedures.GRS1600RightclickedProcedure;
+import automandza.convenient_additions.procedures.GRS1600RightclickedProcedure;
 
 public class GRS1600Item extends Item {
 	public GRS1600Item(Item.Properties properties) {
