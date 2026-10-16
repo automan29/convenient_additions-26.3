@@ -28,7 +28,7 @@ import automandza.convenient_additions.block.entity.LockedDoorBlockEntity;
 
 public class LockedDoorBlock extends DoorBlock implements EntityBlock {
 	public LockedDoorBlock(BlockBehaviour.Properties properties) {
-		super(BlockSetType.IRON, properties.mapColor(MapColor.NONE).sound(SoundType.IRON).strength(-1f, 40f).pushReaction(PushReaction.BLOCK).instrument(NoteBlockInstrument.GUITAR));
+		super(BlockSetType.IRON, properties.mapColor(MapColor.NONE).sound(SoundType.IRON).strength(-1f, 40f).pushReaction(PushReaction.IMMOVEABLE).instrument(NoteBlockInstrument.GUITAR));
 	}
 
 	@Override

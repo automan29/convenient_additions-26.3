@@ -117,9 +117,9 @@ public class MaterialsToEnchantmentMachineBlock extends Block implements EntityB
 	}
 
 	@Override
-	public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
-		BlockEntity tileentity = world.getBlockEntity(pos);
-		if (tileentity instanceof MaterialsToEnchantmentMachineBlockEntity be)
+	public int getAnalogOutputSignal(Level world, BlockPos pos, Direction dir) {
+		BlockEntity tileEnt = world.getBlockEntity(pos);
+		if (tileEnt instanceof MaterialsToEnchantmentMachineBlockEntity be)
 			return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
 		else
 			return 0;

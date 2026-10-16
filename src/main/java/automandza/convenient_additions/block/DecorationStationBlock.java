@@ -1,5 +1,6 @@
 package automandza.convenient_additions.block;
 
+import net.minecraft.core.Direction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -94,7 +95,7 @@ public class DecorationStationBlock extends Block implements EntityBlock {
 	}
 
 	@Override
-	public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
+	public int getAnalogOutputSignal(Level world, BlockPos pos, Direction dir) {
 		BlockEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof DecorationStationBlockEntity be)
 			return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
