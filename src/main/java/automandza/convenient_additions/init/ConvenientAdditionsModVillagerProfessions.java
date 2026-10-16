@@ -3,6 +3,7 @@
  */
 package automandza.convenient_additions.init;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -10,7 +11,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.villager.VillagerProfession;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.sounds.SoundEvent;
@@ -41,7 +42,15 @@ public class ConvenientAdditionsModVillagerProfessions {
 		POI_TYPES.put(name, new ProfessionPoiType(block, null));
 		return PROFESSIONS.register(name, () -> {
 			Predicate<Holder<PoiType>> poiPredicate = poiTypeHolder -> (POI_TYPES.get(name).poiType != null) && (poiTypeHolder.value() == POI_TYPES.get(name).poiType.value());
-			return new VillagerProfession(Component.translatable("entity.villager." + ConvenientAdditionsMod.MODID + "." + name), poiPredicate, poiPredicate, ImmutableSet.of(), ImmutableSet.of(), soundEvent.get());
+			return new VillagerProfession(
+					Component.translatable("entity.villager." + ConvenientAdditionsMod.MODID + "." + name),
+					poiPredicate,
+					poiPredicate,
+					ImmutableSet.of(),
+					ImmutableSet.of(),
+					soundEvent.get(),
+					Int2ObjectMap.ofEntries()
+			);
 		});
 	}
 

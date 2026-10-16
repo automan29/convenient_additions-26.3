@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.Block;
+import org.jspecify.annotations.NonNull;
 
 public class TheLockBlockBlock extends Block {
 	public TheLockBlockBlock(BlockBehaviour.Properties properties) {
@@ -13,7 +14,7 @@ public class TheLockBlockBlock extends Block {
 	}
 
 	@Override
-	public boolean propagatesSkylightDown(BlockState state) {
+	public boolean propagatesSkylightDown(@NonNull BlockState state) {
 		return true;
 	}
 }

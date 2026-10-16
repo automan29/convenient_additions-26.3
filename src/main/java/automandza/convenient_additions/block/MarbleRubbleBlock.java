@@ -16,7 +16,9 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import org.jspecify.annotations.NonNull;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 public class MarbleRubbleBlock extends Block {
@@ -29,48 +31,46 @@ public class MarbleRubbleBlock extends Block {
 	}
 
 	private Function<BlockState, VoxelShape> makeShapes() {
-		return this.getShapeForEachState(state -> {
-			return switch (state.getValue(FACING)) {
-				default -> box(1, 0, 1, 15, 7, 15);
-				case NORTH -> box(1, 0, 1, 15, 7, 15);
-				case EAST -> box(1, 0, 1, 15, 7, 15);
-				case WEST -> box(1, 0, 1, 15, 7, 15);
-			};
+		return this.getShapeForEachState(state -> switch (state.getValue(FACING)) {
+            case NORTH -> box(1, 0, 1, 15, 7, 15);
+            case EAST -> box(1, 0, 1, 15, 7, 15);
+            case WEST -> box(1, 0, 1, 15, 7, 15);
+			default -> box(1, 0, 1, 15, 7, 15);
 		});
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter world, @NonNull BlockPos pos, @NonNull CollisionContext context) {
 		return shapes.apply(state);
 	}
 
 	@Override
-	public boolean propagatesSkylightDown(BlockState state) {
+	public boolean propagatesSkylightDown(@NonNull BlockState state) {
 		return true;
 	}
 
 
 	@Override
-	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @NonNull VoxelShape getVisualShape(@NonNull BlockState state, @NonNull BlockGetter world, @NonNull BlockPos pos, @NonNull CollisionContext context) {
 		return Shapes.empty();
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.@NonNull Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(FACING);
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
+	public BlockState getStateForPlacement(@NonNull BlockPlaceContext context) {
+		return Objects.requireNonNull(super.getStateForPlacement(context)).setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
 
-	public BlockState rotate(BlockState state, Rotation rot) {
+	public @NonNull BlockState rotate(BlockState state, Rotation rot) {
 		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
-	public BlockState mirror(BlockState state, Mirror mirrorIn) {
+	public @NonNull BlockState mirror(BlockState state, Mirror mirrorIn) {
 		return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
 	}
 }

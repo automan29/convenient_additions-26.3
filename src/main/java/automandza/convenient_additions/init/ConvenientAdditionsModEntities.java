@@ -20,22 +20,24 @@ import net.minecraft.core.registries.Registries;
 import automandza.convenient_additions.entity.SnowCreeperEntity;
 import automandza.convenient_additions.ConvenientAdditionsMod;
 
+import static net.minecraft.world.entity.EntityType.*;
+
 @EventBusSubscriber
 public class ConvenientAdditionsModEntities {
 	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, ConvenientAdditionsMod.MODID);
-	public static final DeferredHolder<EntityType<?>, EntityType<SnowCreeperEntity>> SNOW_CREEPER = register("snow_creeper",
-			EntityType.Builder.<SnowCreeperEntity>of(SnowCreeperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3)
+	public static final DeferredHolder<EntityType<?>, EntityType<SnowCreeperEntity>> SNOW_CREEPER = register(
+			Builder.of(SnowCreeperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3)
 
 					.sized(0.6f, 1.7f));
 
 	// Start of user code block custom entities
 	// End of user code block custom entities
-	private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
-		return REGISTRY.register(registryname, () -> (EntityType<T>) entityTypeBuilder.build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(ConvenientAdditionsMod.MODID, registryname))));
+	private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(EntityType.Builder<T> entityTypeBuilder) {
+		return REGISTRY.register("snow_creeper", () -> entityTypeBuilder.build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(ConvenientAdditionsMod.MODID, "snow_creeper"))));
 	}
 
 	@SubscribeEvent
-	public static void init(RegisterSpawnPlacementsEvent event) {
+	public static void init(RegisterSpawnPlacementsEvent ignoredA) {
 		SnowCreeperEntity.init();
 	}
 

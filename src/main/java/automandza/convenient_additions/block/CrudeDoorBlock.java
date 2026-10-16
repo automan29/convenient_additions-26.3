@@ -10,26 +10,26 @@ import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
 import automandza.convenient_additions.procedures.CrudeDoorChanceToDropProcedure;
+import org.jspecify.annotations.NonNull;
 
 public class CrudeDoorBlock extends DoorBlock {
 	public CrudeDoorBlock(BlockBehaviour.Properties properties) {
-		super(BlockSetType.OAK, properties.sound(SoundType.GRAVEL).strength(1f, 10f).noOcclusion().pushReaction(PushReaction.POPPED).isRedstoneConductor((bs, br, bp) -> false));
+		super(BlockSetType.OAK,
+				properties.sound(SoundType.GRAVEL).strength(1f, 10f)
+				.noOcclusion().pushReaction(PushReaction.POPPED)
+				.isRedstoneConductor((_, _, _) -> false)
+		);
 	}
 
 	@Override
-	public InteractionResult useWithoutItem(BlockState blockstate, Level world, BlockPos pos, Player entity, BlockHitResult hit) {
+	public @NonNull InteractionResult useWithoutItem(@NonNull BlockState blockstate, @NonNull Level world, @NonNull BlockPos pos, @NonNull Player entity, @NonNull BlockHitResult hit) {
 		super.useWithoutItem(blockstate, world, pos, entity, hit);
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		double hitX = hit.getLocation().x;
-		double hitY = hit.getLocation().y;
-		double hitZ = hit.getLocation().z;
-		Direction direction = hit.getDirection();
 		CrudeDoorChanceToDropProcedure.execute(world, x, y, z);
 		return InteractionResult.SUCCESS;
 	}

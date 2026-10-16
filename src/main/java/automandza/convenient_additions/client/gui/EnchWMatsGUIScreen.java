@@ -7,7 +7,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.render.GuiRenderer;
 
 import automandza.convenient_additions.world.inventory.EnchWMatsGUIMenu;
 import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
@@ -39,13 +39,13 @@ public class EnchWMatsGUIScreen extends AbstractContainerScreen<EnchWMatsGUIMenu
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+	public void render(GuiRenderer guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
+	protected void renderBg(GuiRenderer guiGraphics, float partialTicks, int mouseX, int mouseY) {
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, IMAGE_0, this.leftPos + 0, this.topPos + 0, 0, 0, 194, 180, 194, 180);
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, IMAGE_1, this.leftPos + 24, this.topPos + 55, 0, 0, 16, 16, 16, 16);
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, IMAGE_2, this.leftPos + 24, this.topPos + 55, 0, 0, 16, 16, 16, 16);
@@ -61,7 +61,7 @@ public class EnchWMatsGUIScreen extends AbstractContainerScreen<EnchWMatsGUIMenu
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(GuiRenderer guiGraphics, int mouseX, int mouseY) {
 		guiGraphics.drawString(this.font, Component.translatable("gui.convenient_additions.ench_w_mats_gui.label_inventory"), 49, 75, -6843986, true);
 	}
 

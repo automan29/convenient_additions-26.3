@@ -17,7 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
 import javax.annotation.Nullable;
@@ -25,6 +24,7 @@ import javax.annotation.Nullable;
 import automandza.convenient_additions.procedures.LockedDoorOnBlockRightclickedProcedure;
 import automandza.convenient_additions.procedures.LockedDoorIgnoreRedstoneProcedure;
 import automandza.convenient_additions.block.entity.LockedDoorBlockEntity;
+import org.jspecify.annotations.NonNull;
 
 public class LockedDoorBlock extends DoorBlock implements EntityBlock {
 	public LockedDoorBlock(BlockBehaviour.Properties properties) {
@@ -32,7 +32,7 @@ public class LockedDoorBlock extends DoorBlock implements EntityBlock {
 	}
 
 	@Override
-	public void neighborChanged(BlockState blockstate, Level world, BlockPos pos, Block neighborBlock, @Nullable Orientation orientation, boolean moving) {
+	public void neighborChanged(@NonNull BlockState blockstate, @NonNull Level world, @NonNull BlockPos pos, @NonNull Block neighborBlock, @Nullable Orientation orientation, boolean moving) {
 		super.neighborChanged(blockstate, world, pos, neighborBlock, orientation, moving);
 		if (world.getBestNeighborSignal(pos) > 0) {
 			LockedDoorIgnoreRedstoneProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
@@ -40,32 +40,28 @@ public class LockedDoorBlock extends DoorBlock implements EntityBlock {
 	}
 
 	@Override
-	public InteractionResult useWithoutItem(BlockState blockstate, Level world, BlockPos pos, Player entity, BlockHitResult hit) {
+	public @NonNull InteractionResult useWithoutItem(@NonNull BlockState blockstate, @NonNull Level world, @NonNull BlockPos pos, @NonNull Player entity, @NonNull BlockHitResult hit) {
 		super.useWithoutItem(blockstate, world, pos, entity, hit);
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		double hitX = hit.getLocation().x;
-		double hitY = hit.getLocation().y;
-		double hitZ = hit.getLocation().z;
-		Direction direction = hit.getDirection();
 		LockedDoorOnBlockRightclickedProcedure.execute(world, x, y, z, blockstate, entity);
 		return InteractionResult.SUCCESS;
 	}
 
 	@Override
-	public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+	public MenuProvider getMenuProvider(@NonNull BlockState state, Level worldIn, @NonNull BlockPos pos) {
 		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
 		return tileEntity instanceof MenuProvider menuProvider ? menuProvider : null;
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public BlockEntity newBlockEntity(@NonNull BlockPos pos, @NonNull BlockState state) {
 		return new LockedDoorBlockEntity(pos, state);
 	}
 
 	@Override
-	public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
+	public boolean triggerEvent(@NonNull BlockState state, @NonNull Level world, @NonNull BlockPos pos, int eventID, int eventParam) {
 		super.triggerEvent(state, world, pos, eventID, eventParam);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);

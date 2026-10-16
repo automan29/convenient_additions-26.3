@@ -33,6 +33,7 @@ import io.netty.buffer.Unpooled;
 import automandza.convenient_additions.world.inventory.SawmillGUIMenu;
 import automandza.convenient_additions.procedures.StandingOnSawmillProcedure;
 import automandza.convenient_additions.block.entity.SawmillBlockEntity;
+import org.jspecify.annotations.NonNull;
 
 public class SawmillBlock extends Block implements EntityBlock {
 	private static final VoxelShape SHAPE = box(0, 0, 0, 16, 9, 16);
@@ -105,7 +106,7 @@ public class SawmillBlock extends Block implements EntityBlock {
 	}
 
 	@Override
-	public boolean hasAnalogOutputSignal(BlockState state) {
+	public boolean hasAnalogOutputSignal(@NonNull BlockState state) {
 		return true;
 	}
 
