@@ -6,7 +6,7 @@ import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -32,7 +32,7 @@ public class EnchResearchGUIScreen extends AbstractContainerScreen<EnchResearchG
 	private boolean menuStateUpdateActive = false;
 	private ImageButton imagebutton_ench_res_test_select;
 	private ImageButton viewUnlockedEnchButton;
-	private static final ResourceLocation BACKGROUND_IMG = ResourceLocation.parse("convenient_additions:textures/screens/enchant_research_bg.png");
+	private static final Identifier BACKGROUND_IMG = Identifier.parse("convenient_additions:textures/screens/enchant_research_bg.png");
 
 
 	public EnchResearchGUIScreen(EnchResearchGUIMenu container, Inventory inventory, Component text) {
@@ -88,7 +88,7 @@ public class EnchResearchGUIScreen extends AbstractContainerScreen<EnchResearchG
 
 		// button to unlock new enchants
 		imagebutton_ench_res_test_select = new ImageButton(this.leftPos + 59, this.topPos + 28, 41, 18,
-			new WidgetSprites(ResourceLocation.parse("convenient_additions:textures/screens/ench_res_test_button.png"), ResourceLocation.parse("convenient_additions:textures/screens/ench_res_test_select.png")), 
+			new WidgetSprites(Identifier.parse("convenient_additions:textures/screens/ench_res_test_button.png"), Identifier.parse("convenient_additions:textures/screens/ench_res_test_select.png")), 
 			e -> {
 				int x = EnchResearchGUIScreen.this.x;
 				int y = EnchResearchGUIScreen.this.y;
@@ -107,7 +107,7 @@ public class EnchResearchGUIScreen extends AbstractContainerScreen<EnchResearchG
 
 		// button to open unlocked GUI
 		viewUnlockedEnchButton = new ImageButton(this.leftPos + 130, this.topPos + 26, 22, 22,
-			new WidgetSprites(ResourceLocation.parse("convenient_additions:textures/screens/view_unlocked_ench_button.png"), ResourceLocation.parse("convenient_additions:textures/screens/view_unlocked_ench_button_select.png")), 
+			new WidgetSprites(Identifier.parse("convenient_additions:textures/screens/view_unlocked_ench_button.png"), Identifier.parse("convenient_additions:textures/screens/view_unlocked_ench_button_select.png")), 
 			e -> {
 				int x = EnchResearchGUIScreen.this.x;
 				int y = EnchResearchGUIScreen.this.y;

@@ -13,7 +13,7 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.tags.TagKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.BlockPos;
 
@@ -21,7 +21,7 @@ import automandza.convenient_additions.procedures.PutOutFiresProcedure;
 
 public class FireExtinguisherItem extends Item {
 	public FireExtinguisherItem(Item.Properties properties) {
-		super(properties.durability(120).repairable(TagKey.create(Registries.ITEM, ResourceLocation.parse("convenient_additions:fire_extinguisher_repair_items")))
+		super(properties.durability(120).repairable(TagKey.create(Registries.ITEM, Identifier.parse("convenient_additions:fire_extinguisher_repair_items")))
 				.attributes(ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 0.2, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 						.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -3, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build())
 				.enchantable(1));

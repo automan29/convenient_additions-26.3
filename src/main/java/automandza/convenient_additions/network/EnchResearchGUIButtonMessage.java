@@ -8,7 +8,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.network.codec.StreamCodec;
@@ -29,7 +29,7 @@ import net.minecraft.server.level.ServerPlayer;
 
 @EventBusSubscriber
 public record EnchResearchGUIButtonMessage(int buttonID, int x, int y, int z) implements CustomPacketPayload {
-	public static final Type<EnchResearchGUIButtonMessage> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(ConvenientAdditionsMod.MODID, "ench_research_gui_buttons"));
+	public static final Type<EnchResearchGUIButtonMessage> TYPE = new Type<>(Identifier.fromNamespaceAndPath(ConvenientAdditionsMod.MODID, "ench_research_gui_buttons"));
 	public static final StreamCodec<RegistryFriendlyByteBuf, EnchResearchGUIButtonMessage> STREAM_CODEC = StreamCodec.of((RegistryFriendlyByteBuf buffer, EnchResearchGUIButtonMessage message) -> {
 		buffer.writeInt(message.buttonID);
 		buffer.writeInt(message.x);

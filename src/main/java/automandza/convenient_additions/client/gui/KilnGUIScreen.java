@@ -4,7 +4,7 @@ package automandza.convenient_additions.client.gui;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -24,17 +24,17 @@ public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implemen
 	private final int x, y, z;
 	private final Player entity;
 	private boolean menuStateUpdateActive = false;
-	private static final ResourceLocation BACKGROUND = ResourceLocation.parse("convenient_additions:textures/screens/kiln_gui.png");
-	private static final ResourceLocation TermCold = ResourceLocation.parse("convenient_additions:textures/screens/kiln_thermometer_cold.png");
-	private static final ResourceLocation ThermTorch = ResourceLocation.parse("convenient_additions:textures/screens/kiln_thermometer_torch.png");
-	private static final ResourceLocation Therm_1 = ResourceLocation.parse("convenient_additions:textures/screens/kiln_thermometer_1.png");
-	private static final ResourceLocation Therm_2 = ResourceLocation.parse("convenient_additions:textures/screens/kiln_thermometer_2.png");
-	private static final ResourceLocation Therm_3 = ResourceLocation.parse("convenient_additions:textures/screens/kiln_thermometer_3.png");
-	private static final ResourceLocation Therm_4 = ResourceLocation.parse("convenient_additions:textures/screens/kiln_thermometer_4.png");
-	private static final ResourceLocation Therm_5 = ResourceLocation.parse("convenient_additions:textures/screens/kiln_thermometer_5.png");
-	private static final ResourceLocation Therm_6 = ResourceLocation.parse("convenient_additions:textures/screens/kiln_thermometer_6.png");
-	private static final ResourceLocation Prog_Bar_BG = ResourceLocation.parse("convenient_additions:textures/screens/generic_bar_bg.png");
-	private static final ResourceLocation Prog_Bar_Fill = ResourceLocation.parse("convenient_additions:textures/screens/generic_bar_fill.png");
+	private static final Identifier BACKGROUND = Identifier.parse("convenient_additions:textures/screens/kiln_gui.png");
+	private static final Identifier TermCold = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_cold.png");
+	private static final Identifier ThermTorch = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_torch.png");
+	private static final Identifier Therm_1 = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_1.png");
+	private static final Identifier Therm_2 = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_2.png");
+	private static final Identifier Therm_3 = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_3.png");
+	private static final Identifier Therm_4 = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_4.png");
+	private static final Identifier Therm_5 = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_5.png");
+	private static final Identifier Therm_6 = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_6.png");
+	private static final Identifier Prog_Bar_BG = Identifier.parse("convenient_additions:textures/screens/generic_bar_bg.png");
+	private static final Identifier Prog_Bar_Fill = Identifier.parse("convenient_additions:textures/screens/generic_bar_fill.png");
 
 	public KilnGUIScreen(KilnGUIMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);

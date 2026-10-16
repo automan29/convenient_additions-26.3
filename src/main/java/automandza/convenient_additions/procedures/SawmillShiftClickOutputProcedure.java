@@ -8,7 +8,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
 
@@ -35,7 +35,7 @@ public class SawmillShiftClickOutputProcedure {
 				return;
 			}
 			
-			if (currentSawmillRecipe.equals("cut") && sawmillInputItem.is(ItemTags.create(ResourceLocation.parse("minecraft:logs")))){
+			if (currentSawmillRecipe.equals("cut") && sawmillInputItem.is(ItemTags.create(Identifier.parse("minecraft:logs")))){
 				ItemStack planksQuickStack = sawmillOutputItem;
 				int numPlanksToRecieve = getAmountInGUISlot(entity, 0)*5;
 						

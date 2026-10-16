@@ -14,7 +14,7 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -35,7 +35,7 @@ public class ConvenientAdditionsModVillagerProfessions {
 	private static final Map<String, ProfessionPoiType> POI_TYPES = new HashMap<>();
 	public static final DeferredRegister<VillagerProfession> PROFESSIONS = DeferredRegister.create(Registries.VILLAGER_PROFESSION, ConvenientAdditionsMod.MODID);
 	public static final DeferredHolder<VillagerProfession, VillagerProfession> LOCKSMITH = registerProfession("locksmith", () -> ConvenientAdditionsModBlocks.THE_LOCK_BLOCK.get(),
-			() -> BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("entity.villager.work_armorer")));
+			() -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.villager.work_armorer")));
 
 	private static DeferredHolder<VillagerProfession, VillagerProfession> registerProfession(String name, Supplier<Block> block, Supplier<SoundEvent> soundEvent) {
 		POI_TYPES.put(name, new ProfessionPoiType(block, null));
@@ -57,7 +57,7 @@ public class ConvenientAdditionsModVillagerProfessions {
 					continue;
 				}
 				PoiType poiType = new PoiType(ImmutableSet.copyOf(block.getStateDefinition().getPossibleStates()), 1, 1);
-				registerHelper.register(ResourceLocation.fromNamespaceAndPath("convenient_additions", name), poiType);
+				registerHelper.register(Identifier.fromNamespaceAndPath("convenient_additions", name), poiType);
 				entry.getValue().poiType = BuiltInRegistries.POINT_OF_INTEREST_TYPE.wrapAsHolder(poiType);
 			}
 		});

@@ -17,7 +17,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.Holder;
 import java.util.Set;
@@ -285,10 +285,10 @@ public class EnchWMatsOpenTickProcedure {
 			return Enchantments.FIRE_PROTECTION;
 		}
 		if (matItem == Items.COAL){
-			return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.parse("convenient_additions:dwarvern_instincts"));
+			return ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse("convenient_additions:dwarvern_instincts"));
 		}
 		if (matItem == ConvenientAdditionsModItems.LEGO_GUY.asItem()){
-			return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.parse("convenient_additions:infusion"));
+			return ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse("convenient_additions:infusion"));
 		}
 		
 		return null;

@@ -8,7 +8,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.api.distmarker.Dist;
 
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.Minecraft;
 
@@ -41,11 +41,11 @@ public class DrillOverlayOverlay {
 				int currDrillFuelVal = (int)currDrillIStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0);
 				int maxDrillFuelVal = (int)currDrillIStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("maxDrillFuelFloat", 75d);
 
-				event.getGuiGraphics().blit(RenderPipelines.GUI_TEXTURED, ResourceLocation.parse("convenient_additions:textures/screens/drillfuelbarbgimg.png"), w - 50, h / 2 + -98, 0, 0, 16, 75, 16, 75);
+				event.getGuiGraphics().blit(RenderPipelines.GUI_TEXTURED, Identifier.parse("convenient_additions:textures/screens/drillfuelbarbgimg.png"), w - 50, h / 2 + -98, 0, 0, 16, 75, 16, 75);
 
-				event.getGuiGraphics().blit(RenderPipelines.GUI_TEXTURED, ResourceLocation.parse("convenient_additions:textures/screens/drillfuelbarimg.png"), w - 50, h / 2 + -98, 0, 0, 16, fuelAmountVisualScale, 16, 75);
+				event.getGuiGraphics().blit(RenderPipelines.GUI_TEXTURED, Identifier.parse("convenient_additions:textures/screens/drillfuelbarimg.png"), w - 50, h / 2 + -98, 0, 0, 16, fuelAmountVisualScale, 16, 75);
 
-				event.getGuiGraphics().blit(RenderPipelines.GUI_TEXTURED, ResourceLocation.parse("convenient_additions:textures/screens/drillfuelbarforegroundimg.png"), w - 50, h / 2 + -98, 0, 0, 16, 75, 16, 75);
+				event.getGuiGraphics().blit(RenderPipelines.GUI_TEXTURED, Identifier.parse("convenient_additions:textures/screens/drillfuelbarforegroundimg.png"), w - 50, h / 2 + -98, 0, 0, 16, 75, 16, 75);
 
 				event.getGuiGraphics().drawString(Minecraft.getInstance().font, currDrillFuelVal+"/"+maxDrillFuelVal, w - 90, h / 2 + -96, -2658268, false);
 

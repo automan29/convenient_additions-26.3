@@ -1,6 +1,6 @@
 package automandza.convenient_additions.client.renderer;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.client.renderer.entity.state.CreeperRenderState;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -13,7 +13,7 @@ import automandza.convenient_additions.entity.SnowCreeperEntity;
 
 public class SnowCreeperRenderer extends MobRenderer<SnowCreeperEntity, CreeperRenderState, CreeperModel> {
 	private SnowCreeperEntity entity = null;
-	private final ResourceLocation entityTexture = ResourceLocation.parse("convenient_additions:textures/entities/snowcreeper.png");
+	private final Identifier entityTexture = Identifier.parse("convenient_additions:textures/entities/snowcreeper.png");
 
 	public SnowCreeperRenderer(EntityRendererProvider.Context context) {
 		super(context, new CreeperModel(context.bakeLayer(ModelLayers.CREEPER)), 0.5f);
@@ -31,7 +31,7 @@ public class SnowCreeperRenderer extends MobRenderer<SnowCreeperEntity, CreeperR
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(CreeperRenderState state) {
+	public Identifier getTextureLocation(CreeperRenderState state) {
 		return entityTexture;
 	}
 

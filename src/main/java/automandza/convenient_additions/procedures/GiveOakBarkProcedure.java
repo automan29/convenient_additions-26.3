@@ -23,7 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.core.component.DataComponents;
 
 import javax.annotation.Nullable;
@@ -62,7 +62,7 @@ public class GiveOakBarkProcedure {
 		if (entity instanceof Player plyr) {
 			if (currentOffhandItem.getItem() instanceof AxeItem _offhandAxe) {
 				if (
-						!blockstate.is(BlockTags.create(ResourceLocation.parse("minecraft:logs")))
+						!blockstate.is(BlockTags.create(Identifier.parse("minecraft:logs")))
 						| _offhandAxe.useOn(new UseOnContext(plyr, InteractionHand.OFF_HAND, Objects.requireNonNull(blockHitRes))) != InteractionResult.SUCCESS
 				) {
 					return false;
@@ -71,8 +71,8 @@ public class GiveOakBarkProcedure {
 
 
 			if ((
-					currentMainHandItem.is(ItemTags.create(ResourceLocation.parse("minecraft:axes")))
-					|| currentOffhandItem.is(ItemTags.create(ResourceLocation.parse("minecraft:axes")))
+					currentMainHandItem.is(ItemTags.create(Identifier.parse("minecraft:axes")))
+					|| currentOffhandItem.is(ItemTags.create(Identifier.parse("minecraft:axes")))
 			) && !(
 					currentOffhandItem.has(DataComponents.BLOCKS_ATTACKS) && !(plyr.isSecondaryUseActive())
 			)) {

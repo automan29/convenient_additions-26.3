@@ -17,7 +17,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import java.util.stream.Stream;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
@@ -145,10 +145,10 @@ public class KilnTickProcedure {
 		if (immediateBelowBlk == Blocks.FIRE){
 			if (lvlAcc.getBlockState(BlockPos.containing(x, y-2, z)).getBlock() == Blocks.COAL_BLOCK){
 				return 14d;
-			} else if(Stream.of(BlockTags.create(ResourceLocation.parse("minecraft:logs"))).anyMatch(lvlAcc.getBlockState(BlockPos.containing(x, y-2, z))::is)){
+			} else if(Stream.of(BlockTags.create(Identifier.parse("minecraft:logs"))).anyMatch(lvlAcc.getBlockState(BlockPos.containing(x, y-2, z))::is)){
 				// checks for logs tag
 				return 7d;
-			} else if(Stream.of(BlockTags.create(ResourceLocation.parse("minecraft:planks"))).anyMatch(lvlAcc.getBlockState(BlockPos.containing(x, y-2, z))::is)){
+			} else if(Stream.of(BlockTags.create(Identifier.parse("minecraft:planks"))).anyMatch(lvlAcc.getBlockState(BlockPos.containing(x, y-2, z))::is)){
 				// checks for planks tag
 				return 3d;
 			} else {

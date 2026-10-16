@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.AdvancementHolder;
@@ -41,7 +41,7 @@ public class SawmillCraftingProcedure {
 		if (entity instanceof Player _player && _player.containerMenu instanceof ConvenientAdditionsModMenus.MenuAccessor _menu) {
 
 			// paper recipe from bark
-			if (inputItemstackFound.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("convenient_additions", "material/bark")))
+			if (inputItemstackFound.is(ItemTags.create(Identifier.fromNamespaceAndPath("convenient_additions", "material/bark")))
 			&& inputItemstackFound.getCount() % 2 == 0
 			&& currentSawmillRecipe.equals("default")) {
 			
@@ -50,14 +50,14 @@ public class SawmillCraftingProcedure {
 				_menu.getSlots().get((int) outputID).set(_setstack2);
 
 			// checks if inserted item has planks tag
-			} else if (inputItemstackFound.is(ItemTags.create(ResourceLocation.parse("minecraft:planks")))){
+			} else if (inputItemstackFound.is(ItemTags.create(Identifier.parse("minecraft:planks")))){
 				//calls SawmillWoodFindProcedure planks to get output as an ItemStack
 				ItemStack _setstack2 = SawmillWoodFindProcedure.PlanksToSaw(inputItemstackFound, currentSawmillRecipe);
 				_setstack2.setCount(inputItemstackFound.getCount());
 				_menu.getSlots().get((int) outputID).set(_setstack2);
 
 			// checks if inserted item has logs tag
-			} else if (inputItemstackFound.is(ItemTags.create(ResourceLocation.parse("minecraft:logs")))){
+			} else if (inputItemstackFound.is(ItemTags.create(Identifier.parse("minecraft:logs")))){
 				// stripped wood log recipe from any log
 				if(currentSawmillRecipe.equals("default")){
 					ItemStack _setstack2 = SawmillWoodFindProcedure.LogsToWood(inputItemstackFound.getItem().toString());
@@ -78,7 +78,7 @@ public class SawmillCraftingProcedure {
 			} else if (currentSawmillRecipe.equals("do")){
 				// doer
 				if (entity instanceof ServerPlayer srvrPlr && srvrPlr.level() instanceof ServerLevel svrLevel) {
-					AdvancementHolder _adv = svrLevel.getServer().getAdvancements().get(ResourceLocation.parse("convenient_additions:doer_2"));
+					AdvancementHolder _adv = svrLevel.getServer().getAdvancements().get(Identifier.parse("convenient_additions:doer_2"));
 					if (_adv != null) {
 						AdvancementProgress _ap = srvrPlr.getAdvancements().getOrStartProgress(_adv);
 						if (!_ap.isDone()) {

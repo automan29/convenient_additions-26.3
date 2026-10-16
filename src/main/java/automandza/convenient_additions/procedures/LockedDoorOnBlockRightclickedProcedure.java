@@ -14,7 +14,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.Mth;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.component.DataComponents;
@@ -44,9 +44,9 @@ public class LockedDoorOnBlockRightclickedProcedure {
 			//plays door close sound
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
-					_level.playSound(null, BlockPos.containing(x, y, z), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("block.iron_door.close"))), SoundSource.BLOCKS, (float) 0.8, -1);
+					_level.playSound(null, BlockPos.containing(x, y, z), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.iron_door.close"))), SoundSource.BLOCKS, (float) 0.8, -1);
 				} else {
-					_level.playLocalSound(x, y, z, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("block.iron_door.close"))), SoundSource.BLOCKS, (float) 0.8, -1, false);
+					_level.playLocalSound(x, y, z, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.iron_door.close"))), SoundSource.BLOCKS, (float) 0.8, -1, false);
 				}
 			}
 		} else {
@@ -75,9 +75,9 @@ public class LockedDoorOnBlockRightclickedProcedure {
 						//play open sound
 						if (world instanceof Level _level) {
 							if (!_level.isClientSide()) {
-								_level.playSound(null, BlockPos.containing(x, y, z), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("block.iron_door.open"))), SoundSource.BLOCKS, (float) 0.8, -1);
+								_level.playSound(null, BlockPos.containing(x, y, z), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.iron_door.open"))), SoundSource.BLOCKS, (float) 0.8, -1);
 							} else {
-								_level.playLocalSound(x, y, z, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("block.iron_door.open"))), SoundSource.BLOCKS, (float) 0.8, -1, false);
+								_level.playLocalSound(x, y, z, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.iron_door.open"))), SoundSource.BLOCKS, (float) 0.8, -1, false);
 							}
 						}
 					}

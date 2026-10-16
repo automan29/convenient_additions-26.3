@@ -3,7 +3,7 @@ package automandza.convenient_additions.client.gui;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -17,9 +17,9 @@ public class EnchWMatsGUIScreen extends AbstractContainerScreen<EnchWMatsGUIMenu
 	private final int x, y, z;
 	private final Player entity;
 	private boolean menuStateUpdateActive = false;
-	private static final ResourceLocation IMAGE_0 = ResourceLocation.parse("convenient_additions:textures/screens/ench_mats_machine_bg.png");
-	private static final ResourceLocation IMAGE_1 = ResourceLocation.parse("convenient_additions:textures/screens/amethest_box_overlay.png");
-	private static final ResourceLocation IMAGE_2 = ResourceLocation.parse("convenient_additions:textures/screens/lapis_box_overlay.png");
+	private static final Identifier IMAGE_0 = Identifier.parse("convenient_additions:textures/screens/ench_mats_machine_bg.png");
+	private static final Identifier IMAGE_1 = Identifier.parse("convenient_additions:textures/screens/amethest_box_overlay.png");
+	private static final Identifier IMAGE_2 = Identifier.parse("convenient_additions:textures/screens/lapis_box_overlay.png");
 
 	public EnchWMatsGUIScreen(EnchWMatsGUIMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);

@@ -63,11 +63,6 @@ public class CeilingLampBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	public int getLightBlock(BlockState state) {
-		return 0;
-	}
-
-	@Override
 	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return Shapes.empty();
 	}

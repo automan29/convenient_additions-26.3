@@ -11,7 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.registries.Registries;
 
@@ -55,7 +55,7 @@ public class DwarvernInstinctsPickaxeProcedure {
 		
 		if (entity instanceof LivingEntity livinEnt){
 			Level world = livinEnt.level();
-			int DwarvInstLvl = livinEnt.getMainHandItem().getEnchantmentLevel(lvlAcc.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.parse("convenient_additions:dwarvern_instincts"))));
+			int DwarvInstLvl = livinEnt.getMainHandItem().getEnchantmentLevel(lvlAcc.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse("convenient_additions:dwarvern_instincts"))));
 			if (DwarvInstLvl > 0 && !world.isClientSide() && livinEnt.getMainHandItem().getItem() != ConvenientAdditionsModItems.STONE_DRILL.asItem()) {
 
 				//System.out.println("hiddenDwvTimer="+hiddenDwvTimer);
@@ -70,11 +70,11 @@ public class DwarvernInstinctsPickaxeProcedure {
 				
 				hiddenDwvTimer = livinEnt.tickCount + 600;
 				dwarvernFuryValue++;
-				world.playSound(null, pos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("block.note_block.iron_xylophone"))), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f);
+				world.playSound(null, pos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.note_block.iron_xylophone"))), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f);
 
 				if(dwarvernFuryValue >= 5){
 					livinEnt.addEffect(new MobEffectInstance(MobEffects.HASTE, 100+(150*DwarvInstLvl), 0));
-					world.playSound(null, pos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("convenient_additions:dwarf_activate"))), SoundSource.BLOCKS, 2f, 1f);
+					world.playSound(null, pos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:dwarf_activate"))), SoundSource.BLOCKS, 2f, 1f);
 					dwarvernFuryValue = 0;
 				}
 
@@ -83,6 +83,6 @@ public class DwarvernInstinctsPickaxeProcedure {
 	}
 
 	private static boolean checkBlockInOresList(BlockState state){
-		return Stream.of(BlockTags.create(ResourceLocation.parse("c:ores"))).anyMatch(state::is);
+		return Stream.of(BlockTags.create(Identifier.parse("c:ores"))).anyMatch(state::is);
 	}
 }

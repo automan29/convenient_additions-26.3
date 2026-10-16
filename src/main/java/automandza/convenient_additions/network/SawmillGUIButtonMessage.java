@@ -7,7 +7,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.network.codec.StreamCodec;
@@ -23,7 +23,7 @@ import automandza.convenient_additions.ConvenientAdditionsMod;
 
 @EventBusSubscriber
 public record SawmillGUIButtonMessage(int buttonID, int x, int y, int z) implements CustomPacketPayload {
-	public static final Type<SawmillGUIButtonMessage> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(ConvenientAdditionsMod.MODID, "sawmill_gui_buttons"));
+	public static final Type<SawmillGUIButtonMessage> TYPE = new Type<>(Identifier.fromNamespaceAndPath(ConvenientAdditionsMod.MODID, "sawmill_gui_buttons"));
 	public static final StreamCodec<RegistryFriendlyByteBuf, SawmillGUIButtonMessage> STREAM_CODEC = StreamCodec.of((RegistryFriendlyByteBuf buffer, SawmillGUIButtonMessage message) -> {
 		buffer.writeInt(message.buttonID);
 		buffer.writeInt(message.x);

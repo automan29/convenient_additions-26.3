@@ -18,7 +18,7 @@ import net.neoforged.bus.api.Event;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.tags.TagKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.core.registries.Registries;
 
@@ -43,7 +43,7 @@ public class ZombieCraigProcedure {
 			return;
 		}
 		if (entity instanceof LivingEntity livinEnt) {
-			if (Math.random() * 100d > 99.5d && entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.parse("minecraft:zombies")))) {
+			if (Math.random() * 100d > 99.5d && entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, Identifier.parse("minecraft:zombies")))) {
 				ItemStack acaciaStack = new ItemStack(Items.ACACIA_SAPLING).copy();
 				acaciaStack.setCount(2);
 				entity.setSprinting(true);
@@ -69,16 +69,16 @@ public class ZombieCraigProcedure {
 			return false;
 		}
 		return (
-				biome.is(ResourceLocation.parse("snowy_plains")) ||
-				biome.is(ResourceLocation.parse("frozen_ocean")) ||
-				biome.is(ResourceLocation.parse("ice_spikes")) ||
-				biome.is(ResourceLocation.parse("snowy_taiga")) ||
-				biome.is(ResourceLocation.parse("snowy_slopes")) ||
-				biome.is(ResourceLocation.parse("snowy_beach")) ||
-				biome.is(ResourceLocation.parse("grove")) ||
-				biome.is(ResourceLocation.parse("jagged_peaks")) ||
-				biome.is(ResourceLocation.parse("frozen_peaks")) ||
-				biome.is(ResourceLocation.parse("frozen_river"))
+				biome.is(Identifier.parse("snowy_plains")) ||
+				biome.is(Identifier.parse("frozen_ocean")) ||
+				biome.is(Identifier.parse("ice_spikes")) ||
+				biome.is(Identifier.parse("snowy_taiga")) ||
+				biome.is(Identifier.parse("snowy_slopes")) ||
+				biome.is(Identifier.parse("snowy_beach")) ||
+				biome.is(Identifier.parse("grove")) ||
+				biome.is(Identifier.parse("jagged_peaks")) ||
+				biome.is(Identifier.parse("frozen_peaks")) ||
+				biome.is(Identifier.parse("frozen_river"))
 		);
 	}
 }

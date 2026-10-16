@@ -16,9 +16,4 @@ public class TheLockBlockBlock extends Block {
 	public boolean propagatesSkylightDown(BlockState state) {
 		return true;
 	}
-
-	@Override
-	public int getLightBlock(BlockState state) {
-		return 0;
-	}
 }

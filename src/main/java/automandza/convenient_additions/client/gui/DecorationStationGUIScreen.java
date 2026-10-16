@@ -5,7 +5,7 @@ import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -23,7 +23,7 @@ public class DecorationStationGUIScreen extends AbstractContainerScreen<Decorati
 	private boolean menuStateUpdateActive = false;
 	private Button button_add_lights;
 	private Button button_done;
-	private static final ResourceLocation BACKGROUND = ResourceLocation.parse("convenient_additions:textures/screens/decoration_station_gui.png");
+	private static final Identifier BACKGROUND = Identifier.parse("convenient_additions:textures/screens/decoration_station_gui.png");
 
 	public DecorationStationGUIScreen(DecorationStationGUIMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);

@@ -8,7 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
 
@@ -25,9 +25,9 @@ public class SawmillTakeOutputProcedure {
 			ItemStack sawmillOutputItem = _menu.getSlots().get(1).getItem();
 			
 			if (getAmountInGUISlot(entity, 0) > 1 && stackCount > 0) {
-				if (sawmillInputItem.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("convenient_additions", "material/bark")))){
+				if (sawmillInputItem.is(ItemTags.create(Identifier.fromNamespaceAndPath("convenient_additions", "material/bark")))){
 					_menu.getSlots().get(0).remove(stackCount*2);
-				} else if (sawmillOutputItem.is(ItemTags.create(ResourceLocation.parse("minecraft:planks")))){
+				} else if (sawmillOutputItem.is(ItemTags.create(Identifier.parse("minecraft:planks")))){
 					_menu.getSlots().get(0).remove(1);
 				} else {
 					_menu.getSlots().get(0).remove(stackCount);

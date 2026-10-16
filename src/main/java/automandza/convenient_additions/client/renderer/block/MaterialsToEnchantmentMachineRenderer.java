@@ -7,7 +7,7 @@ import net.neoforged.api.distmarker.Dist;
 
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.core.Direction;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -33,12 +33,12 @@ import automandza.convenient_additions.block.MaterialsToEnchantmentMachineBlock;
 @EventBusSubscriber(Dist.CLIENT)
 public class MaterialsToEnchantmentMachineRenderer implements BlockEntityRenderer<MaterialsToEnchantmentMachineBlockEntity> {
 	private final CustomHierarchicalModel model;
-	private final ResourceLocation texture;
+	private final Identifier texture;
 	private final LivingEntityRenderState renderState;
 
 	MaterialsToEnchantmentMachineRenderer(BlockEntityRendererProvider.Context context) {
 		this.model = new CustomHierarchicalModel(context.bakeLayer(ModelitemEnhancementMachine.LAYER_LOCATION));
-		this.texture = ResourceLocation.parse("convenient_additions:textures/block/enhancementmachnineblockimg.png");
+		this.texture = Identifier.parse("convenient_additions:textures/block/enhancementmachnineblockimg.png");
 		this.renderState = new LivingEntityRenderState();
 	}
 

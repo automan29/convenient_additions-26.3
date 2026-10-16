@@ -7,7 +7,7 @@ import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -38,13 +38,13 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 	public final int[] scrollBoxDims = {25, 174, 164- lineSeparation, 2};
 
 	// images
-	private static final ResourceLocation BACKGROUND = ResourceLocation.parse("convenient_additions:textures/screens/unlocked_ench_tips_gui.png");
-	private static final ResourceLocation FOREGROUND = ResourceLocation.parse("convenient_additions:textures/screens/unlocked_ench_tips_foreground.png");
-	private static final ResourceLocation EMPTY_XP_BAR = ResourceLocation.parse("convenient_additions:textures/screens/xp_bar_10_empty.png");
-	private static final ResourceLocation XP_BAR_EDGE = ResourceLocation.parse("convenient_additions:textures/screens/xp_bar_single_edge_full.png");
-	private static final ResourceLocation XP_BAR_SEGMENT_FULL = ResourceLocation.parse("convenient_additions:textures/screens/xp_bar_single_full.png");
-	private static final ResourceLocation FULL_XP_BAR = ResourceLocation.parse("xp_metre_full_10.png");
-	private static final ResourceLocation BACK_BUTTON = ResourceLocation.parse("convenient_additions:textures/screens/tips_back_button.png");
+	private static final Identifier BACKGROUND = Identifier.parse("convenient_additions:textures/screens/unlocked_ench_tips_gui.png");
+	private static final Identifier FOREGROUND = Identifier.parse("convenient_additions:textures/screens/unlocked_ench_tips_foreground.png");
+	private static final Identifier EMPTY_XP_BAR = Identifier.parse("convenient_additions:textures/screens/xp_bar_10_empty.png");
+	private static final Identifier XP_BAR_EDGE = Identifier.parse("convenient_additions:textures/screens/xp_bar_single_edge_full.png");
+	private static final Identifier XP_BAR_SEGMENT_FULL = Identifier.parse("convenient_additions:textures/screens/xp_bar_single_full.png");
+	private static final Identifier FULL_XP_BAR = Identifier.parse("xp_metre_full_10.png");
+	private static final Identifier BACK_BUTTON = Identifier.parse("convenient_additions:textures/screens/tips_back_button.png");
 
 	
 

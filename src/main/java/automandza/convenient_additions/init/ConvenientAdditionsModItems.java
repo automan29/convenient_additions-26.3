@@ -93,13 +93,13 @@ public class ConvenientAdditionsModItems {
 		ENCH_SCIENCE_RESEARCH_TABLE = register("ench_science_research_table", EnchScienceResearchTableBlock.Item::new);
 		MATERIALS_TO_ENCHANTMENT_MACHINE = block(ConvenientAdditionsModBlocks.MATERIALS_TO_ENCHANTMENT_MACHINE);
 		FIRE_EXTINGUISHER = register("fire_extinguisher", FireExtinguisherItem::new);
-		SNOW_CREEPER_SPAWN_EGG = register("snow_creeper_spawn_egg", properties -> new SpawnEggItem(ConvenientAdditionsModEntities.SNOW_CREEPER.get(), properties));
+		SNOW_CREEPER_SPAWN_EGG = register("snow_creeper_spawn_egg", SpawnEggItem::new);
 	}
 
 	// Start of user code block custom items
 	// End of user code block custom items
 	private static <I extends Item> DeferredItem<I> register(String name, Function<Item.Properties, ? extends I> supplier) {
-		return REGISTRY.registerItem(name, supplier, new Item.Properties());
+		return REGISTRY.registerItem(name, supplier);
 	}
 
 	private static DeferredItem<Item> block(DeferredHolder<Block, Block> block) {
@@ -107,7 +107,7 @@ public class ConvenientAdditionsModItems {
 	}
 
 	private static DeferredItem<Item> block(DeferredHolder<Block, Block> block, Item.Properties properties) {
-		return REGISTRY.registerItem(block.getId().getPath(), prop -> new BlockItem(block.get(), prop), properties);
+		return REGISTRY.registerItem(block.getId().getPath(), prop -> new BlockItem(block.get(), prop));
 	}
 
 	private static DeferredItem<Item> doubleBlock(DeferredHolder<Block, Block> block) {
@@ -115,6 +115,6 @@ public class ConvenientAdditionsModItems {
 	}
 
 	private static DeferredItem<Item> doubleBlock(DeferredHolder<Block, Block> block, Item.Properties properties) {
-		return REGISTRY.registerItem(block.getId().getPath(), prop -> new DoubleHighBlockItem(block.get(), prop), properties);
+		return REGISTRY.registerItem(block.getId().getPath(), prop -> new DoubleHighBlockItem(block.get(), prop));
 	}
 }

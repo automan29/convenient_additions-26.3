@@ -12,7 +12,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.core.BlockPos;
 
 import java.util.stream.Stream;
@@ -61,7 +61,7 @@ public class StoneDrillItem extends Item {
 	@Override
 	public float getDestroySpeed(ItemStack itemstack, BlockState blockstate) {
 		// sets how fast drill can break specific blocks
-		if (Stream.of(BlockTags.create(ResourceLocation.parse("minecraft:planks"))).anyMatch(blockstate::is)) return 1f;
+		if (Stream.of(BlockTags.create(Identifier.parse("minecraft:planks"))).anyMatch(blockstate::is)) return 1f;
 
 		// disables drill
 		if (itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0) <= 0) return 0f;
@@ -91,10 +91,10 @@ public class StoneDrillItem extends Item {
 			dwarvernFuryValue++;
 			
 			if (!world.isClientSide()) {
-				world.playSound(null, BlockPos.containing(pos.getX(), pos.getY(), pos.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("block.note_block.iron_xylophone")), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f);
-				if (dwarvernFuryValue >= 5f) world.playSound(null, BlockPos.containing(pos.getX(), pos.getY(), pos.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("convenient_additions:dwarf_activate")), SoundSource.BLOCKS, 2f, 1f);
+				world.playSound(null, BlockPos.containing(pos.getX(), pos.getY(), pos.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.note_block.iron_xylophone")), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f);
+				if (dwarvernFuryValue >= 5f) world.playSound(null, BlockPos.containing(pos.getX(), pos.getY(), pos.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:dwarf_activate")), SoundSource.BLOCKS, 2f, 1f);
 			} else {
-				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("block.note_block.iron_xylophone")), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f, false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.note_block.iron_xylophone")), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f, false);
 			}
 			dwarvernInstEffects(entity, Integer.parseInt(currEnchStr.substring(currEnchStr.indexOf("Enchantment Dwarvern Instincts")+33, currEnchStr.indexOf("Enchantment Dwarvern Instincts")+34)));
 		}
@@ -132,16 +132,16 @@ public class StoneDrillItem extends Item {
 		}
 
 		// adds fuel cost for specific blocks (do this last)
-		if (Stream.of(BlockTags.create(ResourceLocation.parse("c:flowers"))).anyMatch(blockstate::is)
-			|| Stream.of(BlockTags.create(ResourceLocation.parse("minecraft:leaves"))).anyMatch(blockstate::is)
-			|| Stream.of(BlockTags.create(ResourceLocation.parse("minecraft:snow"))).anyMatch(blockstate::is)) {
+		if (Stream.of(BlockTags.create(Identifier.parse("c:flowers"))).anyMatch(blockstate::is)
+			|| Stream.of(BlockTags.create(Identifier.parse("minecraft:leaves"))).anyMatch(blockstate::is)
+			|| Stream.of(BlockTags.create(Identifier.parse("minecraft:snow"))).anyMatch(blockstate::is)) {
 			drillFuelCount -= 0.25f;
-		} else if (Stream.of(BlockTags.create(ResourceLocation.parse("c:gravels"))).anyMatch(blockstate::is)
-			|| Stream.of(BlockTags.create(ResourceLocation.parse("c:sands"))).anyMatch(blockstate::is)
-			|| Stream.of(BlockTags.create(ResourceLocation.parse("minecraft:dirt"))).anyMatch(blockstate::is)
-			|| Stream.of(BlockTags.create(ResourceLocation.parse("minecraft:ice"))).anyMatch(blockstate::is)){
+		} else if (Stream.of(BlockTags.create(Identifier.parse("c:gravels"))).anyMatch(blockstate::is)
+			|| Stream.of(BlockTags.create(Identifier.parse("c:sands"))).anyMatch(blockstate::is)
+			|| Stream.of(BlockTags.create(Identifier.parse("minecraft:dirt"))).anyMatch(blockstate::is)
+			|| Stream.of(BlockTags.create(Identifier.parse("minecraft:ice"))).anyMatch(blockstate::is)){
 			drillFuelCount -= 0.5f;
-		} else if (Stream.of(BlockTags.create(ResourceLocation.parse("c:netherracks"))).anyMatch(blockstate::is)){
+		} else if (Stream.of(BlockTags.create(Identifier.parse("c:netherracks"))).anyMatch(blockstate::is)){
 			drillFuelCount -= 0.75f;
 		} else {
 			drillFuelCount -= 1f;
@@ -196,21 +196,21 @@ public class StoneDrillItem extends Item {
 					Level world = lvingEnt.level();
 					if (!world.isClientSide()) {
 						if (drillSoundEffectTimer+40 < lvingEnt.tickCount) {
-							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("convenient_additions:drill_startup")), SoundSource.PLAYERS, 1f, 1f);
+							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_startup")), SoundSource.PLAYERS, 1f, 1f);
 							currentDrillSoundPlaying = "drill_startup";
 							drillSoundEffectTimer = lvingEnt.tickCount+35;
 						} else {
-							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("convenient_additions:drill_idle")), SoundSource.PLAYERS, 0.6f, 1f);
+							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_idle")), SoundSource.PLAYERS, 0.6f, 1f);
 							currentDrillSoundPlaying = "drill_idle";
 							drillSoundEffectTimer = lvingEnt.tickCount+5;
 						}
 					} else {
 						if (drillSoundEffectTimer+45 < lvingEnt.tickCount) {
-							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("convenient_additions:drill_startup")), SoundSource.PLAYERS, 1f, 1f, false);
+							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_startup")), SoundSource.PLAYERS, 1f, 1f, false);
 							currentDrillSoundPlaying = "drill_startup";
 							drillSoundEffectTimer = lvingEnt.tickCount+35;
 						} else {
-							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("convenient_additions:drill_idle")), SoundSource.PLAYERS, 0.6f, 1f, false);
+							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_idle")), SoundSource.PLAYERS, 0.6f, 1f, false);
 							currentDrillSoundPlaying = "drill_idle";
 							drillSoundEffectTimer = lvingEnt.tickCount+5;
 						}
@@ -277,11 +277,11 @@ public class StoneDrillItem extends Item {
 		//System.out.println("block="+blockstate.getBlock());
 		
 		return !(List.of(Blocks.SPAWNER, Blocks.AMETHYST_BLOCK, Blocks.TRIAL_SPAWNER, Blocks.SCULK_CATALYST, Blocks.SCULK_SENSOR, Blocks.SCULK_SHRIEKER, Blocks.BUDDING_AMETHYST, ConvenientAdditionsModBlocks.ARM_ORE_BLOCK.get()).contains(blockstate.getBlock())
-				|| Stream.of(BlockTags.create(ResourceLocation.parse("c:obsidians"))).anyMatch(blockstate::is)
-				|| Stream.of(BlockTags.create(ResourceLocation.parse("c:storage_blocks"))).anyMatch(blockstate::is)
-				|| Stream.of(BlockTags.create(ResourceLocation.parse("minecraft:logs"))).anyMatch(blockstate::is)
-				|| Stream.of(BlockTags.create(ResourceLocation.parse("c:chests"))).anyMatch(blockstate::is)
-				|| (Stream.of(BlockTags.create(ResourceLocation.parse("c:ores"))).anyMatch(blockstate::is) && !Stream.of(BlockTags.create(ResourceLocation.parse("c:ores/coal"))).anyMatch(blockstate::is)));
+				|| Stream.of(BlockTags.create(Identifier.parse("c:obsidians"))).anyMatch(blockstate::is)
+				|| Stream.of(BlockTags.create(Identifier.parse("c:storage_blocks"))).anyMatch(blockstate::is)
+				|| Stream.of(BlockTags.create(Identifier.parse("minecraft:logs"))).anyMatch(blockstate::is)
+				|| Stream.of(BlockTags.create(Identifier.parse("c:chests"))).anyMatch(blockstate::is)
+				|| (Stream.of(BlockTags.create(Identifier.parse("c:ores"))).anyMatch(blockstate::is) && !Stream.of(BlockTags.create(Identifier.parse("c:ores/coal"))).anyMatch(blockstate::is)));
 	}
 
 
@@ -294,9 +294,9 @@ public class StoneDrillItem extends Item {
 			
 			if (drillSoundEffectTimer < entity.tickCount || currentDrillSoundPlaying.equals("drill_idle")){
 				if (!world.isClientSide()) {
-					world.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("convenient_additions:drill_use")), SoundSource.PLAYERS, 0.8f, 1f);
+					world.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_use")), SoundSource.PLAYERS, 0.8f, 1f);
 				} else {
-					world.playLocalSound(entity.getX(), entity.getY(), entity.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(ResourceLocation.parse("convenient_additions:drill_use")), SoundSource.PLAYERS, 0.8f, 1f, false);
+					world.playLocalSound(entity.getX(), entity.getY(), entity.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_use")), SoundSource.PLAYERS, 0.8f, 1f, false);
 				}
 				currentDrillSoundPlaying = "drill_use";
 				drillSoundEffectTimer = entity.tickCount+10;

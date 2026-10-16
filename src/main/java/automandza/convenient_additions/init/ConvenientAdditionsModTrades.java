@@ -11,7 +11,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.registries.Registries;
 
@@ -19,7 +19,7 @@ import net.minecraft.core.registries.Registries;
 public class ConvenientAdditionsModTrades {
 	@SubscribeEvent
 	public static void registerTrades(VillagerTradesEvent event) {
-		if (event.getType() == ResourceKey.create(Registries.VILLAGER_PROFESSION, ResourceLocation.parse("convenient_additions:locksmith"))) {
+		if (event.getType() == ResourceKey.create(Registries.VILLAGER_PROFESSION, Identifier.parse("convenient_additions:locksmith"))) {
 			event.getTrades().get(1).add(new BasicItemListing(new ItemStack(ConvenientAdditionsModItems.GOLDEN_KEY.get()), new ItemStack(Items.EMERALD, 4), 8, 3, 0.05f));
 			event.getTrades().get(1).add(new BasicItemListing(new ItemStack(Items.EMERALD), new ItemStack(Blocks.TRIPWIRE_HOOK, 2), 4, 5, 0.05f));
 			event.getTrades().get(2).add(new BasicItemListing(new ItemStack(Blocks.IRON_DOOR), new ItemStack(Items.EMERALD, 2), 10, 5, 0.05f));

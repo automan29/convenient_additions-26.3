@@ -49,10 +49,6 @@ public class MarbleRubbleBlock extends Block {
 		return true;
 	}
 
-	@Override
-	public int getLightBlock(BlockState state) {
-		return 0;
-	}
 
 	@Override
 	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
