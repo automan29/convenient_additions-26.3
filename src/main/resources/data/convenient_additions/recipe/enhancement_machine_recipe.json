@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "aea"
+  ],
+  "key": {
+    "a": "minecraft:smooth_basalt",
+    "b": "minecraft:glass",
+    "c": "minecraft:iron_ingot",
+    "d": "minecraft:lapis_lazuli",
+    "e": "minecraft:amethyst_block"
+  },
+  "result": {
+    "id": "convenient_additions:materials_to_enchantment_machine",
+    "count": 1
+  }
+}

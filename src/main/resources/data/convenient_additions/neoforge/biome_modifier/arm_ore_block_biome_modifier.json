@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "river",
+    "frozen_river"
+  ],
+  "features": "convenient_additions:arm_ore_block",
+  "step": "underground_ores"
+}

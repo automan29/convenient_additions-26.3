@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "convenient_additions:item/stone_drill_img"
+  }
+}

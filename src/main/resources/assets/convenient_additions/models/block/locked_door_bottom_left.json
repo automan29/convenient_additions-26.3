@@ -1,0 +1,9 @@
+{
+  "parent": "block/door_bottom_left",
+  "textures": {
+    "particle": "convenient_additions:block/locked_door_lower",
+    "bottom": "convenient_additions:block/locked_door_lower",
+    "top": "convenient_additions:block/locked_door_upper"
+  },
+  "render_type": "solid"
+}

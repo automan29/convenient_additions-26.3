@@ -1,0 +1,13 @@
+{
+  "parent": "convenient_additions:custom/sawmillmodel",
+  "textures": {
+    "all": "minecraft:block/barrel_bottom",
+    "particle": "minecraft:block/barrel_bottom",
+    "side": "convenient_additions:block/sawmill_side",
+    "top": "convenient_additions:block/sawmill_top",
+    "connector": "convenient_additions:block/grey_colour",
+    "under": "minecraft:block/barrel_bottom",
+    "blade": "convenient_additions:block/sawmill_saw"
+  },
+  "render_type": "cutout"
+}

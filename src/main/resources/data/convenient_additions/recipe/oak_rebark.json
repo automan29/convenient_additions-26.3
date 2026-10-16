@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "bark_to_log",
+  "category": "building",
+  "ingredients": [
+    "convenient_additions:oak_bark",
+    "convenient_additions:oak_bark",
+    "minecraft:stripped_oak_log",
+    "convenient_additions:oak_bark",
+    "convenient_additions:oak_bark"
+  ],
+  "result": {
+    "id": "minecraft:oak_log",
+    "count": 1
+  }
+}

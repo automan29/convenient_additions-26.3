@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "convenient_additions:quartz_grave",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 14,
+    "separation": 7,
+    "salt": 787230461
+  }
+}

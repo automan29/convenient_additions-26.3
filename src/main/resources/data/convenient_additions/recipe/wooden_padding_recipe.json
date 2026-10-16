@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "aba",
+    "a a",
+    "a a"
+  ],
+  "key": {
+    "a": "#convenient_additions:material/bark",
+    "b": "#minecraft:planks"
+  },
+  "result": {
+    "id": "convenient_additions:wodden_vest_leggings",
+    "count": 1
+  }
+}

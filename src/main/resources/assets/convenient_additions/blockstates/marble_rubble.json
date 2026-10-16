@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "convenient_additions:block/marble_rubble"
+    },
+    "facing=east": {
+      "model": "convenient_additions:block/marble_rubble",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "convenient_additions:block/marble_rubble",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "convenient_additions:block/marble_rubble",
+      "y": 270
+    }
+  }
+}

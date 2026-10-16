@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "bark_to_log",
+  "category": "building",
+  "ingredients": [
+    "convenient_additions:spruce_bark",
+    "convenient_additions:spruce_bark",
+    "minecraft:stripped_spruce_log",
+    "convenient_additions:spruce_bark",
+    "convenient_additions:spruce_bark"
+  ],
+  "result": {
+    "id": "minecraft:spruce_log",
+    "count": 1
+  }
+}

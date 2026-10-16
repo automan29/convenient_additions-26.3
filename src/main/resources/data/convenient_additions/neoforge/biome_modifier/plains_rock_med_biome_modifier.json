@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "plains",
+    "savanna",
+    "meadow",
+    "windswept_savanna",
+    "sparse_jungle",
+    "windswept_forest",
+    "forest"
+  ],
+  "features": "convenient_additions:plains_rock_med",
+  "step": "local_modifications"
+}

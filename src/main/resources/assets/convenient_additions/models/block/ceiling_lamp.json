@@ -1,0 +1,10 @@
+{
+  "parent": "convenient_additions:custom/ceilinglightbulb",
+  "textures": {
+    "all": "convenient_additions:block/grey_colour",
+    "particle": "convenient_additions:block/grey_colour",
+    "0": "convenient_additions:block/grey_colour",
+    "1": "convenient_additions:block/lamp"
+  },
+  "render_type": "solid"
+}

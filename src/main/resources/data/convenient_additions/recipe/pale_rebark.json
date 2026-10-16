@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "bark_to_log",
+  "category": "building",
+  "ingredients": [
+    "convenient_additions:pale_bark",
+    "convenient_additions:pale_bark",
+    "minecraft:stripped_pale_oak_log",
+    "convenient_additions:pale_bark",
+    "convenient_additions:pale_bark"
+  ],
+  "result": {
+    "id": "minecraft:pale_oak_log",
+    "count": 1
+  }
+}

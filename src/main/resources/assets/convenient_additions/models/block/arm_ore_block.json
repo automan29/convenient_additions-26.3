@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "convenient_additions:block/arm_ore_block_img",
+    "up": "convenient_additions:block/arm_ore_block_img",
+    "north": "convenient_additions:block/arm_ore_block_img",
+    "east": "convenient_additions:block/arm_ore_block_img",
+    "south": "convenient_additions:block/arm_ore_block_img",
+    "west": "convenient_additions:block/arm_ore_block_img",
+    "particle": "convenient_additions:block/arm_ore_block_img"
+  },
+  "render_type": "solid"
+}

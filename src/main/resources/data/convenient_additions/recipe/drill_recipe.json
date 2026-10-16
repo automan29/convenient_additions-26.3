@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "ab ",
+    " cd",
+    " ed"
+  ],
+  "key": {
+    "a": "convenient_additions:drill_head",
+    "b": "minecraft:copper_block",
+    "c": "minecraft:furnace",
+    "d": "minecraft:iron_ingot",
+    "e": "minecraft:leather"
+  },
+  "result": {
+    "id": "convenient_additions:stone_drill",
+    "count": 1
+  }
+}

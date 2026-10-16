@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:netherite_ingot",
+    "minecraft:sunflower",
+    "minecraft:dried_kelp",
+    "minecraft:dried_kelp"
+  ],
+  "result": {
+    "id": "convenient_additions:drill_head",
+    "count": 1
+  }
+}

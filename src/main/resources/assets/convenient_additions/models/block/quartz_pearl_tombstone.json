@@ -1,0 +1,10 @@
+{
+  "parent": "convenient_additions:custom/quartztombstone",
+  "textures": {
+    "all": "convenient_additions:block/quartz_generic_img",
+    "particle": "convenient_additions:block/quartz_generic_img",
+    "0": "convenient_additions:block/quartz_generic_img",
+    "missing": "convenient_additions:block/quartz_generic_img"
+  },
+  "render_type": "solid"
+}

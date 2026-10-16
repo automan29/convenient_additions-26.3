@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    " a ",
+    "bbb"
+  ],
+  "key": {
+    "a": "minecraft:iron_ingot",
+    "b": "#minecraft:logs"
+  },
+  "result": {
+    "id": "convenient_additions:sawmill",
+    "count": 1
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "convenient_additions:block/quartz_pearl_tombstone"
+    },
+    "facing=east": {
+      "model": "convenient_additions:block/quartz_pearl_tombstone",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "convenient_additions:block/quartz_pearl_tombstone",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "convenient_additions:block/quartz_pearl_tombstone",
+      "y": 270
+    }
+  }
+}

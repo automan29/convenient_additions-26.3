@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "aab",
+    "aa "
+  ],
+  "key": {
+    "a": "minecraft:gold_nugget",
+    "b": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "convenient_additions:golden_key",
+    "count": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "aea"
+  ],
+  "key": {
+    "a": "minecraft:gold_nugget",
+    "b": "minecraft:green_carpet",
+    "c": "#minecraft:planks",
+    "d": "minecraft:iron_ingot",
+    "e": "minecraft:crafting_table"
+  },
+  "result": {
+    "id": "convenient_additions:the_lock_block",
+    "count": 1
+  }
+}

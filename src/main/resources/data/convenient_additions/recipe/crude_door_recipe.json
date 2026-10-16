@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "ab",
+    "cc",
+    "ab"
+  ],
+  "key": {
+    "a": "#minecraft:planks",
+    "b": "minecraft:stick",
+    "c": "#convenient_additions:material/bark"
+  },
+  "result": {
+    "id": "convenient_additions:crude_door",
+    "count": 1
+  }
+}

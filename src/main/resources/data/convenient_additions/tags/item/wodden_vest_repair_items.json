@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#convenient_additions:material/bark",
+      "required": false
+    }
+  ]
+}

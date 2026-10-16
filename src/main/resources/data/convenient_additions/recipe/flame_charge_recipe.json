@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "minecraft:wind_charge",
+    "minecraft:fire_charge"
+  ],
+  "result": {
+    "id": "convenient_additions:flame_charge",
+    "count": 1
+  }
+}

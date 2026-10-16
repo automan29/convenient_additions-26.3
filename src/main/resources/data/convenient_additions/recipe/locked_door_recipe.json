@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "ab",
+    "bc",
+    "ab"
+  ],
+  "key": {
+    "a": "minecraft:granite",
+    "b": "minecraft:obsidian",
+    "c": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "convenient_additions:locked_door",
+    "count": 4
+  }
+}

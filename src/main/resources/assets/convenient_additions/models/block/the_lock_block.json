@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "convenient_additions:block/misc_under_block",
+    "up": "convenient_additions:block/lock_block_top",
+    "north": "convenient_additions:block/lock_block_side",
+    "east": "convenient_additions:block/lock_block_side",
+    "south": "convenient_additions:block/lock_block_side",
+    "west": "convenient_additions:block/lock_block_side",
+    "particle": "convenient_additions:block/misc_under_block"
+  },
+  "render_type": "solid"
+}

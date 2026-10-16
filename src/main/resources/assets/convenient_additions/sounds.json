@@ -1,0 +1,51 @@
+{
+  "arm_ore_fall": {
+    "sounds": [
+      {
+        "name": "convenient_additions:a_man_has_fallen_into_the_river_short",
+        "stream": false
+      }
+    ]
+  },
+  "dwarf_activate": {
+    "subtitle": "subtitles.dwarf_activate",
+    "sounds": [
+      {
+        "name": "convenient_additions:diggydiggyholeintro",
+        "stream": false
+      }
+    ]
+  },
+  "drill_startup": {
+    "sounds": [
+      {
+        "name": "convenient_additions:drillsoundeffects-002",
+        "stream": false
+      }
+    ]
+  },
+  "drill_use": {
+    "sounds": [
+      {
+        "name": "convenient_additions:drillusesfx",
+        "stream": false
+      }
+    ]
+  },
+  "drill_idle": {
+    "sounds": [
+      {
+        "name": "convenient_additions:drillidlesfx",
+        "stream": false
+      }
+    ]
+  },
+  "lil_tune_tiny_rume": {
+    "sounds": [
+      {
+        "name": "convenient_additions:liltunetinyroom",
+        "stream": true
+      }
+    ]
+  }
+}

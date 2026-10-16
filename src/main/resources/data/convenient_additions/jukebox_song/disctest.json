@@ -1,0 +1,8 @@
+{
+  "comparator_output": 1,
+  "description": {
+    "translate": "item.convenient_additions.disctest.desc"
+  },
+  "length_in_seconds": 6.25,
+  "sound_event": "convenient_additions:lil_tune_tiny_rume"
+}

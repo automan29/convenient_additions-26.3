@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "convenient_additions:palehighendhome",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 20,
+    "separation": 14,
+    "salt": 1777695820
+  }
+}

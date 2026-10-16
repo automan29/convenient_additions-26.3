@@ -1,0 +1,22 @@
+license="MIT License"
+
+[[mods]]
+modId="convenient_additions"
+version="0.9.9"
+displayName="Convenient Additions"
+displayURL="https://github.com/automan29/convenient_additions"
+authors="automan29"
+
+[[dependencies.convenient_additions]]
+modId="neoforge"
+type="required"
+versionRange="[26.3.0.56-beta,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.convenient_additions]]
+modId="minecraft"
+type="required"
+versionRange="[26.3]"
+ordering="AFTER"
+side="BOTH"

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:copper_ingot",
+    "minecraft:iron_nugget"
+  ],
+  "result": {
+    "id": "convenient_additions:ceiling_lamp",
+    "count": 1
+  }
+}

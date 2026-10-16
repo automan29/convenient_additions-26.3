@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "convenient_additions:block/enhancementmachnineblockimg",
+    "particle": "convenient_additions:block/enchant_research_table_side"
+  },
+  "render_type": "cutout_mipped"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "convenientadditions:high_end_home/upper",
+	
+	"fallback": "minecraft:empty",
+	
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"location": "convenientadditions:pale_high_end_home_upper",
+				"processors": "minecraft:empty",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		}
+	]
+}

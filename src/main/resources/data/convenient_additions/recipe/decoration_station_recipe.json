@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "aba",
+    "cbc",
+    "aba"
+  ],
+  "key": {
+    "a": "#minecraft:planks",
+    "b": "minecraft:copper_ingot",
+    "c": "minecraft:redstone"
+  },
+  "result": {
+    "id": "convenient_additions:decoration_station",
+    "count": 1
+  }
+}

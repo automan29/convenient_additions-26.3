@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "convenient_additions:block/kiln"
+    },
+    "facing=east": {
+      "model": "convenient_additions:block/kiln",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "convenient_additions:block/kiln",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "convenient_additions:block/kiln",
+      "y": 270
+    }
+  }
+}

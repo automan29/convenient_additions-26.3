@@ -1,0 +1,9 @@
+{
+  "parent": "block/door_bottom_left_open",
+  "textures": {
+    "particle": "convenient_additions:block/crude_door_bottom_img",
+    "bottom": "convenient_additions:block/crude_door_bottom_img",
+    "top": "convenient_additions:block/crude_door_top_img"
+  },
+  "render_type": "cutout"
+}

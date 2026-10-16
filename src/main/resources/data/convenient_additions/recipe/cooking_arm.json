@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "experience": 1,
+  "cookingtime": 100,
+  "ingredient": "convenient_additions:arm_ore",
+  "result": {
+    "id": "convenient_additions:cooked_arm"
+  }
+}

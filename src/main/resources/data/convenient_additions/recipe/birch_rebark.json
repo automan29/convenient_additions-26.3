@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "bark_to_log",
+  "category": "building",
+  "ingredients": [
+    "convenient_additions:birch_bark",
+    "convenient_additions:birch_bark",
+    "minecraft:stripped_birch_log",
+    "convenient_additions:birch_bark",
+    "convenient_additions:birch_bark"
+  ],
+  "result": {
+    "id": "minecraft:birch_log",
+    "count": 1
+  }
+}

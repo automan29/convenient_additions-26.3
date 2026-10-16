@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcb",
+    "aaa"
+  ],
+  "key": {
+    "a": "#c:nether_planks",
+    "b": "minecraft:amethyst_shard",
+    "c": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "convenient_additions:ench_science_research_table",
+    "count": 1
+  }
+}

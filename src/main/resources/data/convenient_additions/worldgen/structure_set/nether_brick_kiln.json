@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "convenient_additions:nether_brick_kiln",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 25,
+    "separation": 20,
+    "salt": 1497610124
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "convenient_additions:wodden_vest"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "convenient_additions:wodden_vest"
+      }
+    ]
+  }
+}

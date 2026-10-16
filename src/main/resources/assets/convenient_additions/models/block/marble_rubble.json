@@ -1,0 +1,9 @@
+{
+  "parent": "convenient_additions:custom/marblerubble",
+  "textures": {
+    "all": "convenient_additions:block/marble_base",
+    "particle": "convenient_additions:block/marble_base",
+    "0": "convenient_additions:block/marble_base"
+  },
+  "render_type": "solid"
+}

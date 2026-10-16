@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " a ",
+    "bcb",
+    " d "
+  ],
+  "key": {
+    "a": "minecraft:carved_pumpkin",
+    "b": "convenient_additions:cooked_arm",
+    "c": "minecraft:lapis_block",
+    "d": "minecraft:golden_leggings"
+  },
+  "result": {
+    "id": "convenient_additions:lego_guy",
+    "count": 1
+  }
+}

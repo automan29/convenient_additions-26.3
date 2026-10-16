@@ -1,0 +1,27 @@
+{
+  "description": {
+    "translate": "enchantment.convenient_additions.dwarvern_instincts"
+  },
+  "supported_items": [
+    "convenient_additions:stone_drill",
+    "minecraft:diamond_pickaxe",
+    "minecraft:golden_pickaxe",
+    "minecraft:iron_pickaxe",
+    "minecraft:netherite_pickaxe"
+  ],
+  "weight": 6,
+  "max_level": 3,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 10
+  },
+  "max_cost": {
+    "base": 6,
+    "per_level_above_first": 10
+  },
+  "anvil_cost": 4,
+  "slots": [
+    "any"
+  ],
+  "exclusive_set": "silk_touch"
+}
