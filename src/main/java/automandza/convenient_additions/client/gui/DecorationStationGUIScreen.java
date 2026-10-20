@@ -1,5 +1,7 @@
 package automandza.convenient_additions.client.gui;
 
+import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.input.KeyEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
 import net.minecraft.world.level.Level;
@@ -10,7 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 import automandza.convenient_additions.world.inventory.DecorationStationGUIMenu;
 import automandza.convenient_additions.network.DecorationStationGUIButtonMessage;
@@ -18,7 +20,7 @@ import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
 
 public class DecorationStationGUIScreen extends AbstractContainerScreen<DecorationStationGUIMenu> implements ConvenientAdditionsModScreens.ScreenAccessor {
 	private final Level world;
-	private final int x, y, z;
+	private final int x, y, z, imageWidth, imageHeight;
 	private final Player entity;
 	private boolean menuStateUpdateActive = false;
 	private Button button_add_lights;
@@ -43,27 +45,29 @@ public class DecorationStationGUIScreen extends AbstractContainerScreen<Decorati
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+	public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
-		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
+	protected void renderBg(GuiGraphicsExtractor guiGraphics, float partialTicks, int mouseX, int mouseY) {
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
 	}
 
 	@Override
-	public boolean keyPressed(int key, int b, int c) {
+	public boolean keyPressed(KeyEvent event) {
+		int key = event.key();
 		if (key == 256) {
-			this.minecraft.player.closeContainer();
+            assert this.minecraft.player != null;
+            this.minecraft.player.closeContainer();
 			return true;
 		}
-		return super.keyPressed(key, b, c);
+		return super.keyPressed(event);
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
 	}
 
 	@Override

@@ -20,6 +20,7 @@ import net.minecraft.server.TickTask;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.FriendlyByteBuf;
+import net.neoforged.neoforge.common.NeoForgeEventHandler;
 
 import javax.annotation.Nullable;
 
@@ -43,14 +44,13 @@ import automandza.convenient_additions.init.*;
 
 
 
+
 @Mod("convenient_additions")
 public class ConvenientAdditionsMod {
 	public static final Logger LOGGER = LogManager.getLogger(ConvenientAdditionsMod.class);
 	public static final String MODID = "convenient_additions";
 
 	public ConvenientAdditionsMod(IEventBus modEventBus) {
-		// Start of user code block mod constructor
-		// End of user code block mod constructor
 		NeoForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::registerNetworking);
 		ConvenientAdditionsModSounds.REGISTRY.register(modEventBus);
@@ -62,10 +62,12 @@ public class ConvenientAdditionsMod {
 		ConvenientAdditionsModMenus.REGISTRY.register(modEventBus);
 		ConvenientAdditionsModParticleTypes.REGISTRY.register(modEventBus);
 		ConvenientAdditionsModVillagerProfessions.PROFESSIONS.register(modEventBus);
-		// Start of user code block mod init
+
+		// yeausad
 		ConvAdditionsStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
-		ConvAddModCustomTabs.REGISTRY.register(modEventBus);
-		// End of user code block mod init
+		ConvAddModCustomTabs.register(modEventBus);
+		modEventBus.addListener(ConvAddModCustomTabs::addCreativeTab);
+		modEventBus.addListener(ConvenientAdditionsModTabs::buildTabContentsVanilla);
 	}
 
 	// Start of user code block mod methods
@@ -97,8 +99,10 @@ public class ConvenientAdditionsMod {
 			workToBeScheduled.add(new IntObjectImmutablePair<>(delay, action));
 	}
 
+
+	// tick doesn't exist RKIFEODEJGDIRG
 	@SubscribeEvent
-	public void tick(ServerTickEvent.Post event) {
+	public void postServerTick(ServerTickEvent.Post event) {
 		int currentTick = event.getServer().getTickCount();
 		IntObjectPair<Runnable> work;
 		while ((work = workToBeScheduled.poll()) != null) {

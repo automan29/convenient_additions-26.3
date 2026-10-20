@@ -1,5 +1,6 @@
 package automandza.convenient_additions.client.gui;
 
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
@@ -52,12 +53,12 @@ public class EnchWMatsGUIScreen extends AbstractContainerScreen<EnchWMatsGUIMenu
 	}
 
 	@Override
-	public boolean keyPressed(int key, int b, int c) {
-		if (key == 256) {
+	public boolean keyPressed(KeyEvent event) {
+		if (event.key() == 256) {
 			this.minecraft.player.closeContainer();
 			return true;
 		}
-		return super.keyPressed(key, b, c);
+		return super.keyPressed(event);
 	}
 
 	@Override

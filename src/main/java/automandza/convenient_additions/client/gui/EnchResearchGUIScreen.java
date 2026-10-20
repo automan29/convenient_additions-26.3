@@ -1,5 +1,6 @@
 package automandza.convenient_additions.client.gui;
 
+import net.minecraft.client.input.KeyEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
 //imports
@@ -12,7 +13,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 import automandza.convenient_additions.world.inventory.EnchResearchGUIMenu;
 import automandza.convenient_additions.network.EnchResearchGUIButtonMessage;
@@ -53,27 +54,27 @@ public class EnchResearchGUIScreen extends AbstractContainerScreen<EnchResearchG
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+	public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
+	protected void renderBg(GuiGraphicsExtractor guiGraphics, float partialTicks, int mouseX, int mouseY) {
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_IMG, this.leftPos, this.topPos, 0, 0, 194, 180, 194, 180); // background image
 	}
 
 	@Override
-	public boolean keyPressed(int key, int b, int c) {
-		if (key == 256) {
+	public boolean keyPressed(KeyEvent event) {
+		if (event.key() == 256) {
 			this.minecraft.player.closeContainer();
 			return true;
 		}
-		return super.keyPressed(key, b, c);
+		return super.keyPressed(event);
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
 		BlockPos resTablePos = BlockPos.containing(x, y, z);
 		BlockEntity resTableEntity = world.getBlockEntity(resTablePos);
 		int expCost = Math.max(0, (int) resTableEntity.getPersistentData().getDoubleOr("xpCost", 0));
@@ -99,7 +100,7 @@ public class EnchResearchGUIScreen extends AbstractContainerScreen<EnchResearchG
 }
 		) {
 			@Override
-			public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+			public void renderWidget(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 				guiGraphics.blit(RenderPipelines.GUI_TEXTURED, sprites.get(isActive(), isHoveredOrFocused()), getX(), getY(), 0, 0, width, height, width, height);
 			}
 		};
@@ -117,7 +118,7 @@ public class EnchResearchGUIScreen extends AbstractContainerScreen<EnchResearchG
 			}
 		) {
 			@Override
-			public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+			public void renderWidget(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 				guiGraphics.blit(RenderPipelines.GUI_TEXTURED, sprites.get(isActive(), isHoveredOrFocused()), getX(), getY(), 0, 0, width, height, width, height);
 			}
 		};

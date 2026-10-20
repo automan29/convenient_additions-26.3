@@ -1,6 +1,7 @@
 package automandza.convenient_additions.client.gui;
 
 //imports
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
@@ -8,7 +9,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 import automandza.convenient_additions.world.inventory.KilnGUIMenu;
 import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
@@ -54,7 +55,7 @@ public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implemen
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+	public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		boolean customTooltipShown = false;
 		if (mouseX > leftPos + 11 && mouseX < leftPos + 35 && mouseY > topPos + 29 && mouseY < topPos + 53) {
@@ -66,7 +67,7 @@ public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implemen
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
+	protected void renderBg(GuiGraphicsExtractor guiGraphics, float partialTicks, int mouseX, int mouseY) {
 		int kilnProgressPercentage = 0;
 		double currThermometerTemp = 0d;
 		
@@ -101,16 +102,16 @@ public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implemen
 	}
 
 	@Override
-	public boolean keyPressed(int key, int b, int c) {
-		if (key == 256) {
+	public boolean keyPressed(KeyEvent event) {
+		if (event.key() == 256) {
 			this.minecraft.player.closeContainer();
 			return true;
 		}
-		return super.keyPressed(key, b, c);
+		return super.keyPressed(event);
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
 		guiGraphics.drawString(this.font, Component.translatable("gui.convenient_additions.kiln_gui.label_inventory"), 7, 72, -12829636, false);
 		guiGraphics.drawString(this.font, Component.translatable("gui.convenient_additions.kiln_gui.label_kiln"), 6, 5, -12829636, false);
 	}

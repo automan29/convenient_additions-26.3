@@ -2,8 +2,11 @@ package automandza.convenient_additions.client.gui;
 
 //imports
 import automandza.convenient_additions.network.EnchResearchGUIButtonMessage;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.WidgetSprites;
+import net.minecraft.client.input.KeyEvent;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,7 +14,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.GuiGraphics;
 
 import automandza.convenient_additions.world.inventory.UnlockedEnchTipsGUIMenu;
 import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
@@ -25,7 +27,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 
 	// initial vars and finals
 	private final Level world;
-	private final int x, y, z;
+	private final int x, y, z, imageWidth, imageHeight;
 	private final Player plr;
 	private boolean menuStateUpdateActive = false;
 	private String listOfUnlockedEnc;
@@ -75,7 +77,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 	}
 
 	@Override
-	public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		boolean customTooltipShown = false;
 
@@ -146,7 +148,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 	}
 
 	@Override
-	protected void renderLabels(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	protected void renderLabels(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
 
 		// if unlocked string is empty or null gives a warning and stops
 		if (listOfUnlockedEnc == null || listOfUnlockedEnc.equals("hard luck") || listOfUnlockedEnc.isEmpty()){
@@ -174,7 +176,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
+	protected void renderBg(GuiGraphicsExtractor guiGraphics, float partialTicks, int mouseX, int mouseY) {
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight); // Background image
 	}
 
@@ -212,12 +214,12 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 	}
 
 	@Override
-	public boolean mouseReleased(double probMouseX, double probMouseY, int g) {
+	public boolean mouseReleased(MouseButtonEvent event) {
 		menuStateUpdateActive = false;
-		if (g == 0 && this.isDragging()) {
+		if (event.button() == 0 && this.isDragging()) {
 			this.setDragging(false);
 			if (this.getFocused() != null) {
-				return this.getFocused().mouseReleased(probMouseX, probMouseY, g);
+				return this.getFocused().mouseReleased(event);
 			}
 		}
 
@@ -225,8 +227,8 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 	}
 
 	@Override
-	public boolean keyPressed(int key, int b, int c) {
-		if (key == 256) {
+	public boolean keyPressed(KeyEvent event) {
+		if (event.key() == 256) {
 			if (this.minecraft != null && this.minecraft.player != null) {
 				this.minecraft.player.closeContainer();
 			} else {
@@ -235,7 +237,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 			return true;
 		}
 		//System.out.println("key="+key);
-		return super.keyPressed(key, b, c);
+		return super.keyPressed(event);
 	}
 
 	@Override
