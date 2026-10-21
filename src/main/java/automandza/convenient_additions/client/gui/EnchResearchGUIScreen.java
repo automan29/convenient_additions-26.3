@@ -28,7 +28,7 @@ import net.minecraft.core.BlockPos;
 
 public class EnchResearchGUIScreen extends AbstractContainerScreen<EnchResearchGUIMenu> implements ConvenientAdditionsModScreens.ScreenAccessor {
 	private final Level world;
-	private final int x, y, z;
+	private final int x, y, z, imageWidth, imageHeight;
 	private final Player entity;
 	private boolean menuStateUpdateActive = false;
 	private ImageButton imagebutton_ench_res_test_select;
@@ -54,13 +54,13 @@ public class EnchResearchGUIScreen extends AbstractContainerScreen<EnchResearchG
 	}
 
 	@Override
-	public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
+	public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		super.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
+		this.extractTooltip(guiGraphics, mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphicsExtractor guiGraphics, float partialTicks, int mouseX, int mouseY) {
+	public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_IMG, this.leftPos, this.topPos, 0, 0, 194, 180, 194, 180); // background image
 	}
 
@@ -74,13 +74,13 @@ public class EnchResearchGUIScreen extends AbstractContainerScreen<EnchResearchG
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
+	protected void extractLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
 		BlockPos resTablePos = BlockPos.containing(x, y, z);
 		BlockEntity resTableEntity = world.getBlockEntity(resTablePos);
 		int expCost = Math.max(0, (int) resTableEntity.getPersistentData().getDoubleOr("xpCost", 0));
 		
-		guiGraphics.drawString(this.font, Component.translatable("gui.convenient_additions.ench_research_gui.label_inventory"), 21, 74, -6843986, true);
-		guiGraphics.drawString(this.font, Component.literal("XP Cost: "+expCost), 68, 54, -8323296, true);
+		guiGraphics.text(this.font, Component.translatable("gui.convenient_additions.ench_research_gui.label_inventory"), 21, 74, -6843986, true);
+		guiGraphics.text(this.font, Component.literal("XP Cost: "+expCost), 68, 54, -8323296, true);
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class EnchResearchGUIScreen extends AbstractContainerScreen<EnchResearchG
 }
 		) {
 			@Override
-			public void renderWidget(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+			public void extractWidget(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 				guiGraphics.blit(RenderPipelines.GUI_TEXTURED, sprites.get(isActive(), isHoveredOrFocused()), getX(), getY(), 0, 0, width, height, width, height);
 			}
 		};

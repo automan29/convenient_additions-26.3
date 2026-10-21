@@ -12,8 +12,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.animation.AnimationDefinition;
@@ -49,7 +47,7 @@ public class MaterialsToEnchantmentMachineRenderer implements BlockEntityRendere
 	}
 
 	@Override
-	public void render(MaterialsToEnchantmentMachineBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource renderer, int light, int overlayLight, Vec3 cameraPos) {
+	public void extractRenderState(MaterialsToEnchantmentMachineBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource renderer, int light, int overlayLight, Vec3 cameraPos) {
 		updateRenderState(blockEntity, partialTick);
 		poseStack.pushPose();
 		poseStack.scale(-1, -1, 1);

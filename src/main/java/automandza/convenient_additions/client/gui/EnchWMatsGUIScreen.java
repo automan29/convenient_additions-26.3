@@ -1,5 +1,6 @@
 package automandza.convenient_additions.client.gui;
 
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
@@ -8,14 +9,14 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.render.GuiRenderer;
 
 import automandza.convenient_additions.world.inventory.EnchWMatsGUIMenu;
 import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
+import org.jspecify.annotations.NonNull;
 
 public class EnchWMatsGUIScreen extends AbstractContainerScreen<EnchWMatsGUIMenu> implements ConvenientAdditionsModScreens.ScreenAccessor {
 	private final Level world;
-	private final int x, y, z;
+	private final int x, y, z, imageWidth, imageHeight;
 	private final Player entity;
 	private boolean menuStateUpdateActive = false;
 	private static final Identifier IMAGE_0 = Identifier.parse("convenient_additions:textures/screens/ench_mats_machine_bg.png");
@@ -40,13 +41,13 @@ public class EnchWMatsGUIScreen extends AbstractContainerScreen<EnchWMatsGUIMenu
 	}
 
 	@Override
-	public void render(GuiRenderer guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
+	public void extractRenderState(@NonNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		super.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
+		this.extractTooltip(guiGraphics, mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiRenderer guiGraphics, float partialTicks, int mouseX, int mouseY) {
+	public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, IMAGE_0, this.leftPos + 0, this.topPos + 0, 0, 0, 194, 180, 194, 180);
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, IMAGE_1, this.leftPos + 24, this.topPos + 55, 0, 0, 16, 16, 16, 16);
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, IMAGE_2, this.leftPos + 24, this.topPos + 55, 0, 0, 16, 16, 16, 16);
@@ -62,8 +63,8 @@ public class EnchWMatsGUIScreen extends AbstractContainerScreen<EnchWMatsGUIMenu
 	}
 
 	@Override
-	protected void renderLabels(GuiRenderer guiGraphics, int mouseX, int mouseY) {
-		guiGraphics.drawString(this.font, Component.translatable("gui.convenient_additions.ench_w_mats_gui.label_inventory"), 49, 75, -6843986, true);
+	protected void extractLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
+		guiGraphics.text(this.font, Component.translatable("gui.convenient_additions.ench_w_mats_gui.label_inventory"), 49, 75, -6843986, true);
 	}
 
 	@Override

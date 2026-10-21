@@ -77,8 +77,8 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 	}
 
 	@Override
-	public void render(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
+	public void extractRenderState(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		super.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
 		boolean customTooltipShown = false;
 
 		if (!(listOfUnlockedEnc == null || listOfUnlockedEnc.equals("hard luck") || listOfUnlockedEnc.isEmpty())){
@@ -144,11 +144,11 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACK_BUTTON, goBackButton.getX(), goBackButton.getY(), goBackButton.isHoveredOrFocused()?20:0, 0, 20, goBackButton.getHeight(), 40, goBackButton.getHeight());
 
 
-        if (!customTooltipShown) this.renderTooltip(guiGraphics, mouseX, mouseY);
+        if (!customTooltipShown) this.extractTooltip(guiGraphics, mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderLabels(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
+	protected void extractLabels(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
 
 		// if unlocked string is empty or null gives a warning and stops
 		if (listOfUnlockedEnc == null || listOfUnlockedEnc.equals("hard luck") || listOfUnlockedEnc.isEmpty()){
@@ -168,15 +168,15 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 				break;
 			}
 			if (currYpos > -lineSeparation) {
-				guiGraphics.drawString(this.font, Component.literal(currUnlkdEnchName), scrollBoxDims[3]+4, scrollBoxDims[0]+3 + currYpos, -1, false);
-				guiGraphics.drawString(this.font, Component.literal("" + (int) Math.floor(currUnlkdEnchLvl)), scrollBoxDims[3]+4, scrollBoxDims[0]+12 + currYpos, -1, false);
+				guiGraphics.text(this.font, Component.literal(currUnlkdEnchName), scrollBoxDims[3]+4, scrollBoxDims[0]+3 + currYpos, -1, false);
+				guiGraphics.text(this.font, Component.literal("" + (int) Math.floor(currUnlkdEnchLvl)), scrollBoxDims[3]+4, scrollBoxDims[0]+12 + currYpos, -1, false);
 			}
 			i++;
 		}
 	}
 
 	@Override
-	protected void renderBg(GuiGraphicsExtractor guiGraphics, float partialTicks, int mouseX, int mouseY) {
+	public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight); // Background image
 	}
 

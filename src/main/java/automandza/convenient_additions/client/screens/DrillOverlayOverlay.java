@@ -47,7 +47,7 @@ public class DrillOverlayOverlay {
 
 				event.getGuiGraphics().blit(RenderPipelines.GUI_TEXTURED, Identifier.parse("convenient_additions:textures/screens/drillfuelbarforegroundimg.png"), w - 50, h / 2 + -98, 0, 0, 16, 75, 16, 75);
 
-				event.getGuiGraphics().drawString(Minecraft.getInstance().font, currDrillFuelVal+"/"+maxDrillFuelVal, w - 90, h / 2 + -96, -2658268, false);
+				event.getGuiGraphics().text(Minecraft.getInstance().font, currDrillFuelVal+"/"+maxDrillFuelVal, w - 90, h / 2 + -96, -2658268, false);
 
 			} else {
 				System.out.println("ERROR! selected item is not a drill!!");
@@ -66,7 +66,7 @@ public class DrillOverlayOverlay {
  *  all values at the end are ints
  *  
  *	
- *	event.getGuiGraphics().drawString(font, string, Xpos, Ypos, negative color in number format, has shadow bool);
+ *	event.getGuiGraphics().text(font, string, Xpos, Ypos, negative color in number format, has shadow bool);
  *	
  *	-14147294 is a netherite colour
  *	-2658268 is an orange colour

@@ -22,7 +22,7 @@ import net.minecraft.world.level.LevelAccessor;
 
 public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implements ConvenientAdditionsModScreens.ScreenAccessor {
 	private final Level world;
-	private final int x, y, z;
+	private final int x, y, z, imageWidth, imageHeight;
 	private final Player entity;
 	private boolean menuStateUpdateActive = false;
 	private static final Identifier BACKGROUND = Identifier.parse("convenient_additions:textures/screens/kiln_gui.png");
@@ -55,19 +55,19 @@ public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implemen
 	}
 
 	@Override
-	public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
+	public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		super.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
 		boolean customTooltipShown = false;
 		if (mouseX > leftPos + 11 && mouseX < leftPos + 35 && mouseY > topPos + 29 && mouseY < topPos + 53) {
 			guiGraphics.setTooltipForNextFrame(font, Component.translatable("gui.convenient_additions.kiln_gui.tooltip_place_over_heat_source"), mouseX, mouseY);
 			customTooltipShown = true;
 		}
 		if (!customTooltipShown)
-			this.renderTooltip(guiGraphics, mouseX, mouseY);
+			this.extractTooltip(guiGraphics, mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphicsExtractor guiGraphics, float partialTicks, int mouseX, int mouseY) {
+	public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		int kilnProgressPercentage = 0;
 		double currThermometerTemp = 0d;
 		
@@ -111,9 +111,9 @@ public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implemen
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
-		guiGraphics.drawString(this.font, Component.translatable("gui.convenient_additions.kiln_gui.label_inventory"), 7, 72, -12829636, false);
-		guiGraphics.drawString(this.font, Component.translatable("gui.convenient_additions.kiln_gui.label_kiln"), 6, 5, -12829636, false);
+	protected void extractLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
+		guiGraphics.text(this.font, Component.translatable("gui.convenient_additions.kiln_gui.label_inventory"), 7, 72, -12829636, false);
+		guiGraphics.text(this.font, Component.translatable("gui.convenient_additions.kiln_gui.label_kiln"), 6, 5, -12829636, false);
 	}
 
 	@Override

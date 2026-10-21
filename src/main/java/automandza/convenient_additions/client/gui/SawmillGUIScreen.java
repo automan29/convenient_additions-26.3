@@ -18,10 +18,11 @@ import automandza.convenient_additions.world.inventory.SawmillGUIMenu;
 import automandza.convenient_additions.procedures.PremiumSawmillCheckProcedure;
 import automandza.convenient_additions.network.SawmillGUIButtonMessage;
 import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
+import org.jspecify.annotations.NonNull;
 
 public class SawmillGUIScreen extends AbstractContainerScreen<SawmillGUIMenu> implements ConvenientAdditionsModScreens.ScreenAccessor {
 	private final Level world;
-	private final int x, y, z;
+	private final int x, y, z, imageWidth, imageHeight;
 	private final Player entity;
 	private boolean menuStateUpdateActive = false;
 	private Button button_default;
@@ -49,13 +50,13 @@ public class SawmillGUIScreen extends AbstractContainerScreen<SawmillGUIMenu> im
 	}
 
 	@Override
-	public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
+	public void extractRenderState(@NonNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		super.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
+		this.extractTooltip(guiGraphics, mouseX, mouseY);
 	}
 
 	@Override
-	protected void renderBg(GuiGraphicsExtractor guiGraphics, float partialTicks, int mouseX, int mouseY) {
+	public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, IMAGE_0, this.leftPos + 125, this.topPos + 42, 0, 0, 20, 16, 20, 16);
 	}
@@ -63,47 +64,46 @@ public class SawmillGUIScreen extends AbstractContainerScreen<SawmillGUIMenu> im
 	@Override
 	public boolean keyPressed(KeyEvent event) {
 		if (event.key() == 256) {
-			this.minecraft.player.closeContainer();
+            assert this.minecraft.player != null;
+            this.minecraft.player.closeContainer();
 			return true;
 		}
 		return super.keyPressed(event);
 	}
 
 	@Override
-	protected void renderLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
-		guiGraphics.drawString(this.font, Component.translatable("gui.convenient_additions.sawmill_gui.label_inventory"), 6, 82, -12829636, false);
-		guiGraphics.drawString(this.font, Component.translatable("gui.convenient_additions.sawmill_gui.label_sawmill"), 6, 5, -12829636, false);
+	protected void extractLabels(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY) {
+		guiGraphics.text(this.font, Component.translatable("gui.convenient_additions.sawmill_gui.label_inventory"), 6, 82, -12829636, false);
+		guiGraphics.text(this.font, Component.translatable("gui.convenient_additions.sawmill_gui.label_sawmill"), 6, 5, -12829636, false);
 	}
 
 	@Override
 	public void init() {
 		super.init();
+
 		button_default = Button.builder(Component.translatable("gui.convenient_additions.sawmill_gui.button_default"), e -> {
 			int x = SawmillGUIScreen.this.x;
 			int y = SawmillGUIScreen.this.y;
-			if (true) {
-				ClientPacketDistributor.sendToServer(new SawmillGUIButtonMessage(0, x, y, z));
-				SawmillGUIButtonMessage.handleButtonAction(entity, 0, x, y, z);
-			}
+			ClientPacketDistributor.sendToServer(new SawmillGUIButtonMessage(0, x, y, z));
+			SawmillGUIButtonMessage.handleButtonAction(entity, 0, x, y, z);
 		}).bounds(this.leftPos + 6, this.topPos + 15, 61, 20).build();
+
 		this.addRenderableWidget(button_default);
 		button_cut = Button.builder(Component.translatable("gui.convenient_additions.sawmill_gui.button_cut"), e -> {
 			int x = SawmillGUIScreen.this.x;
 			int y = SawmillGUIScreen.this.y;
-			if (true) {
-				ClientPacketDistributor.sendToServer(new SawmillGUIButtonMessage(1, x, y, z));
-				SawmillGUIButtonMessage.handleButtonAction(entity, 1, x, y, z);
-			}
+			ClientPacketDistributor.sendToServer(new SawmillGUIButtonMessage(1, x, y, z));
+			SawmillGUIButtonMessage.handleButtonAction(entity, 1, x, y, z);
 		}).bounds(this.leftPos + 6, this.topPos + 36, 40, 20).build();
+
 		this.addRenderableWidget(button_cut);
 		button_split = Button.builder(Component.translatable("gui.convenient_additions.sawmill_gui.button_split"), e -> {
 			int x = SawmillGUIScreen.this.x;
 			int y = SawmillGUIScreen.this.y;
-			if (true) {
-				ClientPacketDistributor.sendToServer(new SawmillGUIButtonMessage(2, x, y, z));
-				SawmillGUIButtonMessage.handleButtonAction(entity, 2, x, y, z);
-			}
+			ClientPacketDistributor.sendToServer(new SawmillGUIButtonMessage(2, x, y, z));
+			SawmillGUIButtonMessage.handleButtonAction(entity, 2, x, y, z);
 		}).bounds(this.leftPos + 6, this.topPos + 57, 51, 20).build();
+
 		this.addRenderableWidget(button_split);
 		button_do = new PlainTextButton(this.leftPos + -124, this.topPos + 159, 35, 20, Component.translatable("gui.convenient_additions.sawmill_gui.button_do"), e -> {
 			int x = SawmillGUIScreen.this.x;
