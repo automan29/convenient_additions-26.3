@@ -9,7 +9,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.bus.api.Event;
 
-import net.minecraft.world.item.AxeItem;
+//import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -60,10 +60,10 @@ public class GiveOakBarkProcedure {
 		ItemStack currentOffhandItem = (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY);
 
 		if (entity instanceof Player plyr) {
-			if (currentOffhandItem.getItem() instanceof AxeItem _offhandAxe) {
+			if (currentOffhandItem.is(ItemTags.AXES)) {
 				if (
 						!blockstate.is(BlockTags.create(Identifier.parse("minecraft:logs")))
-						| _offhandAxe.useOn(new UseOnContext(plyr, InteractionHand.OFF_HAND, Objects.requireNonNull(blockHitRes))) != InteractionResult.SUCCESS
+						| currentOffhandItem.getItem().useOn(new UseOnContext(plyr, InteractionHand.OFF_HAND, Objects.requireNonNull(blockHitRes))) != InteractionResult.SUCCESS
 				) {
 					return false;
 				}

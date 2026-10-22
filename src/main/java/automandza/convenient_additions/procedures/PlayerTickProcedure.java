@@ -33,8 +33,9 @@ public class PlayerTickProcedure {
 		}
 		if (entity.getPersistentData().getBooleanOr("poison_immune", false)) {
 			if (entity instanceof LivingEntity _livEnt1 && _livEnt1.hasEffect(MobEffects.POISON)) {
-				if (entity instanceof LivingEntity _entity)
-					_entity.removeEffect(MobEffects.POISON);
+				if (entity instanceof LivingEntity livinEnt) {
+					livinEnt.removeEffect(MobEffects.POISON);
+				}
 			}
 		}
 	}

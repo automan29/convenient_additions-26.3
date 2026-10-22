@@ -38,7 +38,7 @@ public class EnchWMatsOpenTickProcedure {
 		}
 		String fullEnchantUnlocksStr = entity.getPersistentData().getStringOr("unlockedEnchantList", "hard luck");
 		// check that the player's unlocked enchantments are not empty
-		if (fullEnchantUnlocksStr.equals("hard luck") || fullEnchantUnlocksStr.equals("")){
+		if (fullEnchantUnlocksStr.equals("hard luck") || fullEnchantUnlocksStr.isEmpty()){
 			return;
 		}
 		String[] enchantUnlocksArray = fullEnchantUnlocksStr.split(",");
@@ -188,10 +188,10 @@ public class EnchWMatsOpenTickProcedure {
 		if (matItem == Items.OBSIDIAN){
 			return Enchantments.UNBREAKING;
 		}
-		if (matItem == Items.WHITE_WOOL){
+		if (Items.WOOL.asList().contains(matItem)){
 			return Enchantments.BLAST_PROTECTION;
 		}
-		if (matItem == Items.LIGHTNING_ROD){
+		if (Items.LIGHTNING_ROD.asList().contains(matItem)){
 			return Enchantments.CHANNELING;
 		}
 		if (matItem == Items.PRISMARINE_SHARD){

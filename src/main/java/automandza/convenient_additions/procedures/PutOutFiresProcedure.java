@@ -25,8 +25,7 @@ public class PutOutFiresProcedure {
 	private static final int fireExtinguishArea = 3;
 	
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, ItemStack itemstack) {
-		if (entity == null)
-{
+		if (entity == null){
 			return;
 		}
 		if (world instanceof ServerLevel _level)
@@ -47,17 +46,14 @@ public class PutOutFiresProcedure {
 					for (int _iz = -fireExtinguishArea; _iz < fireExtinguishArea; _iz++){
 						BlockPos blkPsi = new BlockPos(extinguishCenterPos.getX()+_ix, extinguishCenterPos.getY()+_iy, extinguishCenterPos.getZ()+_iz);
 						if (world.getBlockState(blkPsi).getBlock() == Blocks.FIRE){
-							world.setBlock(
-blkPsi,
- Blocks.AIR.defaultBlockState(), 3);
+							world.setBlock(blkPsi, Blocks.AIR.defaultBlockState(), 3);
 						}
 					}
 				}
 			}
 
 			if (!(entity instanceof Player plyr && plyr.isCreative())){
-				itemstack.hurtAndBreak(1, _level, null, _stkprov -> {
-				});
+				itemstack.hurtAndBreak(1, _level, null, _ -> {});
 			}
 		}
 	}

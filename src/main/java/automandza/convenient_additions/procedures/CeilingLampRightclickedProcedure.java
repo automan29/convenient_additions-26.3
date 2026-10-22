@@ -15,8 +15,9 @@ import automandza.convenient_additions.procedures.CeilingLampLuminanceProcedure;
 
 public class CeilingLampRightclickedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-		if (entity == null)
- return;
+		if (entity == null) {
+			return;
+		}
 
 		String currentLightBlockPositions;
 		String decorationBlockPosString = entity.getPersistentData().getStringOr("decBlockPos", "NOT GOOD");
@@ -35,7 +36,7 @@ public class CeilingLampRightclickedProcedure {
 			BlockEntity _blockEntity = world.getBlockEntity(decBp);
 			BlockState _bs = world.getBlockState(decBp);
 
-			if (getBlockNBTString(world, decBp, "lightPositions").equals("")){
+			if (getBlockNBTString(world, decBp, "lightPositions").isEmpty()){
 				currentLightBlockPositions = x + "," + y + "," + z;
 			} else {
 				currentLightBlockPositions = getBlockNBTString(world, decBp, "lightPositions") + "|" + x + "," + y + "," + z;

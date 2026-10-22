@@ -48,7 +48,7 @@ public class EnchResearchTickProcedure{
 					try {
 						expCostOutput = getXpCostFromEnch(world, enchantsString, fullUnlockedEnchStr);
 					} catch (Exception e){
-						plyr.displayClientMessage(Component.literal("Oi! Stop trying to break the game! >:("), false);
+						plyr.sendSystemMessage(Component.literal("Oi! Stop trying to break the game! >:("));
 						menu0.getSlots().get(0).set(ItemStack.EMPTY);
 						return;
 					}
@@ -82,8 +82,9 @@ public class EnchResearchTickProcedure{
 				String fullComponentString = ""+inputIStack.getComponents();
 				if (fullComponentString.contains("minecraft:enchantment /")) {
 					// Check for cheaters
+					System.out.println(inputIStack.getDisplayName().toString());
 					if (inputIStack.getDisplayName().toString().contains("minecraft:enchantment /")){
-						plyr.displayClientMessage(Component.literal("You filthy rotten cheater! No cheating in free stuff!"), false);
+						plyr.sendSystemMessage(Component.literal("You filthy rotten cheater! No cheating in free stuff!"));
 						return;
 					}
 					// Extract enchantment details from long string
@@ -184,7 +185,7 @@ public class EnchResearchTickProcedure{
 		double expMult = 2d;
 
 		if (world instanceof ServerLevel srvLvl){
-			expMult = srvLvl.getGameRules().getInt(ConvenientAdditionsModGameRules.ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY);
+			expMult = srvLvl.getGameRules().get(ConvenientAdditionsModGameRules.ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY);
 		}
 		
 		for (String itemJumbledData : itemJumbledList){
@@ -228,7 +229,7 @@ public class EnchResearchTickProcedure{
         double costMult = 2d;
 
 		if (world instanceof ServerLevel srvLvl){
-			costMult = srvLvl.getGameRules().getInt(ConvenientAdditionsModGameRules.ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY);
+			costMult = srvLvl.getGameRules().get(ConvenientAdditionsModGameRules.ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY);
 		}
 		
 		if (existingVal == 0d){

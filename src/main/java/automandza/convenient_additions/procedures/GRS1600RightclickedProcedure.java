@@ -1,5 +1,6 @@
 package automandza.convenient_additions.procedures;
 
+//imports
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.ItemStack;
@@ -14,15 +15,18 @@ import net.minecraft.core.BlockPos;
 import automandza.convenient_additions.init.ConvenientAdditionsModParticleTypes;
 import automandza.convenient_additions.init.ConvenientAdditionsModItems;
 
+import java.util.Objects;
+
+
 public class GRS1600RightclickedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
 		if (world instanceof Level _level) {
 			if (!_level.isClientSide()) {
-				_level.playSound(null, BlockPos.containing(x, y, z), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.warden.roar")), SoundSource.NEUTRAL, 1, -4);
+				_level.playSound(null, BlockPos.containing(x, y, z), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.warden.roar"))), SoundSource.NEUTRAL, 1, -4);
 			} else {
-				_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.warden.roar")), SoundSource.NEUTRAL, 1, -4, false);
+				_level.playLocalSound(x, y, z, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.warden.roar"))), SoundSource.NEUTRAL, 1, -4, false);
 			}
 		}
 		world.addParticle((SimpleParticleType) (ConvenientAdditionsModParticleTypes.PENGUIN_HORN_PARTICLE.get()), x, y, z, 0, 0.5, 0);

@@ -1,11 +1,11 @@
 package automandza.convenient_additions.procedures;
 
 //imports
-import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import net.neoforged.neoforge.items.IItemHandler;
+import net.minecraft.world.Container;
 import net.neoforged.neoforge.common.extensions.ILevelExtension;
 import net.neoforged.neoforge.capabilities.Capabilities;
-
+import net.neoforged.neoforge.transfer.item.*;
+import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.Blocks;
@@ -85,7 +85,7 @@ public class KilnTickProcedure {
 				}
 
 				// updates furnace if smelt% is done
-				if (lvlExt.getCapability(Capabilities.Item.BLOCK, KilnPos, null) instanceof IItemHandlerModifiable _itemHandlerModifiable) {
+				if (world.getBlockEntity(KilnPos) instanceof Container _itemHandlerModifiable) {
 					if (smeltPercentUpdate >= 100d){
 						determineKilnOutcome(inputItemStk, outputItemStk, _itemHandlerModifiable);
 						smeltPercentUpdate = 0d;
@@ -103,8 +103,7 @@ public class KilnTickProcedure {
 						_blockEntity.getPersistentData().putDouble("percentageDone", smeltPercentUpdate);
 
 						// sends changes to kiln block
-						if (world instanceof Level _level)
-{
+						if (world instanceof Level _level){
 							_level.sendBlockUpdated(KilnPos, _bs, _bs, 3);
 						}
 					}
@@ -168,11 +167,11 @@ public class KilnTickProcedure {
 	}
 	
 
-	public static void determineKilnOutcome(ItemStack inputIStk, ItemStack outputIStk, IItemHandlerModifiable itmHandler){
+	public static void determineKilnOutcome(ItemStack inputIStk, ItemStack outputIStk, Container itmHandler){
 		ItemStack setStack = ItemStack.EMPTY;
 		int stackCountIncrease = 1;
 
-		// recipies
+		// recipes
 		if (inputIStk.getItem() == Blocks.COBBLESTONE.asItem()){
 			setStack = new ItemStack(Blocks.STONE).copy();
 		} else if (inputIStk.getItem() == Items.CLAY_BALL){
@@ -210,6 +209,7 @@ public class KilnTickProcedure {
 		}
 
 		// update output and input slot
+		itmHandler.setChanged();
 		itmHandler.setItem(1, setStack);
 		itmHandler.setItem(0, inputIStk);
 	}
@@ -220,7 +220,7 @@ public class KilnTickProcedure {
 			return false;
 		}
 
-		// recipies
+		// recipes
 		if (inputIStk.getItem() == Blocks.COBBLESTONE.asItem()){
             return outputIStk.getItem() == Blocks.STONE.asItem() || outputIStk == ItemStack.EMPTY;
 		} else if (inputIStk.getItem() == Items.CLAY_BALL){
@@ -250,18 +250,16 @@ public class KilnTickProcedure {
 
 	// generated functions
 	private static ItemStack itemFromBlockInventory(ILevelExtension ext, BlockPos pos, int slot) {
-		IItemHandler itemHandler = ext.getCapability(Capabilities.Item.BLOCK, pos, null);
-		if (itemHandler != null)
-{
-			return itemHandler.getItem(slot);
+		ResourceHandler<ItemResource> itemHandler = ext.getCapability(Capabilities.Item.BLOCK, pos, null);
+		if (itemHandler != null){
+			return ItemUtil.getStack(itemHandler, slot);
 		}
 		return ItemStack.EMPTY;
 	}
 
 	private static double getBlockNBTNumber(LevelAccessor world, BlockPos pos, String tag) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity != null)
-{
+		if (blockEntity != null){
 			return blockEntity.getPersistentData().getDoubleOr(tag, 0);
 		}
 		return -1;

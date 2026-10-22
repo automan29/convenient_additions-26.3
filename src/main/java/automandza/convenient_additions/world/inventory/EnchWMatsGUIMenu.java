@@ -1,6 +1,8 @@
 package automandza.convenient_additions.world.inventory;
 
+import net.minecraft.util.Prediction;
 import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -56,7 +58,7 @@ public class EnchWMatsGUIMenu extends AbstractContainerMenu implements Convenien
 		super(ConvenientAdditionsModMenus.ENCH_W_MATS_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
-		this.internal = new ItemStackHandler(4);
+		this.internal = new SimpleContainer(4);
 		BlockPos pos = null;
 		if (extraData != null) {
 			pos = extraData.readBlockPos();
@@ -85,11 +87,13 @@ public class EnchWMatsGUIMenu extends AbstractContainerMenu implements Convenien
 				}
 			}
 		}
+
 		this.customSlots.put(0, this.addSlot(new Slot(internal, 0, 24, 27) {
 			private final int slot = 0;
 			private int x = EnchWMatsGUIMenu.this.x;
 			private int y = EnchWMatsGUIMenu.this.y;
 		}));
+
 		this.customSlots.put(1, this.addSlot(new Slot(internal, 1, 24, 55) {
 			private final int slot = 1;
 			private int x = EnchWMatsGUIMenu.this.x;
@@ -100,11 +104,13 @@ public class EnchWMatsGUIMenu extends AbstractContainerMenu implements Convenien
 				return Items.LAPIS_LAZULI == stack.getItem();
 			}
 		}));
+
 		this.customSlots.put(2, this.addSlot(new Slot(internal, 2, 72, 27) {
 			private final int slot = 2;
 			private int x = EnchWMatsGUIMenu.this.x;
 			private int y = EnchWMatsGUIMenu.this.y;
 		}));
+
 		this.customSlots.put(3, this.addSlot(new Slot(internal, 3, 149, 27) {
 			private final int slot = 3;
 			private int x = EnchWMatsGUIMenu.this.x;
@@ -121,6 +127,7 @@ public class EnchWMatsGUIMenu extends AbstractContainerMenu implements Convenien
 				return false;
 			}
 		}));
+
 		for (int si = 0; si < 3; ++si)
 			for (int sj = 0; sj < 9; ++sj)
 				this.addSlot(new Slot(inv, sj + (si + 1) * 9, 9 + 8 + sj * 18, 7 + 84 + si * 18));
@@ -145,7 +152,7 @@ public class EnchWMatsGUIMenu extends AbstractContainerMenu implements Convenien
 	public ItemStack quickMoveStack(Player playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.slots.get(index);
-		if (slot != null && slot.hasItem()) {
+		if (slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			if (index < 4) {
@@ -240,15 +247,13 @@ public class EnchWMatsGUIMenu extends AbstractContainerMenu implements Convenien
 		if (!bound && playerIn instanceof ServerPlayer serverPlayer) {
 			if (!serverPlayer.isAlive() || serverPlayer.hasDisconnected()) {
 				for (int j = 0; j < internal.getContainerSize(); ++j) {
-					playerIn.drop(internal.getItem(j), false);
-					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setItem(j, ItemStack.EMPTY);
+					playerIn.drop(internal.getItem(j), false, Prediction.SERVER_ONLY);
+					internal.setItem(j, ItemStack.EMPTY);
 				}
 			} else {
 				for (int i = 0; i < internal.getContainerSize(); ++i) {
-					playerIn.getInventory().placeItemBackInInventory(internal.getItem(i));
-					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setItem(i, ItemStack.EMPTY);
+					playerIn.getInventory().placeItemBackInInventory(internal.getItem(i), Prediction.SERVER_ONLY);
+					internal.setItem(i, ItemStack.EMPTY);
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 package automandza.convenient_additions.procedures;
 
-import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.minecraft.world.Container;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.minecraft.world.entity.Entity;
 
@@ -9,8 +9,9 @@ public class PremiumSawmillCheckProcedure {
 		if (entity == null) {
 			return false;
 		}
-		if (entity.getCapability(Capabilities.ItemHandler.ENTITY, null) instanceof IItemHandlerModifiable _modHandler0) {
-			for (int i = 0; i < _modHandler0.getSlots(); i++) {
+
+		if (entity.getCapability(Capabilities.Item.ENTITY, null) instanceof Container _modHandler0) {
+			for (int i = 0; i < _modHandler0.getContainerSize(); i++) {
 				if (_modHandler0.getItem(i).copy().getItem().toString().equals("convenient_extras:premium_ingot")){
 					return true;
 				}

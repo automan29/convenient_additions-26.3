@@ -1,5 +1,6 @@
 package automandza.convenient_additions.item;
 
+//imports
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
@@ -19,6 +20,9 @@ import net.minecraft.core.BlockPos;
 
 import automandza.convenient_additions.procedures.PutOutFiresProcedure;
 
+
+
+
 public class FireExtinguisherItem extends Item {
 	public FireExtinguisherItem(Item.Properties properties) {
 		super(properties.durability(120).repairable(TagKey.create(Registries.ITEM, Identifier.parse("convenient_additions:fire_extinguisher_repair_items")))
@@ -34,13 +38,13 @@ public class FireExtinguisherItem extends Item {
 
 	@Override
 	public boolean mineBlock(ItemStack itemstack, Level world, BlockState blockstate, BlockPos pos, LivingEntity entity) {
-		itemstack.hurtAndBreak(1, entity, LivingEntity.getSlotForHand(entity.getUsedItemHand()));
+		itemstack.hurtAndBreak(1, entity, entity.getUsedItemHand().asEquipmentSlot());
 		return true;
 	}
 
 	@Override
 	public void hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-		itemstack.hurtAndBreak(2, entity, LivingEntity.getSlotForHand(entity.getUsedItemHand()));
+		itemstack.hurtAndBreak(2, entity, entity.getUsedItemHand().asEquipmentSlot());
 	}
 
 	@Override

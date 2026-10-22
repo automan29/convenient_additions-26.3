@@ -43,7 +43,7 @@ public class ZombieCraigProcedure {
 			return;
 		}
 		if (entity instanceof LivingEntity livinEnt) {
-			if (Math.random() * 100d > 99.5d && entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, Identifier.parse("minecraft:zombies")))) {
+			if (Math.random() * 100d > 99.5d && entity.is(TagKey.create(Registries.ENTITY_TYPE, Identifier.parse("minecraft:zombies")))) {
 				ItemStack acaciaStack = new ItemStack(Items.ACACIA_SAPLING).copy();
 				acaciaStack.setCount(2);
 				entity.setSprinting(true);
