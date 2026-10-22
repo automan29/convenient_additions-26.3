@@ -1,14 +1,19 @@
 package automandza.convenient_additions.client.particle;
 
+//imports
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.util.RandomSource;
+import net.minecraft.client.particle.SingleQuadParticle;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.multiplayer.ClientLevel;
+import org.jspecify.annotations.NonNull;
 
-public class PenguinHornParticleParticle extends TextureSheetParticle {
+
+
+
+public class PenguinHornParticleParticle extends SingleQuadParticle {
 	public static PenguinHornParticleParticleProvider provider(SpriteSet spriteSet) {
 		return new PenguinHornParticleParticleProvider(spriteSet);
 	}
@@ -20,7 +25,7 @@ public class PenguinHornParticleParticle extends TextureSheetParticle {
 			this.spriteSet = spriteSet;
 		}
 
-		public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+		public Particle createParticle(@NonNull SimpleParticleType typeIn, @NonNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, @NonNull RandomSource random) {
 			return new PenguinHornParticleParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
 		}
 	}
@@ -28,7 +33,7 @@ public class PenguinHornParticleParticle extends TextureSheetParticle {
 	private final SpriteSet spriteSet;
 
 	protected PenguinHornParticleParticle(ClientLevel world, double x, double y, double z, double vx, double vy, double vz, SpriteSet spriteSet) {
-		super(world, x, y, z);
+		super(world, x, y, z, spriteSet.first());
 		this.spriteSet = spriteSet;
 		this.setSize(0.2f, 0.2f);
 		this.quadSize *= 1.4f;
@@ -42,8 +47,8 @@ public class PenguinHornParticleParticle extends TextureSheetParticle {
 	}
 
 	@Override
-	public ParticleRenderType getRenderType() {
-		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+	public SingleQuadParticle.Layer getLayer() {
+		return SingleQuadParticle.Layer.OPAQUE;
 	}
 
 	@Override

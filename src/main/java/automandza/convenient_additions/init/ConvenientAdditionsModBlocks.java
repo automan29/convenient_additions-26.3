@@ -1,6 +1,4 @@
-/*
- *    MCreator note: This file will be REGENERATED on each build.
- */
+//imports
 package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -13,6 +11,10 @@ import java.util.function.Function;
 
 import automandza.convenient_additions.block.*;
 import automandza.convenient_additions.ConvenientAdditionsMod;
+
+
+
+
 
 public class ConvenientAdditionsModBlocks {
 	public static final DeferredRegister.Blocks REGISTRY = DeferredRegister.createBlocks(ConvenientAdditionsMod.MODID);
@@ -43,8 +45,6 @@ public class ConvenientAdditionsModBlocks {
 		MATERIALS_TO_ENCHANTMENT_MACHINE = register("materials_to_enchantment_machine", MaterialsToEnchantmentMachineBlock::new);
 	}
 
-	// Start of user code block custom blocks
-	// End of user code block custom blocks
 	private static <B extends Block> DeferredBlock<B> register(String name, Function<BlockBehaviour.Properties, ? extends B> supplier) {
 		return REGISTRY.registerBlock(name, supplier);
 	}

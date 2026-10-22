@@ -11,7 +11,7 @@ public class PremiumSawmillCheckProcedure {
 		}
 		if (entity.getCapability(Capabilities.ItemHandler.ENTITY, null) instanceof IItemHandlerModifiable _modHandler0) {
 			for (int i = 0; i < _modHandler0.getSlots(); i++) {
-				if (_modHandler0.getStackInSlot(i).copy().getItem().toString().equals("convenient_extras:premium_ingot")){
+				if (_modHandler0.getItem(i).copy().getItem().toString().equals("convenient_extras:premium_ingot")){
 					return true;
 				}
 			}

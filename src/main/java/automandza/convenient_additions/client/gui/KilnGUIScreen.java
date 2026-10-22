@@ -3,7 +3,6 @@ package automandza.convenient_additions.client.gui;
 //imports
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.resources.Identifier;
 import net.minecraft.network.chat.Component;
@@ -16,16 +15,13 @@ import automandza.convenient_additions.init.ConvenientAdditionsModScreens;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.LevelAccessor;
-
-
+import org.jspecify.annotations.NonNull;
 
 
 public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implements ConvenientAdditionsModScreens.ScreenAccessor {
 	private final Level world;
 	private final int x, y, z, imageWidth, imageHeight;
-	private final Player entity;
-	private boolean menuStateUpdateActive = false;
-	private static final Identifier BACKGROUND = Identifier.parse("convenient_additions:textures/screens/kiln_gui.png");
+    private static final Identifier BACKGROUND = Identifier.parse("convenient_additions:textures/screens/kiln_gui.png");
 	private static final Identifier TermCold = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_cold.png");
 	private static final Identifier ThermTorch = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_torch.png");
 	private static final Identifier Therm_1 = Identifier.parse("convenient_additions:textures/screens/kiln_thermometer_1.png");
@@ -43,19 +39,16 @@ public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implemen
 		this.x = container.x;
 		this.y = container.y;
 		this.z = container.z;
-		this.entity = container.entity;
-		this.imageWidth = 176;
+        this.imageWidth = 176;
 		this.imageHeight = 166;
 	}
 
 	@Override
 	public void updateMenuState(int elementType, String name, Object elementState) {
-		menuStateUpdateActive = true;
-		menuStateUpdateActive = false;
-	}
+    }
 
 	@Override
-	public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+	public void extractRenderState(@NonNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		super.extractRenderState(guiGraphics, mouseX, mouseY, partialTicks);
 		boolean customTooltipShown = false;
 		if (mouseX > leftPos + 11 && mouseX < leftPos + 35 && mouseY > topPos + 29 && mouseY < topPos + 53) {
@@ -67,7 +60,7 @@ public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implemen
 	}
 
 	@Override
-	public void extractBackground(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+	public void extractBackground(@NonNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		int kilnProgressPercentage = 0;
 		double currThermometerTemp = 0d;
 		
@@ -104,7 +97,8 @@ public class KilnGUIScreen extends AbstractContainerScreen<KilnGUIMenu> implemen
 	@Override
 	public boolean keyPressed(KeyEvent event) {
 		if (event.key() == 256) {
-			this.minecraft.player.closeContainer();
+            assert this.minecraft.player != null;
+            this.minecraft.player.closeContainer();
 			return true;
 		}
 		return super.keyPressed(event);

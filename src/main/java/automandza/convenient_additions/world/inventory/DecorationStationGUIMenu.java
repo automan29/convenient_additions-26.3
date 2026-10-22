@@ -1,11 +1,6 @@
 package automandza.convenient_additions.world.inventory;
 
-import net.neoforged.neoforge.items.wrapper.InvWrapper;
-import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.capabilities.Capabilities;
-
+//imports
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.Level;
@@ -19,6 +14,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.util.Prediction;
+import net.minecraft.world.Container;
 
 import java.util.function.Supplier;
 import java.util.Map;
@@ -26,6 +24,11 @@ import java.util.HashMap;
 import java.util.Collections;
 
 import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
+
+
+
+
+
 
 public class DecorationStationGUIMenu extends AbstractContainerMenu implements ConvenientAdditionsModMenus.MenuAccessor {
 	public final Map<String, Object> menuState = new HashMap<>() {
@@ -40,7 +43,7 @@ public class DecorationStationGUIMenu extends AbstractContainerMenu implements C
 	public final Player entity;
 	public int x, y, z;
 	private ContainerLevelAccess access = ContainerLevelAccess.NULL;
-	private IItemHandler internal;
+	private Container internal;
 	private final Map<Integer, Slot> customSlots = new HashMap<>();
 	private boolean bound = false;
 	private Supplier<Boolean> boundItemMatcher = null;
@@ -51,7 +54,7 @@ public class DecorationStationGUIMenu extends AbstractContainerMenu implements C
 		super(ConvenientAdditionsModMenus.DECORATION_STATION_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
-		this.internal = new ItemStackHandler(0);
+		this.internal = new SimpleContainer(0);
 		BlockPos pos = null;
 		if (extraData != null) {
 			pos = extraData.readBlockPos();
@@ -65,25 +68,19 @@ public class DecorationStationGUIMenu extends AbstractContainerMenu implements C
 				byte hand = extraData.readByte();
 				ItemStack itemstack = hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem();
 				this.boundItemMatcher = () -> itemstack == (hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem());
-				IItemHandler cap = itemstack.getCapability(Capabilities.ItemHandler.ITEM);
-				if (cap != null) {
-					this.internal = cap;
-					this.bound = true;
-				}
+
 			} else if (extraData.readableBytes() > 1) { // bound to entity
 				extraData.readByte(); // drop padding
 				boundEntity = world.getEntity(extraData.readVarInt());
-				if (boundEntity != null) {
-					IItemHandler cap = boundEntity.getCapability(Capabilities.ItemHandler.ENTITY);
-					if (cap != null) {
-						this.internal = cap;
-						this.bound = true;
-					}
+				if (boundEntity != null && boundEntity instanceof Container contr) {
+					this.internal = contr;
+					this.bound = true;
 				}
+
 			} else { // might be bound to block
 				boundBlockEntity = this.world.getBlockEntity(pos);
 				if (boundBlockEntity instanceof BaseContainerBlockEntity baseContainerBlockEntity) {
-					this.internal = new InvWrapper(baseContainerBlockEntity);
+					this.internal = baseContainerBlockEntity;
 					this.bound = true;
 				}
 			}
@@ -112,7 +109,7 @@ public class DecorationStationGUIMenu extends AbstractContainerMenu implements C
 	public ItemStack quickMoveStack(Player playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.slots.get(index);
-		if (slot != null && slot.hasItem()) {
+		if (slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			if (index < 0) {
@@ -120,11 +117,11 @@ public class DecorationStationGUIMenu extends AbstractContainerMenu implements C
 					return ItemStack.EMPTY;
 				slot.onQuickCraft(itemstack1, itemstack);
 			} else if (!this.moveItemStackTo(itemstack1, 0, 0, false)) {
-				if (index < 0 + 27) {
-					if (!this.moveItemStackTo(itemstack1, 0 + 27, this.slots.size(), true))
+				if (index < 27) {
+					if (!this.moveItemStackTo(itemstack1, 27, this.slots.size(), true))
 						return ItemStack.EMPTY;
 				} else {
-					if (!this.moveItemStackTo(itemstack1, 0, 0 + 27, false))
+					if (!this.moveItemStackTo(itemstack1, 0, 27, false))
 						return ItemStack.EMPTY;
 				}
 				return ItemStack.EMPTY;
@@ -206,16 +203,14 @@ public class DecorationStationGUIMenu extends AbstractContainerMenu implements C
 		super.removed(playerIn);
 		if (!bound && playerIn instanceof ServerPlayer serverPlayer) {
 			if (!serverPlayer.isAlive() || serverPlayer.hasDisconnected()) {
-				for (int j = 0; j < internal.getSlots(); ++j) {
-					playerIn.drop(internal.getStackInSlot(j), false);
-					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setStackInSlot(j, ItemStack.EMPTY);
+				for (int j = 0; j < internal.getContainerSize(); ++j) {
+					playerIn.drop(internal.getItem(j), false, Prediction.SERVER_ONLY);
+					internal.setItem(j, ItemStack.EMPTY);
 				}
 			} else {
-				for (int i = 0; i < internal.getSlots(); ++i) {
-					playerIn.getInventory().placeItemBackInInventory(internal.getStackInSlot(i));
-					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setStackInSlot(i, ItemStack.EMPTY);
+				for (int i = 0; i < internal.getContainerSize(); ++i) {
+					playerIn.getInventory().placeItemBackInInventory(internal.getItem(i), Prediction.SERVER_ONLY);
+					internal.setItem(i, ItemStack.EMPTY);
 				}
 			}
 		}

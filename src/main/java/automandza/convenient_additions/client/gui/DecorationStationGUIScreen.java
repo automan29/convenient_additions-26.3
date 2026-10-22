@@ -1,6 +1,5 @@
 package automandza.convenient_additions.client.gui;
 
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.input.KeyEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
@@ -22,7 +21,6 @@ public class DecorationStationGUIScreen extends AbstractContainerScreen<Decorati
 	private final Level world;
 	private final int x, y, z, imageWidth, imageHeight;
 	private final Player entity;
-	private boolean menuStateUpdateActive = false;
 	private Button button_add_lights;
 	private Button button_done;
 	private static final Identifier BACKGROUND = Identifier.parse("convenient_additions:textures/screens/decoration_station_gui.png");
@@ -40,8 +38,6 @@ public class DecorationStationGUIScreen extends AbstractContainerScreen<Decorati
 
 	@Override
 	public void updateMenuState(int elementType, String name, Object elementState) {
-		menuStateUpdateActive = true;
-		menuStateUpdateActive = false;
 	}
 
 	@Override
@@ -73,23 +69,22 @@ public class DecorationStationGUIScreen extends AbstractContainerScreen<Decorati
 	@Override
 	public void init() {
 		super.init();
+
 		button_add_lights = Button.builder(Component.translatable("gui.convenient_additions.decoration_station_gui.button_add_lights"), e -> {
 			int x = DecorationStationGUIScreen.this.x;
 			int y = DecorationStationGUIScreen.this.y;
-			if (true) {
-				ClientPacketDistributor.sendToServer(new DecorationStationGUIButtonMessage(0, x, y, z));
-				DecorationStationGUIButtonMessage.handleButtonAction(entity, 0, x, y, z);
-			}
+			ClientPacketDistributor.sendToServer(new DecorationStationGUIButtonMessage(0, x, y, z));
+			DecorationStationGUIButtonMessage.handleButtonAction(entity, 0, x, y, z);
 		}).bounds(this.leftPos + 10, this.topPos + 28, 75, 20).build();
+
 		this.addRenderableWidget(button_add_lights);
 		button_done = Button.builder(Component.translatable("gui.convenient_additions.decoration_station_gui.button_done"), e -> {
 			int x = DecorationStationGUIScreen.this.x;
 			int y = DecorationStationGUIScreen.this.y;
-			if (true) {
-				ClientPacketDistributor.sendToServer(new DecorationStationGUIButtonMessage(1, x, y, z));
-				DecorationStationGUIButtonMessage.handleButtonAction(entity, 1, x, y, z);
-			}
+			ClientPacketDistributor.sendToServer(new DecorationStationGUIButtonMessage(1, x, y, z));
+			DecorationStationGUIButtonMessage.handleButtonAction(entity, 1, x, y, z);
 		}).bounds(this.leftPos + 122, this.topPos + 28, 45, 20).build();
+
 		this.addRenderableWidget(button_done);
 	}
 }

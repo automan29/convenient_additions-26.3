@@ -1,20 +1,28 @@
-/*
- *	MCreator note: This file will be REGENERATED on each build.
- */
 package automandza.convenient_additions.init;
 
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+//imports
+import net.neoforged.neoforge.registries.RegisterEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 
-import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.gamerules.*;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.resources.Identifier;
+import net.minecraft.core.registries.Registries;
+import com.mojang.serialization.Codec;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+
+
 
 @EventBusSubscriber
 public class ConvenientAdditionsModGameRules {
-	public static GameRules.Key<GameRules.IntegerValue> ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY;
+	public static GameRule<Integer> ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY;
 
 	@SubscribeEvent
-	public static void registerGameRules(FMLCommonSetupEvent event) {
-		ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY = GameRules.register("enchantingScienceResearchDifficulty", GameRules.Category.MISC, GameRules.IntegerValue.create(2));
+	public static void registerGameRules(RegisterEvent event) {
+		event.register(Registries.GAME_RULE, helper -> {
+			ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY = new GameRule<>(GameRuleCategory.MISC, GameRuleType.INT, IntegerArgumentType.integer(), GameRuleTypeVisitor::visitInteger, Codec.INT, i -> i, 2, FeatureFlagSet.of());
+			helper.register(Identifier.fromNamespaceAndPath("convenient_additions", "enchantingScienceResearchDifficulty"), ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY);
+		});
 	}
 }

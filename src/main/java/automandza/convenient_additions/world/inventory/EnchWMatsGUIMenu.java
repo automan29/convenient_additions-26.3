@@ -1,10 +1,6 @@
 package automandza.convenient_additions.world.inventory;
 
-import net.neoforged.neoforge.items.wrapper.InvWrapper;
-import net.neoforged.neoforge.items.SlotItemHandler;
-import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import net.neoforged.neoforge.items.IItemHandler;
+import net.minecraft.world.Container;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -49,7 +45,7 @@ public class EnchWMatsGUIMenu extends AbstractContainerMenu implements Convenien
 	public final Player entity;
 	public int x, y, z;
 	private ContainerLevelAccess access = ContainerLevelAccess.NULL;
-	private IItemHandler internal;
+	private Container internal;
 	private final Map<Integer, Slot> customSlots = new HashMap<>();
 	private boolean bound = false;
 	private Supplier<Boolean> boundItemMatcher = null;
@@ -74,35 +70,27 @@ public class EnchWMatsGUIMenu extends AbstractContainerMenu implements Convenien
 				byte hand = extraData.readByte();
 				ItemStack itemstack = hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem();
 				this.boundItemMatcher = () -> itemstack == (hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem());
-				IItemHandler cap = itemstack.getCapability(Capabilities.ItemHandler.ITEM);
-				if (cap != null) {
-					this.internal = cap;
-					this.bound = true;
-				}
 			} else if (extraData.readableBytes() > 1) { // bound to entity
 				extraData.readByte(); // drop padding
 				boundEntity = world.getEntity(extraData.readVarInt());
-				if (boundEntity != null) {
-					IItemHandler cap = boundEntity.getCapability(Capabilities.ItemHandler.ENTITY);
-					if (cap != null) {
-						this.internal = cap;
-						this.bound = true;
-					}
+				if (boundEntity != null && boundEntity instanceof Container contr) {
+					this.internal = contr;
+					this.bound = true;
 				}
 			} else { // might be bound to block
 				boundBlockEntity = this.world.getBlockEntity(pos);
 				if (boundBlockEntity instanceof BaseContainerBlockEntity baseContainerBlockEntity) {
-					this.internal = new InvWrapper(baseContainerBlockEntity);
+					this.internal = baseContainerBlockEntity;
 					this.bound = true;
 				}
 			}
 		}
-		this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, 0, 24, 27) {
+		this.customSlots.put(0, this.addSlot(new Slot(internal, 0, 24, 27) {
 			private final int slot = 0;
 			private int x = EnchWMatsGUIMenu.this.x;
 			private int y = EnchWMatsGUIMenu.this.y;
 		}));
-		this.customSlots.put(1, this.addSlot(new SlotItemHandler(internal, 1, 24, 55) {
+		this.customSlots.put(1, this.addSlot(new Slot(internal, 1, 24, 55) {
 			private final int slot = 1;
 			private int x = EnchWMatsGUIMenu.this.x;
 			private int y = EnchWMatsGUIMenu.this.y;
@@ -112,12 +100,12 @@ public class EnchWMatsGUIMenu extends AbstractContainerMenu implements Convenien
 				return Items.LAPIS_LAZULI == stack.getItem();
 			}
 		}));
-		this.customSlots.put(2, this.addSlot(new SlotItemHandler(internal, 2, 72, 27) {
+		this.customSlots.put(2, this.addSlot(new Slot(internal, 2, 72, 27) {
 			private final int slot = 2;
 			private int x = EnchWMatsGUIMenu.this.x;
 			private int y = EnchWMatsGUIMenu.this.y;
 		}));
-		this.customSlots.put(3, this.addSlot(new SlotItemHandler(internal, 3, 149, 27) {
+		this.customSlots.put(3, this.addSlot(new Slot(internal, 3, 149, 27) {
 			private final int slot = 3;
 			private int x = EnchWMatsGUIMenu.this.x;
 			private int y = EnchWMatsGUIMenu.this.y;
@@ -251,16 +239,16 @@ public class EnchWMatsGUIMenu extends AbstractContainerMenu implements Convenien
 		super.removed(playerIn);
 		if (!bound && playerIn instanceof ServerPlayer serverPlayer) {
 			if (!serverPlayer.isAlive() || serverPlayer.hasDisconnected()) {
-				for (int j = 0; j < internal.getSlots(); ++j) {
-					playerIn.drop(internal.getStackInSlot(j), false);
+				for (int j = 0; j < internal.getContainerSize(); ++j) {
+					playerIn.drop(internal.getItem(j), false);
 					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setStackInSlot(j, ItemStack.EMPTY);
+						ihm.setItem(j, ItemStack.EMPTY);
 				}
 			} else {
-				for (int i = 0; i < internal.getSlots(); ++i) {
-					playerIn.getInventory().placeItemBackInInventory(internal.getStackInSlot(i));
+				for (int i = 0; i < internal.getContainerSize(); ++i) {
+					playerIn.getInventory().placeItemBackInInventory(internal.getItem(i));
 					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setStackInSlot(i, ItemStack.EMPTY);
+						ihm.setItem(i, ItemStack.EMPTY);
 				}
 			}
 		}

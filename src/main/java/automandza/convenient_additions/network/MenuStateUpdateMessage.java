@@ -60,7 +60,7 @@ public record MenuStateUpdateMessage(int elementType, String name, Object elemen
 		context.enqueueWork(() -> {
 			if (context.player().containerMenu instanceof ConvenientAdditionsModMenus.MenuAccessor menu) {
 				menu.getMenuState().put(message.elementType + ":" + message.name, message.elementState);
-				if (context.flow() == PacketFlow.CLIENTBOUND && Minecraft.getInstance().screen instanceof ConvenientAdditionsModScreens.ScreenAccessor accessor) {
+				if (context.flow() == PacketFlow.CLIENTBOUND && Minecraft.getInstance().gui.screen() instanceof ConvenientAdditionsModScreens.ScreenAccessor accessor) {
 					accessor.updateMenuState(message.elementType, message.name, message.elementState);
 				}
 			}

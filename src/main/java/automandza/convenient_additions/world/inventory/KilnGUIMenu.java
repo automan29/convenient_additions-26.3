@@ -14,12 +14,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.items.SlotItemHandler;
-import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.util.Prediction;
+import net.minecraft.world.Container;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,7 +37,7 @@ public class KilnGUIMenu extends AbstractContainerMenu implements ConvenientAddi
 	public final Player entity;
 	public int x, y, z;
 	private ContainerLevelAccess access = ContainerLevelAccess.NULL;
-	private IItemHandler internal;
+	private Container internal;
 	private final Map<Integer, Slot> customSlots = new HashMap<>();
 	private boolean bound = false;
 	private Supplier<Boolean> boundItemMatcher = null;
@@ -50,7 +48,7 @@ public class KilnGUIMenu extends AbstractContainerMenu implements ConvenientAddi
 		super(ConvenientAdditionsModMenus.KILN_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
-		this.internal = new ItemStackHandler(2);
+		this.internal = new SimpleContainer(2);
 		BlockPos pos = null;
 		if (extraData != null) {
 			pos = extraData.readBlockPos();
@@ -64,35 +62,31 @@ public class KilnGUIMenu extends AbstractContainerMenu implements ConvenientAddi
 				byte hand = extraData.readByte();
 				ItemStack itemstack = hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem();
 				this.boundItemMatcher = () -> itemstack == (hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem());
-				IItemHandler cap = itemstack.getCapability(Capabilities.ItemHandler.ITEM);
-				if (cap != null) {
-					this.internal = cap;
-					this.bound = true;
-				}
+				
 			} else if (extraData.readableBytes() > 1) { // bound to entity
 				extraData.readByte(); // drop padding
 				boundEntity = world.getEntity(extraData.readVarInt());
-				if (boundEntity != null) {
-					IItemHandler cap = boundEntity.getCapability(Capabilities.ItemHandler.ENTITY);
-					if (cap != null) {
-						this.internal = cap;
-						this.bound = true;
-					}
+				if (boundEntity != null && boundEntity instanceof Container contr) {
+					this.internal = contr;
+					this.bound = true;
 				}
+				
 			} else { // might be bound to block
 				boundBlockEntity = this.world.getBlockEntity(pos);
 				if (boundBlockEntity instanceof BaseContainerBlockEntity baseContainerBlockEntity) {
-					this.internal = new InvWrapper(baseContainerBlockEntity);
+					this.internal = baseContainerBlockEntity;
 					this.bound = true;
 				}
 			}
 		}
-		this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, 0, 38, 30) {
+		
+		this.customSlots.put(0, this.addSlot(new Slot(internal, 0, 38, 30) {
 			private final int slot = 0;
 			private int x = KilnGUIMenu.this.x;
 			private int y = KilnGUIMenu.this.y;
 		}));
-		this.customSlots.put(1, this.addSlot(new SlotItemHandler(internal, 1, 143, 30) {
+		
+		this.customSlots.put(1, this.addSlot(new Slot(internal, 1, 143, 30) {
 			private final int slot = 1;
 			private int x = KilnGUIMenu.this.x;
 			private int y = KilnGUIMenu.this.y;
@@ -102,15 +96,27 @@ public class KilnGUIMenu extends AbstractContainerMenu implements ConvenientAddi
 				return false;
 			}
 		}));
-		for (int si = 0; si < 3; ++si)
+		
+		for (int si = 0; si < 3; ++si) {
 			for (int sj = 0; sj < 9; ++sj)
-				this.addSlot(new Slot(inv, sj + (si + 1) * 9, 0 + 8 + sj * 18, 0 + 84 + si * 18));
-		for (int si = 0; si < 9; ++si)
-			this.addSlot(new Slot(inv, si, 0 + 8 + si * 18, 0 + 142));
+				this.addSlot(new Slot(inv,
+						sj + (si + 1) * 9,
+						8 + sj * 18,
+						84 + si * 18
+				));
+		}
+		
+		for (int si = 0; si < 9; ++si) {
+			this.addSlot(new Slot(inv,
+					si,
+					8 + si * 18,
+					142
+			));
+		}
 	}
 
 	@Override
-	public boolean stillValid(Player player) {
+	public boolean stillValid(@NonNull Player player) {
 		if (this.bound) {
 			if (this.boundItemMatcher != null)
 				return this.boundItemMatcher.get();
@@ -123,10 +129,10 @@ public class KilnGUIMenu extends AbstractContainerMenu implements ConvenientAddi
 	}
 
 	@Override
-	public ItemStack quickMoveStack(Player playerIn, int index) {
+	public @NonNull ItemStack quickMoveStack(@NonNull Player playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.slots.get(index);
-		if (slot != null && slot.hasItem()) {
+		if (slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			if (index < 2) {
@@ -157,7 +163,7 @@ public class KilnGUIMenu extends AbstractContainerMenu implements ConvenientAddi
 	}
 
 	@Override
-	protected boolean moveItemStackTo(ItemStack p_38904_, int p_38905_, int p_38906_, boolean p_38907_) {
+	protected boolean moveItemStackTo(@NonNull ItemStack p_38904_, int p_38905_, int p_38906_, boolean p_38907_) {
 		boolean flag = false;
 		int i = p_38905_;
 		if (p_38907_) {
@@ -216,28 +222,24 @@ public class KilnGUIMenu extends AbstractContainerMenu implements ConvenientAddi
 	}
 
 	@Override
-	public void removed(Player playerIn) {
+	public void removed(@NonNull Player playerIn) {
 		super.removed(playerIn);
 		if (!bound && playerIn instanceof ServerPlayer serverPlayer) {
 			if (!serverPlayer.isAlive() || serverPlayer.hasDisconnected()) {
-				for (int j = 0; j < internal.getSlots(); ++j) {
-					if (j == 0)
+				for (int j = 0; j < internal.getContainerSize(); ++j) {
+					if (j <= 1) {
 						continue;
-					if (j == 1)
-						continue;
-					playerIn.drop(internal.getStackInSlot(j), false);
-					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setStackInSlot(j, ItemStack.EMPTY);
+					}
+					playerIn.drop(internal.getItem(j), false, Prediction.SERVER_ONLY);
+					internal.setItem(j, ItemStack.EMPTY);
 				}
 			} else {
-				for (int i = 0; i < internal.getSlots(); ++i) {
-					if (i == 0)
+				for (int i = 0; i < internal.getContainerSize(); ++i) {
+					if (i <= 1) {
 						continue;
-					if (i == 1)
-						continue;
-					playerIn.getInventory().placeItemBackInInventory(internal.getStackInSlot(i));
-					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setStackInSlot(i, ItemStack.EMPTY);
+					}
+					playerIn.getInventory().placeItemBackInInventory(internal.getItem(i), Prediction.SERVER_ONLY);
+					internal.setItem(i, ItemStack.EMPTY);
 				}
 			}
 		}

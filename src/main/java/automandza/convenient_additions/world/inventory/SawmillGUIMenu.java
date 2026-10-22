@@ -1,13 +1,9 @@
 package automandza.convenient_additions.world.inventory;
 
-import net.neoforged.neoforge.items.wrapper.InvWrapper;
-import net.neoforged.neoforge.items.SlotItemHandler;
-import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import net.neoforged.neoforge.items.IItemHandler;
+//imports
+import net.minecraft.util.Prediction;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
-import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 
@@ -24,6 +20,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.Container;
 
 import java.util.function.Supplier;
 import java.util.Map;
@@ -34,6 +32,8 @@ import automandza.convenient_additions.procedures.SawmillGUIThisGUIIsClosedProce
 import automandza.convenient_additions.procedures.SawmillCraftingProcedure;
 import automandza.convenient_additions.network.SawmillGUISlotMessage;
 import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
+import org.jspecify.annotations.NonNull;
+
 
 @EventBusSubscriber
 public class SawmillGUIMenu extends AbstractContainerMenu implements ConvenientAdditionsModMenus.MenuAccessor {
@@ -49,7 +49,7 @@ public class SawmillGUIMenu extends AbstractContainerMenu implements ConvenientA
 	public final Player entity;
 	public int x, y, z;
 	private ContainerLevelAccess access = ContainerLevelAccess.NULL;
-	private IItemHandler internal;
+	private Container internal;
 	private final Map<Integer, Slot> customSlots = new HashMap<>();
 	private boolean bound = false;
 	private Supplier<Boolean> boundItemMatcher = null;
@@ -60,7 +60,7 @@ public class SawmillGUIMenu extends AbstractContainerMenu implements ConvenientA
 		super(ConvenientAdditionsModMenus.SAWMILL_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
-		this.internal = new ItemStackHandler(2);
+		this.internal = new SimpleContainer(2);
 		BlockPos pos = null;
 		if (extraData != null) {
 			pos = extraData.readBlockPos();
@@ -74,35 +74,30 @@ public class SawmillGUIMenu extends AbstractContainerMenu implements ConvenientA
 				byte hand = extraData.readByte();
 				ItemStack itemstack = hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem();
 				this.boundItemMatcher = () -> itemstack == (hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem());
-				IItemHandler cap = itemstack.getCapability(Capabilities.ItemHandler.ITEM);
-				if (cap != null) {
-					this.internal = cap;
-					this.bound = true;
-				}
+
 			} else if (extraData.readableBytes() > 1) { // bound to entity
 				extraData.readByte(); // drop padding
 				boundEntity = world.getEntity(extraData.readVarInt());
-				if (boundEntity != null) {
-					IItemHandler cap = boundEntity.getCapability(Capabilities.ItemHandler.ENTITY);
-					if (cap != null) {
-						this.internal = cap;
-						this.bound = true;
-					}
+				if (boundEntity != null && boundEntity instanceof Container contr) {
+					this.internal = contr;
+					this.bound = true;
 				}
 			} else { // might be bound to block
 				boundBlockEntity = this.world.getBlockEntity(pos);
 				if (boundBlockEntity instanceof BaseContainerBlockEntity baseContainerBlockEntity) {
-					this.internal = new InvWrapper(baseContainerBlockEntity);
+					this.internal = baseContainerBlockEntity;
 					this.bound = true;
 				}
 			}
 		}
-		this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, 0, 106, 42) {
+
+		this.customSlots.put(0, this.addSlot(new Slot(internal, 0, 106, 42) {
 			private final int slot = 0;
 			private int x = SawmillGUIMenu.this.x;
 			private int y = SawmillGUIMenu.this.y;
 		}));
-		this.customSlots.put(1, this.addSlot(new SlotItemHandler(internal, 1, 148, 42) {
+
+		this.customSlots.put(1, this.addSlot(new Slot(internal, 1, 148, 42) {
 			private final int slot = 1;
 			private int x = SawmillGUIMenu.this.x;
 			private int y = SawmillGUIMenu.this.y;
@@ -124,15 +119,28 @@ public class SawmillGUIMenu extends AbstractContainerMenu implements ConvenientA
 				return false;
 			}
 		}));
-		for (int si = 0; si < 3; ++si)
-			for (int sj = 0; sj < 9; ++sj)
-				this.addSlot(new Slot(inv, sj + (si + 1) * 9, -1 + 8 + sj * 18, 10 + 84 + si * 18));
-		for (int si = 0; si < 9; ++si)
-			this.addSlot(new Slot(inv, si, -1 + 8 + si * 18, 10 + 142));
+
+		for (int si = 0; si < 3; ++si) {
+			for (int sj = 0; sj < 9; ++sj) {
+				this.addSlot(new Slot(inv,
+						sj + (si + 1) * 9,
+						-1 + 8 + sj * 18,
+						10 + 84 + si * 18
+				));
+			}
+		}
+
+		for (int si = 0; si < 9; ++si) {
+			this.addSlot(new Slot(inv,
+					si,
+					-1 + 8 + si * 18,
+					10 + 142
+			));
+		}
 	}
 
 	@Override
-	public boolean stillValid(Player player) {
+	public boolean stillValid(@NonNull Player player) {
 		if (this.bound) {
 			if (this.boundItemMatcher != null)
 				return this.boundItemMatcher.get();
@@ -145,10 +153,10 @@ public class SawmillGUIMenu extends AbstractContainerMenu implements ConvenientA
 	}
 
 	@Override
-	public ItemStack quickMoveStack(Player playerIn, int index) {
+	public @NonNull ItemStack quickMoveStack(@NonNull Player playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.slots.get(index);
-		if (slot != null && slot.hasItem()) {
+		if (slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			if (index < 2) {
@@ -179,7 +187,7 @@ public class SawmillGUIMenu extends AbstractContainerMenu implements ConvenientA
 	}
 
 	@Override
-	protected boolean moveItemStackTo(ItemStack p_38904_, int p_38905_, int p_38906_, boolean p_38907_) {
+	protected boolean moveItemStackTo(@NonNull ItemStack p_38904_, int p_38905_, int p_38906_, boolean p_38907_) {
 		boolean flag = false;
 		int i = p_38905_;
 		if (p_38907_) {
@@ -238,21 +246,19 @@ public class SawmillGUIMenu extends AbstractContainerMenu implements ConvenientA
 	}
 
 	@Override
-	public void removed(Player playerIn) {
+	public void removed(@NonNull Player playerIn) {
 		super.removed(playerIn);
 		SawmillGUIThisGUIIsClosedProcedure.execute(entity);
 		if (!bound && playerIn instanceof ServerPlayer serverPlayer) {
 			if (!serverPlayer.isAlive() || serverPlayer.hasDisconnected()) {
-				for (int j = 0; j < internal.getSlots(); ++j) {
-					playerIn.drop(internal.getStackInSlot(j), false);
-					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setStackInSlot(j, ItemStack.EMPTY);
+				for (int j = 0; j < internal.getContainerSize(); ++j) {
+					playerIn.drop(internal.getItem(j), false, Prediction.SERVER_ONLY);
+					internal.setItem(j, ItemStack.EMPTY);
 				}
 			} else {
-				for (int i = 0; i < internal.getSlots(); ++i) {
-					playerIn.getInventory().placeItemBackInInventory(internal.getStackInSlot(i));
-					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setStackInSlot(i, ItemStack.EMPTY);
+				for (int i = 0; i < internal.getContainerSize(); ++i) {
+					playerIn.getInventory().placeItemBackInInventory(internal.getItem(i), Prediction.SERVER_ONLY);
+					internal.setItem(i, ItemStack.EMPTY);
 				}
 			}
 		}

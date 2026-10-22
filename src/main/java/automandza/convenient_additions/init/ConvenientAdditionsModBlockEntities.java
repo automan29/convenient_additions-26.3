@@ -5,7 +5,7 @@ package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
+import net.neoforged.neoforge.transfer.item.WorldlyContainerWrapper;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -39,11 +39,11 @@ public class ConvenientAdditionsModBlockEntities {
 
 	@SubscribeEvent
 	public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, LOCKED_DOOR.get(), SidedInvWrapper::new);
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SAWMILL.get(), SidedInvWrapper::new);
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, DECORATION_STATION.get(), SidedInvWrapper::new);
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, KILN.get(), SidedInvWrapper::new);
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ENCH_SCIENCE_RESEARCH_TABLE.get(), SidedInvWrapper::new);
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, MATERIALS_TO_ENCHANTMENT_MACHINE.get(), SidedInvWrapper::new);
+		event.registerBlockEntity(Capabilities.Item.BLOCK, LOCKED_DOOR.get(), WorldlyContainerWrapper::new);
+		event.registerBlockEntity(Capabilities.Item.BLOCK, SAWMILL.get(), WorldlyContainerWrapper::new);
+		event.registerBlockEntity(Capabilities.Item.BLOCK, DECORATION_STATION.get(), WorldlyContainerWrapper::new);
+		event.registerBlockEntity(Capabilities.Item.BLOCK, KILN.get(), WorldlyContainerWrapper::new);
+		event.registerBlockEntity(Capabilities.Item.BLOCK, ENCH_SCIENCE_RESEARCH_TABLE.get(), WorldlyContainerWrapper::new);
+		event.registerBlockEntity(Capabilities.Item.BLOCK, MATERIALS_TO_ENCHANTMENT_MACHINE.get(), WorldlyContainerWrapper::new);
 	}
 }

@@ -26,12 +26,9 @@ import static net.minecraft.world.entity.EntityType.*;
 public class ConvenientAdditionsModEntities {
 	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, ConvenientAdditionsMod.MODID);
 	public static final DeferredHolder<EntityType<?>, EntityType<SnowCreeperEntity>> SNOW_CREEPER = register(
-			Builder.of(SnowCreeperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3)
+			Builder.of(SnowCreeperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
+			.setTrackingRange(128).setUpdateInterval(3).sized(0.6f, 1.7f));
 
-					.sized(0.6f, 1.7f));
-
-	// Start of user code block custom entities
-	// End of user code block custom entities
 	private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(EntityType.Builder<T> entityTypeBuilder) {
 		return REGISTRY.register("snow_creeper", () -> entityTypeBuilder.build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(ConvenientAdditionsMod.MODID, "snow_creeper"))));
 	}

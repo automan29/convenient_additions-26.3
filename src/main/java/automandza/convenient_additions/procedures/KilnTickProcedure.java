@@ -85,7 +85,7 @@ public class KilnTickProcedure {
 				}
 
 				// updates furnace if smelt% is done
-				if (lvlExt.getCapability(Capabilities.ItemHandler.BLOCK, KilnPos, null) instanceof IItemHandlerModifiable _itemHandlerModifiable) {
+				if (lvlExt.getCapability(Capabilities.Item.BLOCK, KilnPos, null) instanceof IItemHandlerModifiable _itemHandlerModifiable) {
 					if (smeltPercentUpdate >= 100d){
 						determineKilnOutcome(inputItemStk, outputItemStk, _itemHandlerModifiable);
 						smeltPercentUpdate = 0d;
@@ -210,8 +210,8 @@ public class KilnTickProcedure {
 		}
 
 		// update output and input slot
-		itmHandler.setStackInSlot(1, setStack);
-		itmHandler.setStackInSlot(0, inputIStk);
+		itmHandler.setItem(1, setStack);
+		itmHandler.setItem(0, inputIStk);
 	}
 
 
@@ -250,10 +250,10 @@ public class KilnTickProcedure {
 
 	// generated functions
 	private static ItemStack itemFromBlockInventory(ILevelExtension ext, BlockPos pos, int slot) {
-		IItemHandler itemHandler = ext.getCapability(Capabilities.ItemHandler.BLOCK, pos, null);
+		IItemHandler itemHandler = ext.getCapability(Capabilities.Item.BLOCK, pos, null);
 		if (itemHandler != null)
 {
-			return itemHandler.getStackInSlot(slot);
+			return itemHandler.getItem(slot);
 		}
 		return ItemStack.EMPTY;
 	}

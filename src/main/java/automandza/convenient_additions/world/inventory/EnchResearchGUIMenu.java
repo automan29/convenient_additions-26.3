@@ -1,12 +1,7 @@
 package automandza.convenient_additions.world.inventory;
 
-import net.neoforged.neoforge.items.wrapper.InvWrapper;
-import net.neoforged.neoforge.items.SlotItemHandler;
-import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import net.neoforged.neoforge.items.IItemHandler;
+//imports
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 
@@ -23,6 +18,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.util.Prediction;
+import net.minecraft.world.Container;
 
 import java.util.function.Supplier;
 import java.util.Map;
@@ -31,6 +29,9 @@ import java.util.Collections;
 
 import automandza.convenient_additions.procedures.EnchResearchTickProcedure;
 import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
+
+
+
 
 @EventBusSubscriber
 public class EnchResearchGUIMenu extends AbstractContainerMenu implements ConvenientAdditionsModMenus.MenuAccessor {
@@ -46,7 +47,7 @@ public class EnchResearchGUIMenu extends AbstractContainerMenu implements Conven
 	public final Player entity;
 	public int x, y, z;
 	private ContainerLevelAccess access = ContainerLevelAccess.NULL;
-	private IItemHandler internal;
+	private Container internal;
 	private final Map<Integer, Slot> customSlots = new HashMap<>();
 	private boolean bound = false;
 	private Supplier<Boolean> boundItemMatcher = null;
@@ -57,7 +58,7 @@ public class EnchResearchGUIMenu extends AbstractContainerMenu implements Conven
 		super(ConvenientAdditionsModMenus.ENCH_RESEARCH_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
-		this.internal = new ItemStackHandler(1);
+		this.internal = new SimpleContainer(1);
 		BlockPos pos = null;
 		if (extraData != null) {
 			pos = extraData.readBlockPos();
@@ -71,30 +72,24 @@ public class EnchResearchGUIMenu extends AbstractContainerMenu implements Conven
 				byte hand = extraData.readByte();
 				ItemStack itemstack = hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem();
 				this.boundItemMatcher = () -> itemstack == (hand == 0 ? this.entity.getMainHandItem() : this.entity.getOffhandItem());
-				IItemHandler cap = itemstack.getCapability(Capabilities.ItemHandler.ITEM);
-				if (cap != null) {
-					this.internal = cap;
-					this.bound = true;
-				}
+
 			} else if (extraData.readableBytes() > 1) { // bound to entity
 				extraData.readByte(); // drop padding
 				boundEntity = world.getEntity(extraData.readVarInt());
-				if (boundEntity != null) {
-					IItemHandler cap = boundEntity.getCapability(Capabilities.ItemHandler.ENTITY);
-					if (cap != null) {
-						this.internal = cap;
-						this.bound = true;
-					}
+				if (boundEntity != null && boundEntity instanceof Container contr) {
+					this.internal = contr;
+					this.bound = true;
 				}
+
 			} else { // might be bound to block
 				boundBlockEntity = this.world.getBlockEntity(pos);
 				if (boundBlockEntity instanceof BaseContainerBlockEntity baseContainerBlockEntity) {
-					this.internal = new InvWrapper(baseContainerBlockEntity);
+					this.internal = baseContainerBlockEntity;
 					this.bound = true;
 				}
 			}
 		}
-		this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, 0, 29, 29) {
+		this.customSlots.put(0, this.addSlot(new Slot(internal, 0, 29, 29) {
 			private final int slot = 0;
 			private int x = EnchResearchGUIMenu.this.x;
 			private int y = EnchResearchGUIMenu.this.y;
@@ -217,16 +212,14 @@ public class EnchResearchGUIMenu extends AbstractContainerMenu implements Conven
 		super.removed(playerIn);
 		if (!bound && playerIn instanceof ServerPlayer serverPlayer) {
 			if (!serverPlayer.isAlive() || serverPlayer.hasDisconnected()) {
-				for (int j = 0; j < internal.getSlots(); ++j) {
-					playerIn.drop(internal.getStackInSlot(j), false);
-					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setStackInSlot(j, ItemStack.EMPTY);
+				for (int j = 0; j < internal.getContainerSize(); ++j) {
+					playerIn.drop(internal.getItem(j), false, Prediction.SERVER_ONLY);
+					internal.setItem(j, ItemStack.EMPTY);
 				}
 			} else {
-				for (int i = 0; i < internal.getSlots(); ++i) {
-					playerIn.getInventory().placeItemBackInInventory(internal.getStackInSlot(i));
-					if (internal instanceof IItemHandlerModifiable ihm)
-						ihm.setStackInSlot(i, ItemStack.EMPTY);
+				for (int i = 0; i < internal.getContainerSize(); ++i) {
+					playerIn.getInventory().placeItemBackInInventory(internal.getItem(i), Prediction.SERVER_ONLY);
+					internal.setItem(i, ItemStack.EMPTY);
 				}
 			}
 		}

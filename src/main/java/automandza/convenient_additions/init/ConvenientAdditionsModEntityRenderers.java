@@ -1,6 +1,3 @@
-/*
- *    MCreator note: This file will be REGENERATED on each build.
- */
 package automandza.convenient_additions.init;
 
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;

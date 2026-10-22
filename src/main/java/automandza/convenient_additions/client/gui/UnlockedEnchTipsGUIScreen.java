@@ -229,7 +229,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 	@Override
 	public boolean keyPressed(KeyEvent event) {
 		if (event.key() == 256) {
-			if (this.minecraft != null && this.minecraft.player != null) {
+			if (this.minecraft.player != null) {
 				this.minecraft.player.closeContainer();
 			} else {
 				System.out.println("ERROR! Minecraft doesn't exist! D:");
@@ -247,7 +247,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 		// button to go back
 		goBackButton = new ImageButton(leftPos+2, topPos+2, 20, 20,
 				new WidgetSprites(BACK_BUTTON, BACK_BUTTON),
-				e -> {
+                _ -> {
 					int id = 2;
 					ClientPacketDistributor.sendToServer(new EnchResearchGUIButtonMessage(id, x, y, z));
 					EnchResearchGUIButtonMessage.handleButtonAction(plr, id, x, y, z);
@@ -259,7 +259,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 		//scroll bar disguised as a button *indeed face*
 		scrollBarButton = new ImageButton(leftPos+scrollBoxDims[1]-6, topPos+scrollBoxDims[0], 6, scrollBoxDims[2]-(scrollBoxDims[0]/2),
 				new WidgetSprites(BACK_BUTTON, BACK_BUTTON),
-				e -> {
+                _ -> {
 					menuStateUpdateActive = true;
 				}
 		);

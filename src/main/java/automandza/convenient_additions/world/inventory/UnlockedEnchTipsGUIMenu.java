@@ -1,8 +1,6 @@
 package automandza.convenient_additions.world.inventory;
 
-import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.items.IItemHandler;
-
+//imports
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.ItemStack;
@@ -14,6 +12,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.Container;
 
 import java.util.function.Supplier;
 import java.util.Map;
@@ -21,6 +21,10 @@ import java.util.HashMap;
 import java.util.Collections;
 
 import automandza.convenient_additions.init.ConvenientAdditionsModMenus;
+
+
+
+
 
 public class UnlockedEnchTipsGUIMenu extends AbstractContainerMenu implements ConvenientAdditionsModMenus.MenuAccessor {
 	public final Map<String, Object> menuState = new HashMap<>() {
@@ -35,7 +39,7 @@ public class UnlockedEnchTipsGUIMenu extends AbstractContainerMenu implements Co
 	public final Player entity;
 	public int x, y, z;
 	private ContainerLevelAccess access = ContainerLevelAccess.NULL;
-	private IItemHandler internal;
+	private Container internal;
 	private final Map<Integer, Slot> customSlots = new HashMap<>();
 	private boolean bound = false;
 	private Supplier<Boolean> boundItemMatcher = null;
@@ -47,7 +51,7 @@ public class UnlockedEnchTipsGUIMenu extends AbstractContainerMenu implements Co
 		super(ConvenientAdditionsModMenus.UNLOCKED_ENCH_TIPS_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
-		this.internal = new ItemStackHandler(0);
+		this.internal = new SimpleContainer(0);
 		BlockPos pos = null;
 		if (extraData != null) {
 			pos = extraData.readBlockPos();

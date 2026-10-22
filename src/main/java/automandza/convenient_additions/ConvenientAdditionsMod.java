@@ -70,8 +70,7 @@ public class ConvenientAdditionsMod {
 		modEventBus.addListener(ConvenientAdditionsModTabs::buildTabContentsVanilla);
 	}
 
-	// Start of user code block mod methods
-	// End of user code block mod methods
+
 	private static boolean networkingRegistered = false;
 	private static final Map<CustomPacketPayload.Type<?>, NetworkMessage<?>> MESSAGES = new HashMap<>();
 
@@ -102,7 +101,7 @@ public class ConvenientAdditionsMod {
 
 	// tick doesn't exist RKIFEODEJGDIRG
 	@SubscribeEvent
-	public void postServerTick(ServerTickEvent.Post event) {
+	public void tick(ServerTickEvent.Post event) {
 		int currentTick = event.getServer().getTickCount();
 		IntObjectPair<Runnable> work;
 		while ((work = workToBeScheduled.poll()) != null) {

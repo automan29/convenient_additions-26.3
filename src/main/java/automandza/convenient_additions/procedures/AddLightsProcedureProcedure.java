@@ -13,8 +13,10 @@ import net.minecraft.core.BlockPos;
 
 public class AddLightsProcedureProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-		if (entity == null)
- return;
+		if (entity == null) {
+			return;
+		}
+
 		String targetDecorBlockPos = "x="+x+",y="+y+",z="+z;
 		BlockPos decBp = BlockPos.containing(x, y, z);
 
