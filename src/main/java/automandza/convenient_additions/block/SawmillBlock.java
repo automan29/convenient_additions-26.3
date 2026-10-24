@@ -111,11 +111,11 @@ public class SawmillBlock extends Block implements EntityBlock {
 	}
 
 	@Override
-	public int getAnalogOutputSignal(Level world, BlockPos pos, Direction dir) {
+	public int getAnalogOutputSignal(BlockState bs, Level world, BlockPos pos, Direction dir) {
 		BlockEntity tileentity = world.getBlockEntity(pos);
-		if (tileentity instanceof SawmillBlockEntity be)
+		if (tileentity instanceof SawmillBlockEntity be) {
 			return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
-		else
-			return 0;
+		}
+		return 0;
 	}
 }

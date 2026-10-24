@@ -22,7 +22,7 @@ public class ConvenientAdditionsModGameRules {
 	public static void registerGameRules(RegisterEvent event) {
 		event.register(Registries.GAME_RULE, helper -> {
 			ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY = new GameRule<>(GameRuleCategory.MISC, GameRuleType.INT, IntegerArgumentType.integer(), GameRuleTypeVisitor::visitInteger, Codec.INT, i -> i, 2, FeatureFlagSet.of());
-			helper.register(Identifier.fromNamespaceAndPath("convenient_additions", "enchantingScienceResearchDifficulty"), ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY);
+			helper.register(Identifier.fromNamespaceAndPath("convenient_additions", "enchanting_science_research_difficulty"), ENCHANTING_SCIENCE_RESEARCH_DIFFICULTY);
 		});
 	}
 }

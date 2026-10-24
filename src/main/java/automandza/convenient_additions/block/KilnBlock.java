@@ -125,7 +125,7 @@ public class KilnBlock extends Block implements EntityBlock {
 	}
 
 	@Override
-	public int getAnalogOutputSignal(Level level, BlockPos pos, Direction direction) {
+	public int getAnalogOutputSignal(BlockState ignoredBlockState, Level level, BlockPos pos, Direction ignoredDir) {
 		BlockEntity tileEnt = level.getBlockEntity(pos);
 		if (tileEnt instanceof KilnBlockEntity be) {
 			return AbstractContainerMenu.getRedstoneSignalFromContainer(be);

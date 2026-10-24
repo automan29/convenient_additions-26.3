@@ -1,5 +1,6 @@
 package automandza.convenient_additions.procedures;
 
+//imports
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.neoforged.neoforge.transfer.item.ItemUtil;
 import net.neoforged.neoforge.transfer.item.ItemResource;
@@ -11,6 +12,9 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+
+
+
 
 public class GlobalPutItemIntoFacingInputProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Direction direction, ItemStack itemstack, int takeSlot) {

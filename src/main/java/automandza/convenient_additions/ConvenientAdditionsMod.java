@@ -99,7 +99,6 @@ public class ConvenientAdditionsMod {
 	}
 
 
-	// tick doesn't exist RKIFEODEJGDIRG
 	@SubscribeEvent
 	public void tick(ServerTickEvent.Post event) {
 		int currentTick = event.getServer().getTickCount();
@@ -115,13 +114,12 @@ public class ConvenientAdditionsMod {
 
 
 
-/*
 	private static Object minecraft;
 	private static MethodHandle playerHandle;
 
 	@Nullable
 	public static Player clientPlayer() {
-		if (FMLEnvironment.dist.isClient()) {
+		if (FMLEnvironment.getDist().isClient()) {
 			try {
 				if (minecraft == null || playerHandle == null) {
 					Class<?> minecraftClass = Class.forName("net.minecraft.client.Minecraft");
@@ -137,7 +135,5 @@ public class ConvenientAdditionsMod {
 			return null;
 		}
 	}
- */
-
 
 }

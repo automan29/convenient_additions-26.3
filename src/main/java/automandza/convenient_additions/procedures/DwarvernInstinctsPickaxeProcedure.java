@@ -1,7 +1,7 @@
 package automandza.convenient_additions.procedures;
 
 //imports
-import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.bus.api.Event;
@@ -18,7 +18,7 @@ import net.minecraft.core.registries.Registries;
 import javax.annotation.Nullable;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Stream;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -35,7 +35,7 @@ import automandza.convenient_additions.init.ConvenientAdditionsModItems;
 @EventBusSubscriber
 public class DwarvernInstinctsPickaxeProcedure {
 	@SubscribeEvent
-	public static void onBlockBreak(BlockEvent.BreakEvent event) {
+	public static void onBlockBreak(BreakBlockEvent event) {
 		if (checkBlockInOresList(event.getState())){
 			execute(event, event.getLevel(), event.getPlayer(), event.getPos());
 		}
@@ -45,9 +45,9 @@ public class DwarvernInstinctsPickaxeProcedure {
 		execute(null, world, entity, null);
 	}
 
-	private static int dwarvernFuryValue = 0;
 	private static int hiddenDwvTimer = 0;
-	
+	private static int dwarvernFuryValue = 0;
+
 	public static void execute(@Nullable Event event, LevelAccessor lvlAcc, Entity entity, @Nullable BlockPos pos) {
 		if (entity == null){
 			return;

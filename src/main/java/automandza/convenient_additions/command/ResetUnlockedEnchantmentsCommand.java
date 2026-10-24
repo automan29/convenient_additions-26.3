@@ -18,16 +18,17 @@ import automandza.convenient_additions.procedures.ResetUnlockedEnchtsProcedure;
 public class ResetUnlockedEnchantmentsCommand {
 	@SubscribeEvent
 	public static void registerCommand(RegisterCommandsEvent event) {
-		event.getDispatcher().register(Commands.literal("resetunlockedenchantments").requires(s -> s.hasPermission(4)).then(Commands.argument("name", EntityArgument.player()).executes(arguments -> {
-			Level world = arguments.getSource().getUnsidedLevel();
-			Entity entity = arguments.getSource().getEntity();
-			if (entity == null && world instanceof ServerLevel _servLevel) {
-				entity = FakePlayerFactory.getMinecraft(_servLevel);
-			}
-
-			ResetUnlockedEnchtsProcedure.execute(entity);
-			return 0;
-		})));
+		event.getDispatcher().register(Commands.literal("resetunlockedenchantments")
+				.requires(Commands.hasPermission(Commands.LEVEL_MODERATORS)).then(Commands.argument("name", EntityArgument.player()).executes(arguments -> {
+					Level world = arguments.getSource().getUnsidedLevel();
+					Entity entity = arguments.getSource().getEntity();
+					if (entity == null && world instanceof ServerLevel _servLevel) {
+						entity = FakePlayerFactory.getMinecraft(_servLevel);
+					}
+					ResetUnlockedEnchtsProcedure.execute(entity);
+					return 0;
+				})
+		));
 	}
 
 }

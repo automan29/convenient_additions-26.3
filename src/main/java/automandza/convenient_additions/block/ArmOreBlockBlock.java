@@ -1,5 +1,6 @@
 package automandza.convenient_additions.block;
 
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.util.DeferredSoundType;
 
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -12,17 +13,7 @@ import net.minecraft.util.ARGB;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.BlockPos;
 
-import com.mojang.serialization.MapCodec;
-import static net.minecraft.world.level.levelgen.structure.Structure.simpleCodec;
-
 public class ArmOreBlockBlock extends FallingBlock {
-	public static final MapCodec<ArmOreBlockBlock> CODEC = simpleCodec(ArmOreBlockBlock::new);
-
-	@Override
-	public MapCodec<ArmOreBlockBlock> codec() {
-		return CODEC;
-	}
-
 	@Override
 	public int getDustColor(BlockState blockstate, BlockGetter world, BlockPos pos) {
 		return blockstate.getMapColor(world, pos).col;
@@ -30,9 +21,13 @@ public class ArmOreBlockBlock extends FallingBlock {
 
 	public ArmOreBlockBlock(BlockBehaviour.Properties properties) {
 		super(properties
-				.sound(new DeferredSoundType(1.0f, 1.0f, () -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.parrot.imitate.zombie_villager")),
-						() -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.stone.step")), () -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:arm_ore_fall")),
-						() -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.stone.hit")), () -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:arm_ore_fall"))))
+				.sound(new DeferredSoundType(1.0f, 1.0f,
+						() -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("entity.parrot.imitate.zombie_villager")),
+						() -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.stone.step")),
+						() -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:arm_ore_fall")),
+						() -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.stone.hit")),
+						() -> BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:arm_ore_fall"))
+				))
 				.strength(3.5f, 10f).requiresCorrectToolForDrops().instrument(NoteBlockInstrument.SKELETON));
 	}
 

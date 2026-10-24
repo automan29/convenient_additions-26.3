@@ -1,5 +1,6 @@
 package automandza.convenient_additions.block;
 
+//imports
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.redstone.Orientation;
@@ -31,6 +32,9 @@ import automandza.convenient_additions.world.inventory.DecorationStationGUIMenu;
 import automandza.convenient_additions.procedures.DecorationStationRedstoneOnProcedure;
 import automandza.convenient_additions.procedures.DecorationStationRedstoneOffProcedure;
 import automandza.convenient_additions.block.entity.DecorationStationBlockEntity;
+
+
+
 
 public class DecorationStationBlock extends Block implements EntityBlock {
 	public DecorationStationBlock(BlockBehaviour.Properties properties) {
@@ -95,11 +99,11 @@ public class DecorationStationBlock extends Block implements EntityBlock {
 	}
 
 	@Override
-	public int getAnalogOutputSignal(Level world, BlockPos pos, Direction dir) {
-		BlockEntity tileentity = world.getBlockEntity(pos);
-		if (tileentity instanceof DecorationStationBlockEntity be)
+	public int getAnalogOutputSignal(BlockState bs, Level world, BlockPos pos, Direction ignoredDir) {
+		BlockEntity tileEntity = world.getBlockEntity(pos);
+		if (tileEntity instanceof DecorationStationBlockEntity be) {
 			return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
-		else
-			return 0;
+		}
+		return 0;
 	}
 }

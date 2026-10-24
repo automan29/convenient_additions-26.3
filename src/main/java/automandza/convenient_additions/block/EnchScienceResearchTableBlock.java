@@ -93,7 +93,7 @@ public class EnchScienceResearchTableBlock extends Block implements EntityBlock 
 	}
 
 	@Override
-	public int getAnalogOutputSignal(Level world, BlockPos pos, Direction dir) {
+	public int getAnalogOutputSignal(BlockState bs, Level world, BlockPos pos, Direction dir) {
 		BlockEntity tileentity = world.getBlockEntity(pos);
 		if (tileentity instanceof EnchScienceResearchTableBlockEntity be) {
 			return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
