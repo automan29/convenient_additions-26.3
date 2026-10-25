@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "convenient_additions:wooden_padding_recipe"
+        "recipes": "convenient_additions:wooden_padding_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

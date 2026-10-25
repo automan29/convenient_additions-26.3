@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "convenient_additions:drill_recipe"
+        "recipes": "convenient_additions:drill_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

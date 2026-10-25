@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "convenient_additions:lock_block_recipe"
+        "recipes": "convenient_additions:lock_block_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "convenient_additions:crude_door_recipe"
+        "recipes": "convenient_additions:crude_door_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

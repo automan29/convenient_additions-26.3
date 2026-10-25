@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "convenient_additions:ench_research_table_recipe"
+        "recipes": "convenient_additions:ench_research_table_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

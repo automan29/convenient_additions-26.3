@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "convenient_additions:enhancement_machine_recipe"
+        "recipes": "convenient_additions:enhancement_machine_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

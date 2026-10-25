@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "convenient_additions:sawmill_recipe"
+        "recipes": "convenient_additions:sawmill_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

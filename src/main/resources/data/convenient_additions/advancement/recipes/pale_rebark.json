@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "convenient_additions:pale_rebark"
+        "recipes": "convenient_additions:pale_rebark"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "convenient_additions:spruce_rebark"
+        "recipes": "convenient_additions:spruce_rebark"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

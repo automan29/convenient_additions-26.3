@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "convenient_additions:flame_charge_recipe"
+        "recipes": "convenient_additions:flame_charge_recipe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
