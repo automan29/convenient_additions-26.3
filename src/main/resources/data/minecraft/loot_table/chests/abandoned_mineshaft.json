@@ -11,44 +11,40 @@
           "type": "minecraft:item",
           "name": "convenient_additions:grs_1600",
           "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
+          "modifier": {
+              "type": "minecraft:set_count",
               "count": {
                 "min": 0,
                 "max": 1
               }
             }
-          ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:diamond",
           "weight": 3,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
+          "modifier": {
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 4
               }
             }
-          ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:book",
           "weight": 4,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 0,
                 "max": 2
               }
             },
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": {
                 "min": 1,
                 "max": 8
@@ -68,9 +64,9 @@
           "type": "minecraft:item",
           "name": "minecraft:powered_rail",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 5,
                 "max": 8
@@ -82,9 +78,9 @@
           "type": "minecraft:item",
           "name": "minecraft:rail",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 10,
                 "max": 20
@@ -105,16 +101,16 @@
           "type": "minecraft:item",
           "name": "minecraft:bow",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 1
               }
             },
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": {
                 "min": 0,
                 "max": 9
@@ -126,16 +122,16 @@
           "type": "minecraft:item",
           "name": "minecraft:iron_sword",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 1
               }
             },
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": {
                 "min": 0,
                 "max": 12
@@ -147,30 +143,28 @@
           "type": "minecraft:item",
           "name": "minecraft:ender_pearl",
           "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
+          "modifier": {
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 4
               }
             }
-          ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:iron_pickaxe",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 1
               }
             },
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": {
                 "min": 1,
                 "max": 4
@@ -190,9 +184,9 @@
           "type": "minecraft:item",
           "name": "minecraft:redstone",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 7,
                 "max": 16
@@ -204,9 +198,9 @@
           "type": "minecraft:item",
           "name": "minecraft:bone",
           "weight": 3,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 4,
                 "max": 10
@@ -225,9 +219,9 @@
           "type": "minecraft:item",
           "name": "minecraft:spectral_arrow",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 10,
                 "max": 19
@@ -247,9 +241,9 @@
           "type": "minecraft:item",
           "name": "minecraft:iron_ingot",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 3,
                 "max": 5
@@ -261,9 +255,9 @@
           "type": "minecraft:item",
           "name": "minecraft:coal",
           "weight": 4,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 5,
                 "max": 13
@@ -275,9 +269,9 @@
           "type": "minecraft:item",
           "name": "minecraft:torch",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 7,
                 "max": 16
@@ -289,9 +283,9 @@
           "type": "minecraft:item",
           "name": "minecraft:glow_berries",
           "weight": 3,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
@@ -305,9 +299,9 @@
           "type": "minecraft:item",
           "name": "minecraft:melon_seeds",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
@@ -321,9 +315,9 @@
           "type": "minecraft:item",
           "name": "minecraft:pumpkin_seeds",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
@@ -337,15 +331,13 @@
           "type": "minecraft:item",
           "name": "minecraft:gold_ingot",
           "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
+          "modifier": {
+              "type": "minecraft:set_count",
               "count": {
                 "min": 2,
                 "max": 4
               }
             }
-          ]
         }
       ]
     },
@@ -356,9 +348,9 @@
           "type": "minecraft:item",
           "name": "minecraft:enchanted_golden_apple",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 1
@@ -370,29 +362,25 @@
           "type": "minecraft:item",
           "name": "minecraft:golden_apple",
           "weight": 7,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
+          "modifier": {
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 3
               }
             }
-          ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:music_disc_chirp",
           "weight": 4,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
+          "modifier": {
+              "type": "minecraft:set_count",
               "count": {
                 "min": 0,
                 "max": 1
               }
             }
-          ]
         }
       ]
     }

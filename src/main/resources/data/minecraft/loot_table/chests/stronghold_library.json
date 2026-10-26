@@ -8,9 +8,9 @@
           "type": "minecraft:item",
           "name": "minecraft:book",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 3
@@ -29,16 +29,16 @@
           "type": "minecraft:item",
           "name": "minecraft:bow",
           "weight": 3,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 1
               }
             },
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": {
                 "min": 6,
                 "max": 22
@@ -58,9 +58,9 @@
           "type": "minecraft:item",
           "name": "minecraft:book",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 2,
                 "max": 4
@@ -79,9 +79,9 @@
           "type": "minecraft:item",
           "name": "minecraft:bookshelf",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 2,
                 "max": 2
@@ -93,16 +93,16 @@
           "type": "minecraft:item",
           "name": "minecraft:iron_axe",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 1
               }
             },
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": {
                 "min": 8,
                 "max": 28
@@ -114,9 +114,9 @@
           "type": "minecraft:item",
           "name": "minecraft:ghast_tear",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 1
@@ -136,9 +136,9 @@
           "type": "minecraft:item",
           "name": "minecraft:eye_armor_trim_smithing_template",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 1
@@ -150,9 +150,9 @@
           "type": "minecraft:item",
           "name": "minecraft:name_tag",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 1
@@ -164,9 +164,9 @@
           "type": "minecraft:item",
           "name": "minecraft:experience_bottle",
           "weight": 4,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 2,
                 "max": 5
@@ -178,15 +178,13 @@
           "type": "minecraft:item",
           "name": "minecraft:blaze_powder",
           "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
+          "modifier": {
+              "type": "minecraft:set_count",
               "count": {
                 "min": 2,
                 "max": 3
               }
             }
-          ]
         }
       ]
     },
@@ -200,9 +198,9 @@
           "type": "minecraft:item",
           "name": "minecraft:diamond",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 2,
                 "max": 5
@@ -214,30 +212,28 @@
           "type": "minecraft:item",
           "name": "minecraft:yellow_bundle",
           "weight": 2,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
+          "modifier": {
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 2
               }
             }
-          ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:bow",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 1
               }
             },
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": {
                 "min": 2,
                 "max": 14
@@ -257,23 +253,21 @@
           "type": "minecraft:item",
           "name": "minecraft:glowstone_dust",
           "weight": 2,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
+          "modifier": {
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 3
               }
             }
-          ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:wind_charge",
           "weight": 2,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 4,
                 "max": 9
@@ -285,9 +279,9 @@
           "type": "minecraft:item",
           "name": "minecraft:arrow",
           "weight": 4,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 14,
                 "max": 30
@@ -299,15 +293,13 @@
           "type": "minecraft:item",
           "name": "minecraft:melon_slice",
           "weight": 3,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
+          "modifier": {
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1,
                 "max": 2
               }
             }
-          ]
         }
       ]
     }
