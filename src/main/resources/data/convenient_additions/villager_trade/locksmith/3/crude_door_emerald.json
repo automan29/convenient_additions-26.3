@@ -1,0 +1,12 @@
+{
+  "gives": {
+    "id": "minecraft:emerald"
+  },
+  "max_uses": 10,
+  "reputation_discount": 0.05,
+  "wants": {
+    "count": 20,
+    "id": "convenient_additions:crude_door"
+  },
+  "xp": 5
+}

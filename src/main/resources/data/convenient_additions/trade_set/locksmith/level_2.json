@@ -1,0 +1,8 @@
+{
+  "amount": 2,
+  "random_sequence": "convenient_additions:trade_set/locksmith/level_2",
+  "trades": [
+    "convenient_additions:locksmith/2/iron_door_emerald",
+    "convenient_additions:locksmith/2/emerald_locked_door"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "amount": 2,
+  "random_sequence": "convenient_additions:trade_set/locksmith/level_1",
+  "trades": [
+    "convenient_additions:locksmith/1/golden_key_emerald",
+    "convenient_additions:locksmith/1/emerald_tripwire_hook"
+  ]
+}
