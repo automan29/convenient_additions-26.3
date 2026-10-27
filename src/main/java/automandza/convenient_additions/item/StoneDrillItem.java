@@ -212,15 +212,15 @@ public class StoneDrillItem extends Item {
 					Level world = lvingEnt.level();
 
 					if (!world.isClientSide()) {
-						if (lvingEnt.getTicksUsingItem()+45 < lvingEnt.tickCount) {
+						if (lvingEnt.getTicksUsingItem()+5 > lvingEnt.tickCount) {
 							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_startup"))), SoundSource.PLAYERS, 1f, 1f);
-						} else if (lvingEnt.getTicksUsingItem()+5 < lvingEnt.tickCount) {
+						} else if (lvingEnt.tickCount == (Math.round(lvingEnt.tickCount/200d))*200) {
 							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_idle"))), SoundSource.PLAYERS, 0.6f, 1f);
 						}
 					} else {
-						if (lvingEnt.getTicksUsingItem()+45 < lvingEnt.tickCount) {
+						if (lvingEnt.getTicksUsingItem()+5 > lvingEnt.tickCount) {
 							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_startup"))), SoundSource.PLAYERS, 1f, 1f, false);
-						} else if (lvingEnt.getTicksUsingItem()+5 < lvingEnt.tickCount) {
+						} else if (lvingEnt.tickCount == (Math.round(lvingEnt.tickCount/200d))*200) {
 							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_idle"))), SoundSource.PLAYERS, 0.6f, 1f, false);
 						}
 					}
@@ -295,7 +295,7 @@ public class StoneDrillItem extends Item {
 	@Override
 	public boolean onEntitySwing(@NonNull ItemStack stack, LivingEntity entity, @NonNull InteractionHand hand){
 		if (entity.getPersistentData().getBooleanOr("canHearDrill", false)) {
-            if (entity.getTicksUsingItem() + 5 < entity.tickCount) {
+            if (entity.tickCount == (Math.round(entity.tickCount/100d))*100) {
                 Level world = entity.level();
                 if (!world.isClientSide()) {
                     world.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_use"))), SoundSource.PLAYERS, 0.7f, 1f);
