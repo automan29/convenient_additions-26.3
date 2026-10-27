@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.Level;
@@ -19,6 +20,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.resources.Identifier;
 import net.minecraft.core.BlockPos;
 
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.stream.Stream;
 import java.util.List;
@@ -74,10 +76,10 @@ public class StoneDrillItem extends Item {
 		}
 
 		// sets up the NBT stuff
-		assert itemstack.get(DataComponents.CUSTOM_DATA).copyTag() != null; // good one IntelliJ
-		int dwarvernFuryValue = itemstack.get(DataComponents.CUSTOM_DATA).copyTag().getIntOr("dwarfFuryVal", 0);
-		float drillFuelCount = (float)itemstack.get(DataComponents.CUSTOM_DATA).copyTag().getDoubleOr("currDrillFuelFloat", 0);
-		int blocksBroken = 1 + itemstack.get(DataComponents.CUSTOM_DATA).copyTag().getIntOr("blocksBroken", 0);
+		assert itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY) != CustomData.EMPTY; // good one IntelliJ
+		int dwarvernFuryValue = itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getIntOr("dwarfFuryVal", 0);
+		float drillFuelCount = (float)itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0);
+		int blocksBroken = 1 + itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getIntOr("blocksBroken", 0);
 
 		// checks current enchants
 		ItemEnchantments currEnchants = itemstack.getTagEnchantments();
@@ -122,8 +124,9 @@ public class StoneDrillItem extends Item {
 			}
 			// numby go up
 			if (numbyGoUp){
-				double prevMaxFuel = Objects.requireNonNull(itemstack.get(DataComponents.CUSTOM_DATA)).copyTag().getDoubleOr("maxDrillFuelFloat", 75d);
-				itemstack.get(DataComponents.CUSTOM_DATA).copyTag().putDouble("maxDrillFuelFloat", prevMaxFuel+1);
+				double prevMaxFuel = Objects.requireNonNull(itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY)).copyTag().getDoubleOr("maxDrillFuelFloat", 75d);
+				final double outMaxFuel = prevMaxFuel+1;
+				CustomData.update(DataComponents.CUSTOM_DATA, itemstack, tag -> tag.putDouble("maxDrillFuelFloat", outMaxFuel));
 				blocksBroken = 0;
 			}
 		}
@@ -145,9 +148,12 @@ public class StoneDrillItem extends Item {
 		}
 
 		//outputs the NBT stuff
-		itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().putFloat("currDrillFuelFloat", drillFuelCount);
-		itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().putInt("dwarfFuryVal", dwarvernFuryValue);
-		itemstack.get(DataComponents.CUSTOM_DATA).copyTag().putInt("blocksBroken", blocksBroken);
+		final float drFulCOut = drillFuelCount;
+		final int dwarfFury = dwarvernFuryValue;
+		final int blBroken = blocksBroken;
+		CustomData.update(DataComponents.CUSTOM_DATA, itemstack, tag -> tag.putFloat("currDrillFuelFloat", drFulCOut));
+		CustomData.update(DataComponents.CUSTOM_DATA, itemstack, tag -> tag.putInt("dwarfFuryVal", dwarfFury));
+		CustomData.update(DataComponents.CUSTOM_DATA, itemstack, tag -> tag.putInt("blocksBroken", blBroken));
 		return drillFuelCount > -1;
 	}
 	
@@ -158,7 +164,7 @@ public class StoneDrillItem extends Item {
 	public boolean supportsEnchantment(@NonNull ItemStack stack, Holder<Enchantment> enchantment) {
 		String enchString = enchantment.toString();
 		if (enchString.contains("Enchantment Efficiency") || enchString.contains("Enchantment Infusion") || enchString.contains("Enchantment Dwarvern Instincts")){
-			System.out.println("enchant string= "+enchantment.toString());
+			//System.out.println("enchant string= "+enchantment.toString());
 			return true;
 		}
 		
@@ -181,6 +187,7 @@ public class StoneDrillItem extends Item {
 	@Override
 	public void inventoryTick(ItemStack iStack, @NonNull ServerLevel svrLvl, @NonNull Entity enti, @Nullable EquipmentSlot equipSlot) {
 		boolean drillHasCoal;
+
 		// check if drill is empty
 		if (iStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0) < 1){
 			int coalSlot = -99;
@@ -189,19 +196,20 @@ public class StoneDrillItem extends Item {
 		
 			if (drillHasCoal) takeDrillCoal(coalSlot, enti, iStack);
 		}
+
+		// smoke particle
+		svrLvl.addParticle(new ParticleOptions() {
+			@Override
+			public ParticleType<?> getType() {
+				return ParticleTypes.LARGE_SMOKE;
+			}
+		}, enti.getX()+(0.5f-Math.random()), enti.getY(),enti.getZ()+(0.5f-Math.random()), Direction.UP.getStepX(), Direction.UP.getStepY(), Direction.UP.getStepZ());
 		
 		// play drill idle sound
 		if (enti instanceof LivingEntity lvingEnt){
 			if (lvingEnt.getPersistentData().getBooleanOr("canHearDrill", false)){
 				if (lvingEnt.getMainHandItem() == iStack && iStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0) > 0 && lvingEnt.getTicksUsingItem()+3 < lvingEnt.tickCount){
 					Level world = lvingEnt.level();
-
-					world.addParticle(new ParticleOptions() {
-						@Override
-						public @NonNull ParticleType<?> getType() {
-							return ParticleTypes.LARGE_SMOKE;
-						}
-					}, enti.getX()+(0.5f-Math.random()),enti.getY(),enti.getZ()+(0.5f-Math.random()), Direction.UP.getStepX(),Direction.UP.getStepY(),Direction.UP.getStepZ());
 
 					if (!world.isClientSide()) {
 						if (lvingEnt.getTicksUsingItem()+45 < lvingEnt.tickCount) {
@@ -247,7 +255,7 @@ public class StoneDrillItem extends Item {
 
 			drillFuelCount = (float)drillFuelNBT;
 
-			itemstack.get(DataComponents.CUSTOM_DATA).copyTag().putDouble("currDrillFuelFloat", drillFuelCount);
+			CustomData.update(DataComponents.CUSTOM_DATA, itemstack, tag -> tag.putDouble("currDrillFuelFloat", drillFuelCount));
 			coalStack.shrink(1);
 			
 		} else {
