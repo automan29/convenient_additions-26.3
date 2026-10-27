@@ -1,6 +1,10 @@
 package automandza.convenient_additions.item;
 
 //imports
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.Level;
@@ -15,9 +19,10 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.resources.Identifier;
 import net.minecraft.core.BlockPos;
 
+import java.util.Objects;
 import java.util.stream.Stream;
 import java.util.List;
-import java.io.Console;
+
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.server.level.ServerLevel;
@@ -25,7 +30,6 @@ import javax.annotation.Nullable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Items;
-import net.neoforged.neoforge.common.extensions.IItemExtension;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.component.CustomData;
@@ -33,24 +37,14 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundSource;
 import automandza.convenient_additions.init.ConvenientAdditionsModBlocks;
 import net.minecraft.world.InteractionHand;
-import java.util.Random;
+import org.jspecify.annotations.NonNull;
 
 
 public class StoneDrillItem extends Item {
-	public boolean drillHasCoal;
-	public float drillFuelCount;
-	public float maxDrillFuelCount = 75;
-	public int blocksBroken;
-	public int dwarvernFuryValue = 0;
-	public int drillSoundEffectTimer;
-	public String currentDrillSoundPlaying = "drill_idle";
-	private boolean drillSoundsActive = true;
-	
 	public StoneDrillItem(Item.Properties properties) {
 		// freaking stupid properties
 		super(properties.fireResistant().attributes(ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 3, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
@@ -59,7 +53,7 @@ public class StoneDrillItem extends Item {
 
 	
 	@Override
-	public float getDestroySpeed(ItemStack itemstack, BlockState blockstate) {
+	public float getDestroySpeed(@NonNull ItemStack itemstack, BlockState blockstate) {
 		// sets how fast drill can break specific blocks
 		if (Stream.of(BlockTags.create(Identifier.parse("minecraft:planks"))).anyMatch(blockstate::is)) return 1f;
 
@@ -73,14 +67,17 @@ public class StoneDrillItem extends Item {
 	
 
 	@Override
-	public boolean mineBlock(ItemStack itemstack, Level world, BlockState blockstate, BlockPos pos, LivingEntity entity) {
-		// sets up the NBT stuff
-		if (itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("maxDrillFuelFloat", 65d) < maxDrillFuelCount){
-			CustomData.update(DataComponents.CUSTOM_DATA, itemstack, tag -> tag.putDouble("maxDrillFuelFloat", maxDrillFuelCount));
+	public boolean mineBlock(ItemStack itemstack, @NonNull Level world, @NonNull BlockState blockstate, @NonNull BlockPos pos, @NonNull LivingEntity entity) {
+		if (itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY) == CustomData.EMPTY){
+			System.out.println("ERROR! cannot find custom data on itemstack="+itemstack);
+			return false;
 		}
-		drillFuelCount = (float)itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0);
 
-		blocksBroken++;
+		// sets up the NBT stuff
+		assert itemstack.get(DataComponents.CUSTOM_DATA).copyTag() != null; // good one IntelliJ
+		int dwarvernFuryValue = itemstack.get(DataComponents.CUSTOM_DATA).copyTag().getIntOr("dwarfFuryVal", 0);
+		float drillFuelCount = (float)itemstack.get(DataComponents.CUSTOM_DATA).copyTag().getDoubleOr("currDrillFuelFloat", 0);
+		int blocksBroken = 1 + itemstack.get(DataComponents.CUSTOM_DATA).copyTag().getIntOr("blocksBroken", 0);
 
 		// checks current enchants
 		ItemEnchantments currEnchants = itemstack.getTagEnchantments();
@@ -91,19 +88,18 @@ public class StoneDrillItem extends Item {
 			dwarvernFuryValue++;
 			
 			if (!world.isClientSide()) {
-				world.playSound(null, BlockPos.containing(pos.getX(), pos.getY(), pos.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.note_block.iron_xylophone")), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f);
-				if (dwarvernFuryValue >= 5f) world.playSound(null, BlockPos.containing(pos.getX(), pos.getY(), pos.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:dwarf_activate")), SoundSource.BLOCKS, 2f, 1f);
+				world.playSound(null, BlockPos.containing(pos.getX(), pos.getY(), pos.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.note_block.iron_xylophone"))), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f);
+				if (dwarvernFuryValue >= 5f) world.playSound(null, BlockPos.containing(pos.getX(), pos.getY(), pos.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:dwarf_activate"))), SoundSource.BLOCKS, 2f, 1f);
 			} else {
-				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.note_block.iron_xylophone")), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f, false);
+				world.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.note_block.iron_xylophone"))), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f, false);
 			}
-			dwarvernInstEffects(entity, Integer.parseInt(currEnchStr.substring(currEnchStr.indexOf("Enchantment Dwarvern Instincts")+33, currEnchStr.indexOf("Enchantment Dwarvern Instincts")+34)));
+			dwarvernFuryValue = dwarvernInstEffects(entity, Integer.parseInt(currEnchStr.substring(currEnchStr.indexOf("Enchantment Dwarvern Instincts")+33, currEnchStr.indexOf("Enchantment Dwarvern Instincts")+34)), dwarvernFuryValue);
 		}
 
 		// do infusion enchant things
 		boolean numbyGoUp = false;
 		if (currEnchStr.contains("Enchantment Infusion")){
 			int enchLvl = Integer.parseInt(currEnchStr.substring(currEnchStr.indexOf("Enchantment Infusion")+23, currEnchStr.indexOf("Enchantment Infusion")+24));
-			System.out.println("enchLvl="+enchLvl);
 			
 			switch (enchLvl) {
 				case 1:
@@ -126,7 +122,8 @@ public class StoneDrillItem extends Item {
 			}
 			// numby go up
 			if (numbyGoUp){
-				CustomData.update(DataComponents.CUSTOM_DATA, itemstack, tag -> tag.putDouble("maxDrillFuelFloat", itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("maxDrillFuelFloat", 75d)+1));
+				double prevMaxFuel = Objects.requireNonNull(itemstack.get(DataComponents.CUSTOM_DATA)).copyTag().getDoubleOr("maxDrillFuelFloat", 75d);
+				itemstack.get(DataComponents.CUSTOM_DATA).copyTag().putDouble("maxDrillFuelFloat", prevMaxFuel+1);
 				blocksBroken = 0;
 			}
 		}
@@ -147,7 +144,10 @@ public class StoneDrillItem extends Item {
 			drillFuelCount -= 1f;
 		}
 
-		CustomData.update(DataComponents.CUSTOM_DATA, itemstack, tag -> tag.putDouble("currDrillFuelFloat", drillFuelCount));
+		//outputs the NBT stuff
+		itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().putFloat("currDrillFuelFloat", drillFuelCount);
+		itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().putInt("dwarfFuryVal", dwarvernFuryValue);
+		itemstack.get(DataComponents.CUSTOM_DATA).copyTag().putInt("blocksBroken", blocksBroken);
 		return drillFuelCount > -1;
 	}
 	
@@ -155,7 +155,7 @@ public class StoneDrillItem extends Item {
 
 	// sets usable enchantments
 	@Override
-	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(@NonNull ItemStack stack, Holder<Enchantment> enchantment) {
 		String enchString = enchantment.toString();
 		if (enchString.contains("Enchantment Efficiency") || enchString.contains("Enchantment Infusion") || enchString.contains("Enchantment Dwarvern Instincts")){
 			System.out.println("enchant string= "+enchantment.toString());
@@ -166,11 +166,12 @@ public class StoneDrillItem extends Item {
     }
 
 	// does Dwarvern Instincts enchantment effects
-	public void dwarvernInstEffects(LivingEntity lvEntity, int enchantLvl){
-		if (dwarvernFuryValue >= 5){
+	public int dwarvernInstEffects(LivingEntity lvEntity, int enchantLvl, int furyValue){
+		if (furyValue >= 5){
 			lvEntity.addEffect(new MobEffectInstance(MobEffects.HASTE, 200+(enchantLvl*200), enchantLvl));
-			dwarvernFuryValue = 0;
+			furyValue = 0;
 		}
+		return furyValue;
 	}
 
 	
@@ -178,7 +179,8 @@ public class StoneDrillItem extends Item {
 	
 	// called every tick
 	@Override
-	public void inventoryTick(ItemStack iStack, ServerLevel svrLvl, Entity enti, @Nullable EquipmentSlot equipSlot) {
+	public void inventoryTick(ItemStack iStack, @NonNull ServerLevel svrLvl, @NonNull Entity enti, @Nullable EquipmentSlot equipSlot) {
+		boolean drillHasCoal;
 		// check if drill is empty
 		if (iStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0) < 1){
 			int coalSlot = -99;
@@ -190,29 +192,28 @@ public class StoneDrillItem extends Item {
 		
 		// play drill idle sound
 		if (enti instanceof LivingEntity lvingEnt){
-			drillSoundsActive = lvingEnt.getPersistentData().getBooleanOr("canHearDrill", true);
-			if (drillSoundsActive){
-				if (lvingEnt.getMainHandItem() == iStack && iStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0) > 0 && drillSoundEffectTimer < lvingEnt.tickCount){
+			if (lvingEnt.getPersistentData().getBooleanOr("canHearDrill", false)){
+				if (lvingEnt.getMainHandItem() == iStack && iStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0) > 0 && lvingEnt.getTicksUsingItem()+3 < lvingEnt.tickCount){
 					Level world = lvingEnt.level();
+
+					world.addParticle(new ParticleOptions() {
+						@Override
+						public @NonNull ParticleType<?> getType() {
+							return ParticleTypes.LARGE_SMOKE;
+						}
+					}, enti.getX()+(0.5f-Math.random()),enti.getY(),enti.getZ()+(0.5f-Math.random()), Direction.UP.getStepX(),Direction.UP.getStepY(),Direction.UP.getStepZ());
+
 					if (!world.isClientSide()) {
-						if (drillSoundEffectTimer+40 < lvingEnt.tickCount) {
-							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_startup")), SoundSource.PLAYERS, 1f, 1f);
-							currentDrillSoundPlaying = "drill_startup";
-							drillSoundEffectTimer = lvingEnt.tickCount+35;
-						} else {
-							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_idle")), SoundSource.PLAYERS, 0.6f, 1f);
-							currentDrillSoundPlaying = "drill_idle";
-							drillSoundEffectTimer = lvingEnt.tickCount+5;
+						if (lvingEnt.getTicksUsingItem()+45 < lvingEnt.tickCount) {
+							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_startup"))), SoundSource.PLAYERS, 1f, 1f);
+						} else if (lvingEnt.getTicksUsingItem()+5 < lvingEnt.tickCount) {
+							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_idle"))), SoundSource.PLAYERS, 0.6f, 1f);
 						}
 					} else {
-						if (drillSoundEffectTimer+45 < lvingEnt.tickCount) {
-							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_startup")), SoundSource.PLAYERS, 1f, 1f, false);
-							currentDrillSoundPlaying = "drill_startup";
-							drillSoundEffectTimer = lvingEnt.tickCount+35;
-						} else {
-							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_idle")), SoundSource.PLAYERS, 0.6f, 1f, false);
-							currentDrillSoundPlaying = "drill_idle";
-							drillSoundEffectTimer = lvingEnt.tickCount+5;
+						if (lvingEnt.getTicksUsingItem()+45 < lvingEnt.tickCount) {
+							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_startup"))), SoundSource.PLAYERS, 1f, 1f, false);
+						} else if (lvingEnt.getTicksUsingItem()+5 < lvingEnt.tickCount) {
+							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_idle"))), SoundSource.PLAYERS, 0.6f, 1f, false);
 						}
 					}
 				}
@@ -238,18 +239,15 @@ public class StoneDrillItem extends Item {
 
 	// refuels drill and removes 1 piece of charcoal or coal
 	public void takeDrillCoal(int coalSlot, Entity enti, ItemStack itemstack){
+		float drillFuelCount;
 		if(enti instanceof Player playr){
 			Inventory plrInv = playr.getInventory();
 			ItemStack coalStack = plrInv.getItem(coalSlot);
 			double drillFuelNBT = itemstack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("maxDrillFuelFloat", 75d);
 
-			if (drillFuelNBT > 70){
-				drillFuelCount = (float)drillFuelNBT;
-			} else {
-				drillFuelCount = maxDrillFuelCount;
-			}
-			
-			CustomData.update(DataComponents.CUSTOM_DATA, itemstack, tag -> tag.putDouble("currDrillFuelFloat", drillFuelCount));
+			drillFuelCount = (float)drillFuelNBT;
+
+			itemstack.get(DataComponents.CUSTOM_DATA).copyTag().putDouble("currDrillFuelFloat", drillFuelCount);
 			coalStack.shrink(1);
 			
 		} else {
@@ -268,14 +266,13 @@ public class StoneDrillItem extends Item {
 
 	// this section determins what blocks the drill can break
 	@Override
-	public boolean isCorrectToolForDrops(ItemStack itemstack, BlockState blockstate) {
+	public boolean isCorrectToolForDrops(ItemStack itemstack, @NonNull BlockState blockstate) {
 		return customExcludesBlockstate(blockstate);
 	}
 
 	
 	public boolean customExcludesBlockstate(BlockState blockstate){
-		//System.out.println("block="+blockstate.getBlock());
-		
+		// blocks that cannot be broken with the drill
 		return !(List.of(Blocks.SPAWNER, Blocks.AMETHYST_BLOCK, Blocks.TRIAL_SPAWNER, Blocks.SCULK_CATALYST, Blocks.SCULK_SENSOR, Blocks.SCULK_SHRIEKER, Blocks.BUDDING_AMETHYST, ConvenientAdditionsModBlocks.ARM_ORE_BLOCK.get()).contains(blockstate.getBlock())
 				|| Stream.of(BlockTags.create(Identifier.parse("c:obsidians"))).anyMatch(blockstate::is)
 				|| Stream.of(BlockTags.create(Identifier.parse("c:storage_blocks"))).anyMatch(blockstate::is)
@@ -288,21 +285,17 @@ public class StoneDrillItem extends Item {
 
 	// sounds
 	@Override
-	public boolean onEntitySwing(ItemStack stack, LivingEntity entity, InteractionHand hand){
-		if (drillSoundsActive){
-			Level world = entity.level();
-			
-			if (drillSoundEffectTimer < entity.tickCount || currentDrillSoundPlaying.equals("drill_idle")){
-				if (!world.isClientSide()) {
-					world.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_use")), SoundSource.PLAYERS, 0.8f, 1f);
-				} else {
-					world.playLocalSound(entity.getX(), entity.getY(), entity.getZ(), BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_use")), SoundSource.PLAYERS, 0.8f, 1f, false);
-				}
-				currentDrillSoundPlaying = "drill_use";
-				drillSoundEffectTimer = entity.tickCount+10;
-			}
-			
-		}
+	public boolean onEntitySwing(@NonNull ItemStack stack, LivingEntity entity, @NonNull InteractionHand hand){
+		if (entity.getPersistentData().getBooleanOr("canHearDrill", false)) {
+            if (entity.getTicksUsingItem() + 5 < entity.tickCount) {
+                Level world = entity.level();
+                if (!world.isClientSide()) {
+                    world.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_use"))), SoundSource.PLAYERS, 0.7f, 1f);
+                } else {
+                    world.playLocalSound(entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_use"))), SoundSource.PLAYERS, 0.7f, 1f, true);
+                }
+            }
+        }
 		return false;
 	}
 	
