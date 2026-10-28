@@ -9,9 +9,11 @@ import net.minecraft.network.chat.Component;
 
 public class ToggleDrillSFXLogicProcedure {
 	public static void execute(Entity entity) {
-		if (entity == null)
+		if (entity == null) {
 			return;
-		if (entity.getPersistentData().getBooleanOr("canHearDrill", true)) {
+		}
+
+		if (entity.getPersistentData().getBooleanOr("canHearDrill", false)) {
 			entity.getPersistentData().putBoolean("canHearDrill", false);
 			if (entity instanceof Player _player && !_player.level().isClientSide())
 				_player.sendSystemMessage(Component.literal("Drill sounds are now off"));

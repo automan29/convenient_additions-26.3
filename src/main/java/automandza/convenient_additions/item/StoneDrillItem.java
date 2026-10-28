@@ -186,10 +186,11 @@ public class StoneDrillItem extends Item {
 	// called every tick
 	@Override
 	public void inventoryTick(ItemStack iStack, @NonNull ServerLevel svrLvl, @NonNull Entity enti, @Nullable EquipmentSlot equipSlot) {
-		boolean drillHasCoal;
+		boolean drillHasCoal = false;
+		double currentDrillFuel = iStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0);
 
 		// check if drill is empty
-		if (iStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0) < 1){
+		if (currentDrillFuel < 1){
 			int coalSlot = -99;
 			coalSlot = getCoalSlotInInv(enti);
 			drillHasCoal = coalSlot != -99;
@@ -197,16 +198,14 @@ public class StoneDrillItem extends Item {
 			if (drillHasCoal) takeDrillCoal(coalSlot, enti, iStack);
 		}
 
-		// smoke particle
-		svrLvl.addParticle(new ParticleOptions() {
-			@Override
-			public ParticleType<?> getType() {
-				return ParticleTypes.LARGE_SMOKE;
-			}
-		}, enti.getX()+(0.5f-Math.random()), enti.getY(),enti.getZ()+(0.5f-Math.random()), Direction.UP.getStepX(), Direction.UP.getStepY(), Direction.UP.getStepZ());
-		
-		// play drill idle sound
 		if (enti instanceof LivingEntity lvingEnt){
+
+			// smoke particle
+			if (lvingEnt.getMainHandItem() == iStack && currentDrillFuel > 0) {
+				svrLvl.sendParticles(ParticleTypes.LARGE_SMOKE, enti.getX() + (0.5f - Math.random()), enti.getY(), enti.getZ() + (0.5f - Math.random()), 1, 0, 1.2, 0, -(0.05 + (Math.random()*1.2d)));
+			}
+		
+			// play drill idle sound
 			if (lvingEnt.getPersistentData().getBooleanOr("canHearDrill", false)){
 				if (lvingEnt.getMainHandItem() == iStack && iStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getDoubleOr("currDrillFuelFloat", 0) > 0 && lvingEnt.getTicksUsingItem()+3 < lvingEnt.tickCount){
 					Level world = lvingEnt.level();
@@ -214,13 +213,13 @@ public class StoneDrillItem extends Item {
 					if (!world.isClientSide()) {
 						if (lvingEnt.getTicksUsingItem()+5 > lvingEnt.tickCount) {
 							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_startup"))), SoundSource.PLAYERS, 1f, 1f);
-						} else if (lvingEnt.tickCount == (Math.round(lvingEnt.tickCount/200d))*200) {
+						} else if (lvingEnt.getTicksUsingItem()+30 < lvingEnt.tickCount && lvingEnt.tickCount == (Math.round(lvingEnt.tickCount/7d))*7) {
 							world.playSound(null, BlockPos.containing(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_idle"))), SoundSource.PLAYERS, 0.6f, 1f);
 						}
 					} else {
 						if (lvingEnt.getTicksUsingItem()+5 > lvingEnt.tickCount) {
 							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_startup"))), SoundSource.PLAYERS, 1f, 1f, false);
-						} else if (lvingEnt.tickCount == (Math.round(lvingEnt.tickCount/200d))*200) {
+						} else if (lvingEnt.getTicksUsingItem()+30 < lvingEnt.tickCount && lvingEnt.tickCount == (Math.round(lvingEnt.tickCount/7d))*7) {
 							world.playLocalSound(lvingEnt.getX(), lvingEnt.getY(), lvingEnt.getZ(), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_idle"))), SoundSource.PLAYERS, 0.6f, 1f, false);
 						}
 					}
@@ -270,14 +269,11 @@ public class StoneDrillItem extends Item {
 	}
 
 
-
-
-	// this section determins what blocks the drill can break
+	// this section determines what blocks the drill can break
 	@Override
 	public boolean isCorrectToolForDrops(ItemStack itemstack, @NonNull BlockState blockstate) {
 		return customExcludesBlockstate(blockstate);
 	}
-
 	
 	public boolean customExcludesBlockstate(BlockState blockstate){
 		// blocks that cannot be broken with the drill
@@ -295,7 +291,7 @@ public class StoneDrillItem extends Item {
 	@Override
 	public boolean onEntitySwing(@NonNull ItemStack stack, LivingEntity entity, @NonNull InteractionHand hand){
 		if (entity.getPersistentData().getBooleanOr("canHearDrill", false)) {
-            if (entity.tickCount == (Math.round(entity.tickCount/100d))*100) {
+            if (entity.tickCount == (Math.round(entity.tickCount/8d))*8) {
                 Level world = entity.level();
                 if (!world.isClientSide()) {
                     world.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:drill_use"))), SoundSource.PLAYERS, 0.7f, 1f);

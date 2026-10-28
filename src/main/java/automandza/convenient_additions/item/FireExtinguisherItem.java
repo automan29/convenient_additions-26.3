@@ -19,8 +19,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.core.BlockPos;
 
 import automandza.convenient_additions.procedures.PutOutFiresProcedure;
-
-
+import org.jspecify.annotations.NonNull;
 
 
 public class FireExtinguisherItem extends Item {
@@ -38,17 +37,15 @@ public class FireExtinguisherItem extends Item {
 
 	@Override
 	public boolean mineBlock(ItemStack itemstack, Level world, BlockState blockstate, BlockPos pos, LivingEntity entity) {
-		itemstack.hurtAndBreak(1, entity, entity.getUsedItemHand().asEquipmentSlot());
 		return true;
 	}
 
 	@Override
 	public void hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-		itemstack.hurtAndBreak(2, entity, entity.getUsedItemHand().asEquipmentSlot());
 	}
 
 	@Override
-	public InteractionResult use(Level world, Player entity, InteractionHand hand) {
+	public @NonNull InteractionResult use(@NonNull Level world, @NonNull Player entity, @NonNull InteractionHand hand) {
 		InteractionResult ar = super.use(world, entity, hand);
 		PutOutFiresProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, entity.getItemInHand(hand));
 		return ar;
