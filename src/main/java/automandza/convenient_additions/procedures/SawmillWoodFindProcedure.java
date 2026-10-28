@@ -11,22 +11,23 @@ public class SawmillWoodFindProcedure {
 	public static ItemStack PlanksToSaw(ItemStack iStack, String passCurrRecipe) {
 	    ItemStack outputIStack;
 	    String plankTypeText = iStack.getItem().toString().substring(10,iStack.getItem().toString().indexOf("planks")-1);
+		int plankCount = iStack.getCount();
 
 
 	    SawmillWoodFindProcedure woodTypeDeterminator = new SawmillWoodFindProcedure();
 
         outputIStack = switch (plankTypeText) {
-            case "oak" -> woodTypeDeterminator.oakDetare(passCurrRecipe);
-            case "spruce" -> woodTypeDeterminator.spruceDetare(passCurrRecipe);
-            case "dark_oak" -> woodTypeDeterminator.darkOakDetare(passCurrRecipe);
-            case "birch" -> woodTypeDeterminator.birchDetare(passCurrRecipe);
-            case "acacia" -> woodTypeDeterminator.acaciaDetare(passCurrRecipe);
-            case "jungle" -> woodTypeDeterminator.jungleDetare(passCurrRecipe);
-            case "cherry" -> woodTypeDeterminator.cherryDetare(passCurrRecipe);
-            case "pale_oak" -> woodTypeDeterminator.paleOakDetare(passCurrRecipe);
-            case "mangrove" -> woodTypeDeterminator.mangroveDetare(passCurrRecipe);
-            case "crimson" -> woodTypeDeterminator.crimsonDetare(passCurrRecipe);
-            case "warped" -> woodTypeDeterminator.warpedDetare(passCurrRecipe);
+            case "oak" -> woodTypeDeterminator.oakDetare(passCurrRecipe, plankCount);
+            case "spruce" -> woodTypeDeterminator.spruceDetare(passCurrRecipe, plankCount);
+            case "dark_oak" -> woodTypeDeterminator.darkOakDetare(passCurrRecipe, plankCount);
+            case "birch" -> woodTypeDeterminator.birchDetare(passCurrRecipe, plankCount);
+            case "acacia" -> woodTypeDeterminator.acaciaDetare(passCurrRecipe, plankCount);
+            case "jungle" -> woodTypeDeterminator.jungleDetare(passCurrRecipe, plankCount);
+            case "cherry" -> woodTypeDeterminator.cherryDetare(passCurrRecipe, plankCount);
+            case "pale_oak" -> woodTypeDeterminator.paleOakDetare(passCurrRecipe, plankCount);
+            case "mangrove" -> woodTypeDeterminator.mangroveDetare(passCurrRecipe, plankCount);
+            case "crimson" -> woodTypeDeterminator.crimsonDetare(passCurrRecipe, plankCount);
+            case "warped" -> woodTypeDeterminator.warpedDetare(passCurrRecipe, plankCount);
             default -> new ItemStack(Items.AIR).copy();
         };
 
@@ -168,11 +169,12 @@ public class SawmillWoodFindProcedure {
 		return woodLogStr.substring(0, woodLogStr.indexOf("stem")-1);
 	}
 
-	ItemStack oakDetare(String currRecipeType){
+	ItemStack oakDetare(String currRecipeType, int count){
 		ItemStack woodROutput;
 		switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.OAK_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.OAK_STAIRS).copy();
@@ -183,11 +185,12 @@ public class SawmillWoodFindProcedure {
 		return woodROutput;
 	}
 
-	ItemStack spruceDetare(String currRecipeType){
+	ItemStack spruceDetare(String currRecipeType, int count){
 		ItemStack woodROutput;
         switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.SPRUCE_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.SPRUCE_STAIRS).copy();
@@ -198,11 +201,12 @@ public class SawmillWoodFindProcedure {
 		return woodROutput;
 	}
 	
-	ItemStack darkOakDetare(String currRecipeType){
+	ItemStack darkOakDetare(String currRecipeType, int count){
         ItemStack woodROutput;
         switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.DARK_OAK_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.DARK_OAK_STAIRS).copy();
@@ -213,11 +217,12 @@ public class SawmillWoodFindProcedure {
 		return woodROutput;
 	}
 	
-	ItemStack birchDetare(String currRecipeType){
+	ItemStack birchDetare(String currRecipeType, int count){
 		ItemStack woodROutput;
         switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.BIRCH_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.BIRCH_STAIRS).copy();
@@ -228,11 +233,12 @@ public class SawmillWoodFindProcedure {
 		return woodROutput;
 	}
 	
-	ItemStack acaciaDetare(String currRecipeType){
+	ItemStack acaciaDetare(String currRecipeType, int count){
 		ItemStack woodROutput;
         switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.ACACIA_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.ACACIA_STAIRS).copy();
@@ -243,11 +249,12 @@ public class SawmillWoodFindProcedure {
 		return woodROutput;
 	}
 	
-	ItemStack jungleDetare(String currRecipeType){
+	ItemStack jungleDetare(String currRecipeType, int count){
 		ItemStack woodROutput;
         switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.JUNGLE_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.JUNGLE_STAIRS).copy();
@@ -258,11 +265,12 @@ public class SawmillWoodFindProcedure {
 		return woodROutput;
 	}
 	
-	ItemStack cherryDetare(String currRecipeType){
+	ItemStack cherryDetare(String currRecipeType, int count){
 		ItemStack woodROutput;
         switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.CHERRY_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.CHERRY_STAIRS).copy();
@@ -273,11 +281,12 @@ public class SawmillWoodFindProcedure {
 		return woodROutput;
 	}
 	
-	ItemStack paleOakDetare(String currRecipeType){
+	ItemStack paleOakDetare(String currRecipeType, int count){
 		ItemStack woodROutput;
         switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.PALE_OAK_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.PALE_OAK_STAIRS).copy();
@@ -288,11 +297,12 @@ public class SawmillWoodFindProcedure {
 		return woodROutput;
 	}
 	
-	ItemStack mangroveDetare(String currRecipeType){
+	ItemStack mangroveDetare(String currRecipeType, int count){
 		ItemStack woodROutput;
         switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.MANGROVE_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.MANGROVE_STAIRS).copy();
@@ -303,11 +313,12 @@ public class SawmillWoodFindProcedure {
 		return woodROutput;
 	}
 	
-	ItemStack crimsonDetare(String currRecipeType){
+	ItemStack crimsonDetare(String currRecipeType, int count){
 		ItemStack woodROutput;
         switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.CRIMSON_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.CRIMSON_STAIRS).copy();
@@ -318,11 +329,12 @@ public class SawmillWoodFindProcedure {
 		return woodROutput;
 	}
 	
-	ItemStack warpedDetare(String currRecipeType){
+	ItemStack warpedDetare(String currRecipeType, int count){
 		ItemStack woodROutput;
         switch(currRecipeType){
 			case "split":
 				woodROutput = new ItemStack(Items.WARPED_SLAB).copy();
+				woodROutput.setCount(count*2);
 				break;
 			case "cut":
 				woodROutput = new ItemStack(Items.WARPED_STAIRS).copy();

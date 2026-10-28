@@ -29,6 +29,8 @@ public class SawmillTakeOutputProcedure {
 					_menu.getSlots().get(0).remove(stackCount*2);
 				} else if (sawmillOutputItem.is(ItemTags.create(Identifier.parse("minecraft:planks")))){
 					_menu.getSlots().get(0).remove(1);
+				} else if (sawmillInputItem.getCount() > 32 && sawmillOutputItem.is(ItemTags.create(Identifier.parse("minecraft:wooden_slabs")))){
+					_menu.getSlots().get(0).remove(32);
 				} else {
 					_menu.getSlots().get(0).remove(stackCount);
 				}

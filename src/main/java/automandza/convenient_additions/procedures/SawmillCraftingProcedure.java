@@ -3,6 +3,7 @@ package automandza.convenient_additions.procedures;
 //imports
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.Entity;
@@ -53,7 +54,9 @@ public class SawmillCraftingProcedure {
 			} else if (inputItemstackFound.is(ItemTags.create(Identifier.parse("minecraft:planks")))){
 				//calls SawmillWoodFindProcedure planks to get output as an ItemStack
 				ItemStack _setstack2 = SawmillWoodFindProcedure.PlanksToSaw(inputItemstackFound, currentSawmillRecipe);
-				_setstack2.setCount(inputItemstackFound.getCount());
+				if (_setstack2.getCount() <= 1) {
+					_setstack2.setCount(inputItemstackFound.getCount());
+				}
 				_menu.getSlots().get((int) outputID).set(_setstack2);
 
 			// checks if inserted item has logs tag

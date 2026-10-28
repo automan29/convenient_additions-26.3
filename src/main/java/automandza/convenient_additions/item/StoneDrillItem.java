@@ -163,12 +163,8 @@ public class StoneDrillItem extends Item {
 	@Override
 	public boolean supportsEnchantment(@NonNull ItemStack stack, Holder<Enchantment> enchantment) {
 		String enchString = enchantment.toString();
-		if (enchString.contains("Enchantment Efficiency") || enchString.contains("Enchantment Infusion") || enchString.contains("Enchantment Dwarvern Instincts")){
-			//System.out.println("enchant string= "+enchantment.toString());
-			return true;
-		}
-		
-        return false;
+		//System.out.println("enchant string= "+enchantment.toString());
+		return (enchString.contains("Enchantment Efficiency") || enchString.contains("Enchantment Infusion") || enchString.contains("Enchantment Dwarvern Instincts"));
     }
 
 	// does Dwarvern Instincts enchantment effects

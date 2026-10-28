@@ -1,6 +1,7 @@
 package automandza.convenient_additions.procedures;
 
 //imports
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.entity.player.Player;
@@ -36,11 +37,17 @@ public class SawmillShiftClickOutputProcedure {
 			}
 			
 			if (currentSawmillRecipe.equals("cut") && sawmillInputItem.is(ItemTags.create(Identifier.parse("minecraft:logs")))){
-				ItemStack planksQuickStack = sawmillOutputItem;
-				int numPlanksToRecieve = getAmountInGUISlot(entity, 0)*5;
+				ItemStack planksQuickStack = sawmillOutputItem.copy();
+				int numPlanksToReceive = getAmountInGUISlot(entity, 0)*5;
 						
-				planksQuickStack.setCount(numPlanksToRecieve);
+				planksQuickStack.setCount(numPlanksToReceive);
 				_player.addItem(planksQuickStack);
+			} else if (currentSawmillRecipe.equals("split") && sawmillInputItem.is(ItemTags.create(Identifier.parse("minecraft:planks")))){
+				ItemStack slabsQuickStack = sawmillOutputItem.copyAndClear();
+				int numSlabsToReceive = getAmountInGUISlot(entity, 0)*2;
+
+				slabsQuickStack.setCount(numSlabsToReceive);
+				_player.addItem(slabsQuickStack);
 			}
 			
 			_menu.getSlots().get(0).set(ItemStack.EMPTY);
