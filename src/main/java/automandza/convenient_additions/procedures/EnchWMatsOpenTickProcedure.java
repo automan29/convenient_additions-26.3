@@ -24,19 +24,24 @@ import java.util.Set;
 import java.util.Iterator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-
-
+import org.jetbrains.annotations.NotNull;
 
 
 public class EnchWMatsOpenTickProcedure {
-	
-	private static String prevGUISlotState = "";
 	
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null){
 			return;
 		}
+
+		BlockPos machinePos = BlockPos.containing(x, y, z);
+		BlockEntity machineEntity = world.getBlockEntity(machinePos);
 		String fullEnchantUnlocksStr = entity.getPersistentData().getStringOr("unlockedEnchantList", "hard luck");
+        String prevGUISlotState = "";
+		if (machineEntity != null) {
+			prevGUISlotState = machineEntity.getPersistentData().getStringOr("previousGUIState", "nuh uh");
+		}
+
 		// check that the player's unlocked enchantments are not empty
 		if (fullEnchantUnlocksStr.equals("hard luck") || fullEnchantUnlocksStr.isEmpty()){
 			return;
@@ -50,16 +55,21 @@ public class EnchWMatsOpenTickProcedure {
 			int lapisCount = currUImenu.getSlots().get(1).getItem().getCount();
 
 			if (toolToEnch == ItemStack.EMPTY || currUImenu.getSlots().get(1).getItem().getItem() != Items.LAPIS_LAZULI){
+				// missing crucial stuff, should not happen normally
 				currUImenu.getSlots().get(3).set(ItemStack.EMPTY);
-				prevGUISlotState = enchMaterial+"|"+toolToEnch.toString()+" "+toolToEnch.getTagEnchantments().toString()+"|"+currUImenu.getSlots().get(1).getItem();
+				if (machineEntity != null) {
+					prevGUISlotState = enchMaterial + "|" + toolToEnch.toString() + " " + toolToEnch.getTagEnchantments().toString() + "|" + currUImenu.getSlots().get(1).getItem();
+					machineEntity.getPersistentData().putString("previousGUIState", prevGUISlotState);
+				}
 				plyr.containerMenu.broadcastChanges();
 				return;
 			}
+			// If the block has not changed the important parts skips the rest of the function
 			if (prevGUISlotState.equals(enchMaterial+"|"+toolToEnch.toString()+" "+toolToEnch.getTagEnchantments().toString()+"|"+currUImenu.getSlots().get(1).getItem())){
 				return;
 			}
 			
-			ResourceKey outputEnchantment;
+			ResourceKey outputEnchantment; // yes this is the best way to do enchants
 			if (enchMaterial == ItemStack.EMPTY){
 				if (plyr.experienceLevel >= 5){
 					outputEnchantment = Enchantments.MENDING;
@@ -78,8 +88,6 @@ public class EnchWMatsOpenTickProcedure {
 			if (outputEnchantment != null){
 				String outputEnchantmentStr = outputEnchantment.toString().substring(outputEnchantment.toString().indexOf("enchantment / "),outputEnchantment.toString().indexOf("]"));
 				outputEnchantmentStr = outputEnchantmentStr.substring(outputEnchantmentStr.indexOf(":")+1);
-				BlockPos machinePos = BlockPos.containing(x, y, z);
-				BlockEntity machineEntity = world.getBlockEntity(machinePos);
 
 				if (machineEntity == null){
 					System.out.println("ERROR! machine entity not found at x="+x+"y="+y+"z="+z);
@@ -157,7 +165,11 @@ public class EnchWMatsOpenTickProcedure {
 				currUImenu.getSlots().get(3).set(ItemStack.EMPTY);
 			}
 
-			prevGUISlotState = enchMaterial+"|"+toolToEnch.toString()+" "+toolToEnch.getTagEnchantments().toString()+"|"+currUImenu.getSlots().get(1).getItem();
+			// Update contents check so full function doesn't run if unnecessary
+			if (machineEntity != null) {
+				prevGUISlotState = enchMaterial + "|" + toolToEnch.toString() + " " + toolToEnch.getTagEnchantments().toString() + "|" + currUImenu.getSlots().get(1).getItem();
+				machineEntity.getPersistentData().putString("previousGUIState", prevGUISlotState);
+			}
 			
 			plyr.containerMenu.broadcastChanges();
 		}

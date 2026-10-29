@@ -16,6 +16,8 @@ import automandza.convenient_additions.init.ConvenientAdditionsModGameRules;
 
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import net.minecraft.server.level.ServerLevel;
 
 
@@ -82,10 +84,12 @@ public class EnchResearchTickProcedure{
 				String fullComponentString = ""+inputIStack.getComponents();
 				if (fullComponentString.contains("minecraft:enchantment /")) {
 					// Check for cheaters
-					System.out.println(inputIStack.getDisplayName().toString());
-					if (inputIStack.getDisplayName().toString().contains("minecraft:enchantment /")){
-						plyr.sendSystemMessage(Component.literal("You filthy rotten cheater! No cheating in free stuff!"));
-						return;
+					if (inputIStack.getCustomName() != null) {
+						//System.out.println(inputIStack.getCustomName().toString());
+						if (inputIStack.getCustomName().toString().contains("minecraft:enchantment /")) {
+							plyr.sendSystemMessage(Component.literal("You filthy rotten cheater! No cheating in free stuff!"));
+							return;
+						}
 					}
 					// Extract enchantment details from long string
 					String tempCompString = fullComponentString.substring(fullComponentString.indexOf("minecraft:enchantment /"));
