@@ -54,8 +54,9 @@ public record EnchResearchGUIButtonMessage(int buttonID, int x, int y, int z) im
 	public static void handleButtonAction(Player entity, int buttonID, int x, int y, int z) {
 		Level world = entity.level();
 		// security measure to prevent arbitrary chunk generation
-		if (!world.getChunkSource().hasChunk(SectionPos.blockToSectionCoord(x), SectionPos.blockToSectionCoord(z)))
-	return;
+		if (!world.getChunkSource().hasChunk(SectionPos.blockToSectionCoord(x), SectionPos.blockToSectionCoord(z))){
+			return;
+		}
 		if (buttonID == 0) {
 			EnchResearchTickProcedure.pressTestButton(world, x, y, z, entity);
 		}
@@ -73,11 +74,13 @@ public record EnchResearchGUIButtonMessage(int buttonID, int x, int y, int z) im
 					@Override
 					public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
 						UnlockedEnchTipsGUIMenu menu = new UnlockedEnchTipsGUIMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pos));
-						menu.listOfUnlockedEnc = entity.getPersistentData().getStringOr("unlockedEnchantList", "hard luck"); // sets the static var within the new menu
 						return menu;
 					}
 				};
-				srvPlayer.openMenu(menuProvider, pos);
+				srvPlayer.openMenu(menuProvider, buf -> {
+					buf.writeBlockPos(pos);
+					buf.writeUtf(entity.getPersistentData().getStringOr("unlockedEnchantList", "hard luck")); // writes the unlocked list to an utf buffer
+				});
 			}
 		}
 

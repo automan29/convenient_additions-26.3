@@ -30,8 +30,9 @@ public class UnlockedEnchTipsGUIMenu extends AbstractContainerMenu implements Co
 	public final Map<String, Object> menuState = new HashMap<>() {
 		@Override
 		public Object put(String key, Object value) {
-			if (!this.containsKey(key) && this.size() >= 0)
+			if (!this.containsKey(key)){
 				return null;
+			}
 			return super.put(key, value);
 		}
 	};
@@ -39,26 +40,30 @@ public class UnlockedEnchTipsGUIMenu extends AbstractContainerMenu implements Co
 	public final Player entity;
 	public int x, y, z;
 	private ContainerLevelAccess access = ContainerLevelAccess.NULL;
-	private Container internal;
 	private final Map<Integer, Slot> customSlots = new HashMap<>();
+	public String listOfUnlockedEnc = ""; // static works in singleplayer, breaks in multiplayer
+
+	// not a clue
 	private boolean bound = false;
 	private Supplier<Boolean> boundItemMatcher = null;
 	private Entity boundEntity = null;
 	private BlockEntity boundBlockEntity = null;
-	public static String listOfUnlockedEnc; // NEEDS to be static
+
 
 	public UnlockedEnchTipsGUIMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
 		super(ConvenientAdditionsModMenus.UNLOCKED_ENCH_TIPS_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
-		this.internal = new SimpleContainer(0);
-		BlockPos pos = null;
+		BlockPos pos;
 		if (extraData != null) {
 			pos = extraData.readBlockPos();
 			this.x = pos.getX();
 			this.y = pos.getY();
 			this.z = pos.getZ();
 			access = ContainerLevelAccess.create(world, pos);
+			if (extraData.readableBytes() > 0) {
+				listOfUnlockedEnc = extraData.readUtf();
+			}
 		}
 	}
 

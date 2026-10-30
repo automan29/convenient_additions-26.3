@@ -30,7 +30,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 	private final int x, y, z, imageWidth, imageHeight;
 	private final Player plr;
 	private boolean menuStateUpdateActive = false;
-	private String listOfUnlockedEnc;
+	private final String listOfUnlockedEnc;
 	private final int lineSeparation = 21;
 
 	private	ImageButton goBackButton;
