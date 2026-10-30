@@ -45,13 +45,13 @@ public class DwarvernInstinctsPickaxeProcedure {
 		execute(null, world, entity, null);
 	}
 
-	private static int hiddenDwvTimer = 0;
-	private static int dwarvernFuryValue = 0;
-
 	public static void execute(@Nullable Event event, LevelAccessor lvlAcc, Entity entity, @Nullable BlockPos pos) {
 		if (entity == null){
 			return;
 		}
+
+		int hiddenDwvTimer = entity.getPersistentData().getIntOr("DwarvernPikTimer", 0);
+		int dwarvernFuryValue = entity.getPersistentData().getIntOr("DwarvernPikFury", 0);
 		
 		if (entity instanceof LivingEntity livinEnt){
 			Level world = livinEnt.level();
@@ -80,6 +80,8 @@ public class DwarvernInstinctsPickaxeProcedure {
 
 			}
 		}
+		entity.getPersistentData().putInt("DwarvernPikTimer", hiddenDwvTimer);
+		entity.getPersistentData().putInt("DwarvernPikFury", dwarvernFuryValue);
 	}
 
 	private static boolean checkBlockInOresList(BlockState state){

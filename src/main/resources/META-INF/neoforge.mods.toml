@@ -2,7 +2,7 @@ license="MIT License"
 
 [[mods]]
 modId="convenient_additions"
-version="0.9.9"
+version="1.0.0"
 displayName="Convenient Additions"
 displayURL="https://github.com/automan29/convenient_additions"
 authors="automan29"
