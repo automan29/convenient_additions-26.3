@@ -36,22 +36,29 @@ public class KilnTickProcedure {
 			
 			ItemStack inputItemStk = itemFromBlockInventory(lvlExt, KilnPos, 0).copy();
 			ItemStack outputItemStk = itemFromBlockInventory(lvlExt, KilnPos, 1).copy();
+			BlockEntity kilnEntity = world.getBlockEntity(KilnPos);
+			String immBlockBelow = world.getBlockState(BlockPos.containing(x, y-1, z)).getBlock().toString();
 
-			if (inputItemStk == ItemStack.EMPTY && outputItemStk == ItemStack.EMPTY){
-				return;
+
+			if (kilnEntity != null) {
+				String prevBlockBelow = kilnEntity.getPersistentData().getStringOr("blockBelow", "");
+				if (inputItemStk == ItemStack.EMPTY && outputItemStk == ItemStack.EMPTY && kilnEntity.getPersistentData().getDoubleOr("temperature", -9) > -8 && prevBlockBelow.equals(immBlockBelow)) {
+					kilnEntity.getPersistentData().putString("blockBelow", immBlockBelow);
+					return;
+				}
 			}
 
 			double currTemperature = temperatureCalculationFromSurroundings(world, x, y, z);
 			double netherMultiplier = 1d;
-			
+
 			// does temperature update
 			if (!world.isClientSide()) {
-				BlockEntity kilnEntity = world.getBlockEntity(KilnPos);
 				if (kilnEntity != null) {
 					BlockState KilnBlState = world.getBlockState(KilnPos);
+					kilnEntity.getPersistentData().putString("blockBelow", immBlockBelow);
 
 					// move an item from kiln to block behind
-					if (outputItemStk != ItemStack.EMPTY){
+					if (outputItemStk != ItemStack.EMPTY) {
 						GlobalPutItemIntoFacingInputProcedure.execute(world, x, y, z, getDirectionFromBlockState(KilnBlState).getOpposite(), outputItemStk, 1);
 					}
 
@@ -59,7 +66,7 @@ public class KilnTickProcedure {
 					kilnEntity.getPersistentData().putDouble("temperature", currTemperature);
 
 					// sends changes to kiln block
-					if (world instanceof Level _level){
+					if (world instanceof Level _level) {
 						_level.sendBlockUpdated(KilnPos, KilnBlState, KilnBlState, 3);
 					}
 				}
