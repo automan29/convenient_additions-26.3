@@ -70,8 +70,10 @@ public class SawmillCraftingProcedure {
 				// converts logs to planks at a 1 to 5 ratio
 				} else if (currentSawmillRecipe.equals("cut")){
 					ItemStack _setstack2 = SawmillWoodFindProcedure.LogsToPlanks(inputItemstackFound.getItem().toString());
-					_setstack2.setCount(5);
-					_menu.getSlots().get((int) outputID).set(_setstack2);
+					if (_setstack2 != null){ // shut up plz
+						_setstack2.setCount(5);
+						_menu.getSlots().get((int) outputID).set(_setstack2);
+					}
 					
 				// error happens
 				} else {

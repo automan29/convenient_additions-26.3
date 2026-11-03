@@ -1,6 +1,8 @@
 package automandza.convenient_additions.procedures;
 
 //imports
+import automandza.convenient_additions.init.ConvenientAdditionsModItems;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 
@@ -28,6 +30,8 @@ public class SawmillWoodFindProcedure {
             case "mangrove" -> woodTypeDeterminator.mangroveDetare(passCurrRecipe, plankCount);
             case "crimson" -> woodTypeDeterminator.crimsonDetare(passCurrRecipe, plankCount);
             case "warped" -> woodTypeDeterminator.warpedDetare(passCurrRecipe, plankCount);
+			case "poplar" -> woodTypeDeterminator.poplarDetare(passCurrRecipe, plankCount);
+			case "cloud" -> woodTypeDeterminator.cloudDetare(passCurrRecipe, plankCount);
             default -> new ItemStack(Items.AIR).copy();
         };
 
@@ -46,44 +50,22 @@ public class SawmillWoodFindProcedure {
 			System.out.println("exception="+e);
 		}
 		//System.out.println("logTypeText="+logTypeText);
-		
-		switch (logTypeText){
-	    	case "oak":
-				outputIStack = new ItemStack(Items.STRIPPED_OAK_WOOD).copy();
-	    		break;
-			case "spruce":
-				outputIStack = new ItemStack(Items.STRIPPED_SPRUCE_WOOD).copy();
-				break;
-			case "dark_oak":
-				outputIStack = new ItemStack(Items.STRIPPED_DARK_OAK_WOOD).copy();
-				break;
-			case "birch":
-				outputIStack = new ItemStack(Items.STRIPPED_BIRCH_WOOD).copy();
-				break;
-			case "acacia":
-				outputIStack = new ItemStack(Items.STRIPPED_ACACIA_WOOD).copy();
-				break;
-			case "jungle":
-				outputIStack = new ItemStack(Items.STRIPPED_JUNGLE_WOOD).copy();
-				break;
-			case "cherry":
-				outputIStack = new ItemStack(Items.STRIPPED_CHERRY_WOOD).copy();
-				break;
-			case "pale_oak":
-				outputIStack = new ItemStack(Items.STRIPPED_PALE_OAK_WOOD).copy();
-				break;
-			case "mangrove":
-				outputIStack = new ItemStack(Items.STRIPPED_MANGROVE_WOOD).copy();
-				break;
-			case "crimson":
-				outputIStack = new ItemStack(Items.STRIPPED_CRIMSON_HYPHAE).copy();
-				break;
-			case "warped":
-				outputIStack = new ItemStack(Items.STRIPPED_WARPED_HYPHAE).copy();
-				break;
-			default:
-				outputIStack = new ItemStack(Items.AIR).copy();
-	    }
+
+        outputIStack = switch (logTypeText) {
+            case "oak" -> new ItemStack(Items.STRIPPED_OAK_WOOD).copy();
+            case "spruce" -> new ItemStack(Items.STRIPPED_SPRUCE_WOOD).copy();
+            case "dark_oak" -> new ItemStack(Items.STRIPPED_DARK_OAK_WOOD).copy();
+            case "birch" -> new ItemStack(Items.STRIPPED_BIRCH_WOOD).copy();
+            case "acacia" -> new ItemStack(Items.STRIPPED_ACACIA_WOOD).copy();
+            case "jungle" -> new ItemStack(Items.STRIPPED_JUNGLE_WOOD).copy();
+            case "cherry" -> new ItemStack(Items.STRIPPED_CHERRY_WOOD).copy();
+            case "pale_oak" -> new ItemStack(Items.STRIPPED_PALE_OAK_WOOD).copy();
+            case "mangrove" -> new ItemStack(Items.STRIPPED_MANGROVE_WOOD).copy();
+            case "crimson" -> new ItemStack(Items.STRIPPED_CRIMSON_HYPHAE).copy();
+            case "warped" -> new ItemStack(Items.STRIPPED_WARPED_HYPHAE).copy();
+            case "poplar" -> new ItemStack(Items.STRIPPED_POPLAR_WOOD).copy();
+            default -> new ItemStack(Items.AIR).copy();
+        };
 		
 		return outputIStack;
 	}
@@ -100,44 +82,22 @@ public class SawmillWoodFindProcedure {
 			System.out.println("exception="+e);
 		}
 		//System.out.println("logTypeText="+logTypeText);
-		
-		switch (logTypeText){
-	    	case "oak":
-				outputIStack = new ItemStack(Items.OAK_PLANKS).copy();
-	    		break;
-			case "spruce":
-				outputIStack = new ItemStack(Items.SPRUCE_PLANKS).copy();
-				break;
-			case "dark_oak":
-				outputIStack = new ItemStack(Items.DARK_OAK_PLANKS).copy();
-				break;
-			case "birch":
-				outputIStack = new ItemStack(Items.BIRCH_PLANKS).copy();
-				break;
-			case "acacia":
-				outputIStack = new ItemStack(Items.ACACIA_PLANKS).copy();
-				break;
-			case "jungle":
-				outputIStack = new ItemStack(Items.JUNGLE_PLANKS).copy();
-				break;
-			case "cherry":
-				outputIStack = new ItemStack(Items.CHERRY_PLANKS).copy();
-				break;
-			case "pale_oak":
-				outputIStack = new ItemStack(Items.PALE_OAK_PLANKS).copy();
-				break;
-			case "mangrove":
-				outputIStack = new ItemStack(Items.MANGROVE_PLANKS).copy();
-				break;
-			case "crimson":
-				outputIStack = new ItemStack(Items.CRIMSON_PLANKS).copy();
-				break;
-			case "warped":
-				outputIStack = new ItemStack(Items.WARPED_PLANKS).copy();
-				break;
-			default:
-				outputIStack = new ItemStack(Items.AIR).copy();
-	    }
+
+        outputIStack = switch (logTypeText) {
+            case "oak" -> new ItemStack(Items.OAK_PLANKS).copy();
+            case "spruce" -> new ItemStack(Items.SPRUCE_PLANKS).copy();
+            case "dark_oak" -> new ItemStack(Items.DARK_OAK_PLANKS).copy();
+            case "birch" -> new ItemStack(Items.BIRCH_PLANKS).copy();
+            case "acacia" -> new ItemStack(Items.ACACIA_PLANKS).copy();
+            case "jungle" -> new ItemStack(Items.JUNGLE_PLANKS).copy();
+            case "cherry" -> new ItemStack(Items.CHERRY_PLANKS).copy();
+            case "pale_oak" -> new ItemStack(Items.PALE_OAK_PLANKS).copy();
+            case "mangrove" -> new ItemStack(Items.MANGROVE_PLANKS).copy();
+            case "crimson" -> new ItemStack(Items.CRIMSON_PLANKS).copy();
+            case "warped" -> new ItemStack(Items.WARPED_PLANKS).copy();
+            case "poplar" -> new ItemStack(Items.POPLAR_PLANKS).copy();
+            default -> new ItemStack(Items.AIR).copy();
+        };
 		
 		return outputIStack;
 	}
@@ -341,6 +301,38 @@ public class SawmillWoodFindProcedure {
 				break;
 			default:
 				woodROutput = new ItemStack(Items.WARPED_FENCE).copy();
+		}
+		return woodROutput;
+	}
+
+	ItemStack poplarDetare(String currRecipeType, int count){
+		ItemStack woodROutput;
+		switch(currRecipeType){
+			case "split":
+				woodROutput = new ItemStack(Items.POPLAR_SLAB).copy();
+				woodROutput.setCount(count*2);
+				break;
+			case "cut":
+				woodROutput = new ItemStack(Items.POPLAR_STAIRS).copy();
+				break;
+			default:
+				woodROutput = new ItemStack(Items.POPLAR_FENCE).copy();
+		}
+		return woodROutput;
+	}
+
+	ItemStack cloudDetare(String currRecipeType, int count){
+		ItemStack woodROutput;
+		switch(currRecipeType){
+			case "split":
+				woodROutput = new ItemStack(Items.POPLAR_SLAB).copy();
+				woodROutput.setCount(count*2);
+				break;
+			case "cut":
+				woodROutput = new ItemStack(Items.POPLAR_STAIRS).copy();
+				break;
+			default:
+				woodROutput = new ItemStack(Items.POPLAR_FENCE).copy();
 		}
 		return woodROutput;
 	}

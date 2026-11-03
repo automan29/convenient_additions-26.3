@@ -20,3 +20,10 @@ type="required"
 versionRange="[26.3]"
 ordering="AFTER"
 side="BOTH"
+
+[[dependencies.convenient_additions]]
+modId="convenient_extras"
+type="optional"
+versionRange="[1.0.0,)"
+ordering="AFTER"
+side="BOTH"

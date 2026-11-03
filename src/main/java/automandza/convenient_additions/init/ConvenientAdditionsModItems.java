@@ -1,5 +1,6 @@
 package automandza.convenient_additions.init;
 
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -54,7 +55,21 @@ public class ConvenientAdditionsModItems {
 	public static final DeferredItem<Item> MATERIALS_TO_ENCHANTMENT_MACHINE;
 	public static final DeferredItem<Item> FIRE_EXTINGUISHER;
 	public static final DeferredItem<Item> SNOW_CREEPER_SPAWN_EGG;
+
+	public static DeferredRegister.Items CONVEX_REG;
+	public static DeferredItem<Item> CLOUD_PLANKS = null;
+
+
 	static {
+		try {
+			CONVEX_REG = DeferredRegister.createItems(ConvenientAdditionsMod.CONVEX_MOD_ID);
+
+			CLOUD_PLANKS = DeferredItem.createItem(Identifier.parse("convenient_extras:cloud_planks"));
+        } catch (Exception e){
+			System.out.println("Warning! Convenient Extras was not found");
+			System.out.println("exeption="+e);
+			CONVEX_REG = null;
+		}
 		GRS_1600 = register("grs_1600", GRS1600Item::new);
 		GOLDEN_KEY = register("golden_key", KeyItem::new);
 		LOCKED_DOOR = doubleBlock(ConvenientAdditionsModBlocks.LOCKED_DOOR);

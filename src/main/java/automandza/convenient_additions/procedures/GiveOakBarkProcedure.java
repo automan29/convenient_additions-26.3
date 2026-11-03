@@ -52,8 +52,6 @@ public class GiveOakBarkProcedure {
 		if (entity == null){
 			return false;
 		}
-		double randomPosOffset;
-		double randomPosOffsetZ;
 		ItemStack current_bark = ItemStack.EMPTY.copy();
 
 		ItemStack currentMainHandItem = (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY);
@@ -63,7 +61,7 @@ public class GiveOakBarkProcedure {
 			if (currentOffhandItem.is(ItemTags.AXES)) {
 				if (
 						!blockstate.is(BlockTags.create(Identifier.parse("minecraft:logs")))
-						| currentOffhandItem.getItem().useOn(new UseOnContext(plyr, InteractionHand.OFF_HAND, Objects.requireNonNull(blockHitRes))) != InteractionResult.SUCCESS
+						|| currentOffhandItem.getItem().useOn(new UseOnContext(plyr, InteractionHand.OFF_HAND, Objects.requireNonNull(blockHitRes))) != InteractionResult.SUCCESS
 				) {
 					return false;
 				}
@@ -105,17 +103,21 @@ public class GiveOakBarkProcedure {
 				}
 
 				if (!(current_bark.getItem() == ItemStack.EMPTY.getItem())) {
-					for (int index0 = 0; index0 < (int) (3 + Math.round(Math.random())); index0++) {
-						randomPosOffset = (Math.random() - 0.5) * 2;
-						randomPosOffsetZ = (Math.random() - 0.5) * 2;
+					// bark odds = 3 + (random 0-1)
+					for (int i = 0; i < (int) (3 + Math.round(Math.random())); i++) {
+						double randXOffset = (Math.random() - 0.5) * 2;
+						double randZOffset = (Math.random() - 0.5) * 2;
 						if (world instanceof ServerLevel _level) {
-							ItemEntity entityToSpawn = new ItemEntity(_level, (x + randomPosOffset), y, (z + randomPosOffsetZ), current_bark);
+							// spawns bark in world
+							ItemEntity entityToSpawn = new ItemEntity(_level, (x + randXOffset), y, (z + randZOffset), current_bark);
 							entityToSpawn.setPickUpDelay(10);
 							_level.addFreshEntity(entityToSpawn);
 						}
 					}
 					return true;
 				} else {
+					// bark is empty
+					System.out.println("Warning! Bark not found from log="+blockstate.getBlock());
 					return false;
 				}
 			}

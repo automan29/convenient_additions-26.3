@@ -49,6 +49,7 @@ import automandza.convenient_additions.init.*;
 public class ConvenientAdditionsMod {
 	public static final Logger LOGGER = LogManager.getLogger(ConvenientAdditionsMod.class);
 	public static final String MODID = "convenient_additions";
+	public static final String CONVEX_MOD_ID = "convenient_extras";
 
 	public ConvenientAdditionsMod(IEventBus modEventBus) {
 		NeoForge.EVENT_BUS.register(this);
@@ -62,6 +63,7 @@ public class ConvenientAdditionsMod {
 		ConvenientAdditionsModMenus.REGISTRY.register(modEventBus);
 		ConvenientAdditionsModParticleTypes.REGISTRY.register(modEventBus);
 		ConvenientAdditionsModVillagerProfessions.PROFESSIONS.register(modEventBus);
+
 
 		// yeausad
 		ConvAdditionsStructures.DEFERRED_REGISTRY_STRUCTURE.register(modEventBus);
