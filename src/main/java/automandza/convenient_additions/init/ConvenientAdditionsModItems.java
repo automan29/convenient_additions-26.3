@@ -54,7 +54,6 @@ public class ConvenientAdditionsModItems {
 	public static final DeferredItem<Item> ENCH_SCIENCE_RESEARCH_TABLE;
 	public static final DeferredItem<Item> MATERIALS_TO_ENCHANTMENT_MACHINE;
 	public static final DeferredItem<Item> FIRE_EXTINGUISHER;
-	public static final DeferredItem<Item> SNOW_CREEPER_SPAWN_EGG;
 
 	public static DeferredRegister.Items CONVEX_REG;
 	public static DeferredItem<Item> CLOUD_PLANKS = null;
@@ -105,7 +104,6 @@ public class ConvenientAdditionsModItems {
 		ENCH_SCIENCE_RESEARCH_TABLE = register("ench_science_research_table", EnchScienceResearchTableBlock.Item::new);
 		MATERIALS_TO_ENCHANTMENT_MACHINE = block(ConvenientAdditionsModBlocks.MATERIALS_TO_ENCHANTMENT_MACHINE);
 		FIRE_EXTINGUISHER = register("fire_extinguisher", FireExtinguisherItem::new);
-		SNOW_CREEPER_SPAWN_EGG = register("snow_creeper_spawn_egg", SpawnEggItem::new);
 	}
 
 

@@ -32,8 +32,6 @@ public class ConvenientAdditionsModTabs {
 			tabData.accept(ConvenientAdditionsModBlocks.CRUDE_DOOR.get().asItem());
 			tabData.accept(ConvenientAdditionsModBlocks.MARBLE_RUBBLE.get().asItem());
 			tabData.accept(ConvenientAdditionsModBlocks.QUARTZ_PEARL_TOMBSTONE.get().asItem());
-		} else if (tabData.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-			tabData.accept(ConvenientAdditionsModItems.SNOW_CREEPER_SPAWN_EGG.get());
 		} else if (tabData.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
 			tabData.accept(ConvenientAdditionsModItems.GOLDEN_KEY.get());
 			tabData.accept(ConvenientAdditionsModItems.STONE_DRILL.get());

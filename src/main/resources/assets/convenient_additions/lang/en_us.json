@@ -70,6 +70,5 @@
   "gui.convenient_additions.ench_w_mats_gui.label_inventory": "Inventory",
   "advancements.doer_2.descr": "You have done again!",
   "advancements.doer_2.title": "Doer 2",
-  "entity.convenient_additions.snow_creeper": "Snow Creeper",
-  "item.convenient_additions.snow_creeper_spawn_egg": "Snow Creeper Spawn Egg"
+  "entity.convenient_additions.snow_creeper": "Snow Creeper"
 }

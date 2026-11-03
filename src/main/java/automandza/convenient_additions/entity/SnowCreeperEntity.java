@@ -18,7 +18,7 @@ public class SnowCreeperEntity extends Creeper {
 
 	public SnowCreeperEntity(EntityType<SnowCreeperEntity> type, Level world) {
 		super(type, world);
-		xpReward = 6;
+		xpReward = 6+((int) Math.round(Math.random()));
 		setNoAi(false);
 	}
 
@@ -35,7 +35,7 @@ public class SnowCreeperEntity extends Creeper {
 			// for each enchantment on inserted item
 			for (String currItemEnchFull : itemEnchList) {
 				// get ench name
-				String foundEnchName = currItemEnchFull.substring(currItemEnchFull.indexOf("Enchantment "), currItemEnchFull.length() - 4).toLowerCase();
+				String foundEnchName = currItemEnchFull.substring(currItemEnchFull.indexOf("Enchantment ")+12, currItemEnchFull.length() - 4).toLowerCase();
 				// get ench lvl
 				int foundEnchLvl = Integer.parseInt(currItemEnchFull.substring(currItemEnchFull.length() - 1));
 
@@ -44,7 +44,7 @@ public class SnowCreeperEntity extends Creeper {
 				}
 			}
 		}
-		dropLoot.setCount((int) Math.round((Math.random() * 3d * lootingMult)+lootingMult));
+		dropLoot.setCount((int) Math.round((Math.random() * 2d * lootingMult)+lootingMult));
 		this.spawnAtLocation(serverLevel, dropLoot);
 	}
 

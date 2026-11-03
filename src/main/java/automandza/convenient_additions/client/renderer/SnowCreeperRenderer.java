@@ -10,6 +10,7 @@ import net.minecraft.client.model.monster.creeper.CreeperModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import automandza.convenient_additions.entity.SnowCreeperEntity;
+import net.minecraft.util.Mth;
 
 public class SnowCreeperRenderer extends MobRenderer<SnowCreeperEntity, CreeperRenderState, CreeperModel> {
 	private SnowCreeperEntity entity = null;
@@ -27,6 +28,7 @@ public class SnowCreeperRenderer extends MobRenderer<SnowCreeperEntity, CreeperR
 	@Override
 	public void extractRenderState(SnowCreeperEntity entity, CreeperRenderState state, float partialTicks) {
 		super.extractRenderState(entity, state, partialTicks);
+		state.swelling = entity.getSwelling(partialTicks);
 		this.entity = entity;
 	}
 
@@ -36,7 +38,20 @@ public class SnowCreeperRenderer extends MobRenderer<SnowCreeperEntity, CreeperR
 	}
 
 	@Override
-	protected void scale(CreeperRenderState state, PoseStack poseStack) {
-		poseStack.scale(0.9f, 0.9f, 0.9f);
+	public float getWhiteOverlayProgress(CreeperRenderState state) {
+		float step = state.swelling;
+		return (int)(step * 10.0F) % 2 == 0 ? 0.0F : Mth.clamp(step, 0.5F, 1.0F);
+	}
+
+	@Override
+	public void scale(CreeperRenderState state, PoseStack poseStack) {
+		float swellVal = state.swelling;
+		float wobble = 1.0f + Mth.sin(swellVal * 100.0f) * swellVal * 0.01f;
+		swellVal = Mth.clamp(swellVal, 0.0f, 1.0f);
+		swellVal *= swellVal;
+		swellVal *= swellVal;
+		float horizScale = (0.9f + swellVal * 0.5f) * wobble;
+		float vertScale = (0.9f + swellVal * 0.2f) / wobble;
+		poseStack.scale(horizScale, vertScale, horizScale);
 	}
 }
