@@ -61,7 +61,7 @@
   "item.convenient_additions.ench_science_research_table": "Scientific Research Table",
   "gui.convenient_additions.ench_research_gui.label_scientific_research": "For Scientific Research ONLY",
   "gui.convenient_additions.ench_research_gui.label_inventory": "Inventory",
-  "block.convenient_additions.ench_science_research_table.description_0": "There is no such thing as \u0027Magic\u0027, only Science we don\u0027t yet understand!",
+  "block.convenient_additions.ench_science_research_table.description_0": "§7There is no such thing as \u0027Magic\u0027, only Science we don\u0027t yet understand!",
   "gui.convenient_additions.ench_research_gui.button_research": "Research",
   "gui.convenient_additions.ench_research_gui.label_xp_cost_0": "XP Cost: 0",
   "gui.convenient_additions.ench_research_gui.label_extracted_enchant": "Extracted Enchant",
