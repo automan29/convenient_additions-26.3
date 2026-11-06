@@ -17,7 +17,7 @@ public class ConAddCommonConfig {
 
         // Enhancements
         SPEC_BUILDER.push("Enhancements");
-        CUSTOM_ENHANCE_ENCH_LIST = SPEC_BUILDER.comment("\n List separated by | of \n - Enchantment names with mod ID before\n - Ingredients to be used to apply the chosen enchantment\n - Hints to give the player trying to figure out what item to use to get the enchantment\n - Max level of the enchantment\n\n e.g. convenient_extras:diplomatic,minecraft:emerald,Green thing favored by the locals,3|minecraft:sweeping_edge,minecraft:bone,Wolf's favourite,2\n\n THIS CONFIG MUST HAVE THE CONTENTS IN THE SAME ORDER AND FORMATTING AS THE EXAMPLE, NO SPACES!\n")
+        CUSTOM_ENHANCE_ENCH_LIST = SPEC_BUILDER.comment("\n List separated by | of \n - Enchantment names with mod ID before\n - Ingredients to be used to apply the chosen enchantment\n - Hints to give the player trying to figure out what item to use to get the enchantment\n - Max level of the enchantment\n\n e.g. convenient_extras:diplomatic,minecraft:emerald,Green thing favored by the locals,3|minecraft:sweeping_edge,minecraft:bone,Wolf's favourite,2\n\n THIS CONFIG MUST HAVE THE CONTENTS IN THE SAME ORDER AND FORMATTING AS THE EXAMPLE, NO CHARACTER RETURNS (enter) OR TABS!\n")
                 .define("Enchantment List", "");
 
         SPEC_BUILDER.pop();

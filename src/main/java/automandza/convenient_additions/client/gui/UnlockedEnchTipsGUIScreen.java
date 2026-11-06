@@ -276,7 +276,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 		String[] fullConfiguredList = ConAddCommonConfig.CUSTOM_ENHANCE_ENCH_LIST.getRaw().split("\\|");
 		for (String configuredListStr : fullConfiguredList){
 			String[] subConfList = configuredListStr.split(",");
-			String configEnchName = subConfList[0].replace(" ", "").replaceFirst(".+:", "").replace("_", " ").toLowerCase();
+			String configEnchName = subConfList[0].replaceAll("\s*", "").replaceFirst(".+:", "").replace("_", " ").toLowerCase();
 			String configHint = subConfList[2];
 
 			if (configEnchName.equals(enhInput)){

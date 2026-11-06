@@ -154,10 +154,10 @@ public class EnchResearchTickProcedure{
 							str.append(eachstring).append(",");
 						}
 						// StringBuffer to String conversion
-						String commaseparatedlist = str.toString();
+						String commaSeparatedList = str.toString();
 						// Condition check to remove the last comma
-						if (!commaseparatedlist.isEmpty()){
-							enchUnlocksOutputStr = commaseparatedlist.substring(0, commaseparatedlist.length() - 1);
+						if (!commaSeparatedList.isEmpty()){
+							enchUnlocksOutputStr = commaSeparatedList.substring(0, commaSeparatedList.length() - 1);
 						}
 					}
 
@@ -278,10 +278,10 @@ public class EnchResearchTickProcedure{
 		String[] fullConfiguredList = ConAddCommonConfig.CUSTOM_ENHANCE_ENCH_LIST.getRaw().split("\\|");
 		for (String configuredListStr : fullConfiguredList){
 			String[] subConfList = configuredListStr.split(",");
-			String configEnchName = subConfList[0].replace(" ", "").toLowerCase();
+			String configEnchName = subConfList[0].replaceAll("\s*", "").toLowerCase();
 			int configEnchMaxLvl;
 			try {
-				configEnchMaxLvl = Integer.parseInt(subConfList[3].replace(" ", ""));
+				configEnchMaxLvl = Integer.parseInt(subConfList[3].replaceAll("\s*", ""));
 				if (inputEnchant.equals(configEnchName.replaceFirst(".+:", ""))){
 					return configEnchMaxLvl;
 				}

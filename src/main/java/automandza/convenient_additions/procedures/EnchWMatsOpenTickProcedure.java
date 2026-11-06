@@ -190,8 +190,8 @@ public class EnchWMatsOpenTickProcedure {
 		String[] fullConfiguredList = ConAddCommonConfig.CUSTOM_ENHANCE_ENCH_LIST.getRaw().split("\\|");
 		for (String configuredListStr : fullConfiguredList){
 			String[] subConfList = configuredListStr.split(",");
-			String configEnchName = subConfList[0].replace(" ", "").toLowerCase();
-			String configIngredientItem = subConfList[1].replace(" ","").toLowerCase();
+			String configEnchName = subConfList[0].replaceAll("\s*", "").toLowerCase();
+			String configIngredientItem = subConfList[1].replaceAll("\s*","").toLowerCase();
 
 			if (matItem.toString().equals(configIngredientItem)){
 				try {
