@@ -10,19 +10,15 @@ public class ConAddCommonConfig {
     public static final ModConfigSpec.Builder SPEC_BUILDER = new ModConfigSpec.Builder();
     public static final ModConfigSpec CONFIG_SPEC;
 
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> CUSTOM_ENHANCE_ENCH_LIST;
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> CUSTOM_ENHANCE_INGREDIENT_LIST;
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> CUSTOM_ENHANCE_HINT_LIST;
+    public static final ModConfigSpec.ConfigValue<String> CUSTOM_ENHANCE_ENCH_LIST;
 
     static {
         SPEC_BUILDER.push("Convenient Additions Game Configs");
 
         // Enhancements
-        SPEC_BUILDER.push("==== Enhancements ====");
-        CUSTOM_ENHANCE_ENCH_LIST = SPEC_BUILDER.comment("List of enchantment names with mod ID before, e.g. convenient_extras:diplomatic").defineList("Enchantment List", Arrays.asList("a","b"),entry -> true);
-        CUSTOM_ENHANCE_INGREDIENT_LIST = SPEC_BUILDER.comment("List of ingredients to be used to apply the chosen enchantment, e.g. convenient_extras:cinder_pelt").defineList("Ingredient List", Arrays.asList("c","d"),entry -> true);
-        CUSTOM_ENHANCE_HINT_LIST= SPEC_BUILDER.comment("List of hints to give the player trying to figure out what item to use to get the enchantment e.g. 'A form of leather, found in the heats through the purple portal'").defineList("Hint List", Arrays.asList("e","f"),entry -> true);
-        SPEC_BUILDER.push("ALL CONFIGS FOR THIS SECTION MUST HAVE THE THING THEY ARE REFERING TO IN THE SAME ORDER AS EACH OTHER AND THE SAME AMOUNT!");
+        SPEC_BUILDER.push("Enhancements");
+        CUSTOM_ENHANCE_ENCH_LIST = SPEC_BUILDER.comment("\n List separated by | of \n - Enchantment names with mod ID before\n - Ingredients to be used to apply the chosen enchantment\n - Hints to give the player trying to figure out what item to use to get the enchantment\n - Max level of the enchantment\n\n e.g. convenient_extras:diplomatic,minecraft:emerald,Green thing favored by the locals,3|minecraft:sweeping_edge,minecraft:bone,Wolf's favourite,2\n\n THIS CONFIG MUST HAVE THE CONTENTS IN THE SAME ORDER AND FORMATTING AS THE EXAMPLE, NO SPACES!\n")
+                .define("Enchantment List", "");
 
         SPEC_BUILDER.pop();
         CONFIG_SPEC = SPEC_BUILDER.build();

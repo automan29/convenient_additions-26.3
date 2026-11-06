@@ -1,6 +1,7 @@
 package automandza.convenient_additions.procedures;
 
 //imports
+import automandza.convenient_additions.config.ConAddCommonConfig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
 
@@ -20,8 +21,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.resources.Identifier;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.Holder;
+
+import java.util.List;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.concurrent.ExecutionException;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
@@ -127,6 +132,7 @@ public class EnchWMatsOpenTickProcedure {
 								return;
 							}
 						}
+
 						// does tons of checks that the item can be enchanted and that it has compatability
 						// or funnis
 						if ( 
@@ -140,7 +146,7 @@ public class EnchWMatsOpenTickProcedure {
 								)
 							) ){
 							// after that debarkle
-							// determins the output enchantment level
+							// determines the output enchantment level
 							int outputEnchLvl = 1;
 							if (enchMaterial != ItemStack.EMPTY){
 								outputEnchLvl = (int) Math.min(unlkdEnchLvl, Math.min(existingEnchLvl+enchMaterial.getCount(), existingEnchLvl+lapisCount));
@@ -175,10 +181,31 @@ public class EnchWMatsOpenTickProcedure {
 		}
 	}
 
-	// spoilers
+
+	// SPOILERS
 	public static ResourceKey getEnchantStringFromMat(ItemStack currMaterial){
 		Item matItem = currMaterial.getItem();
-		
+
+		// config replacement or new enhancements :o
+		String[] fullConfiguredList = ConAddCommonConfig.CUSTOM_ENHANCE_ENCH_LIST.getRaw().split("\\|");
+		for (String configuredListStr : fullConfiguredList){
+			String[] subConfList = configuredListStr.split(",");
+			String configEnchName = subConfList[0].replace(" ", "").toLowerCase();
+			String configIngredientItem = subConfList[1].replace(" ","").toLowerCase();
+
+			if (matItem.toString().equals(configIngredientItem)){
+				try {
+					return ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse(configEnchName));
+				} catch (Exception e){
+					System.out.println("ERROR! Could not convert string to enchantment, exception="+e);
+					System.out.println("configuredListStr="+configuredListStr);
+					System.out.println("configIngredientItem="+configIngredientItem);
+					return null;
+				}
+			}
+		}
+
+		// defaults
 		if (matItem == Items.BLAZE_POWDER){
 			return Enchantments.FIRE_ASPECT;
 		}

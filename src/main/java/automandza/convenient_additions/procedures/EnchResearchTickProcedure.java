@@ -1,7 +1,11 @@
 package automandza.convenient_additions.procedures;
 
 //imports
+import automandza.convenient_additions.config.ConAddCommonConfig;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.LevelAccessor;
@@ -269,6 +273,24 @@ public class EnchResearchTickProcedure{
 		if(inputEnchant.contains(" ")){
 			inputEnchant = inputEnchant.replace(" ","_").replaceFirst(".*:","").replace("Enchantment_","").toLowerCase();
 		}
+
+		// config replacement or new enhancements :o
+		String[] fullConfiguredList = ConAddCommonConfig.CUSTOM_ENHANCE_ENCH_LIST.getRaw().split("\\|");
+		for (String configuredListStr : fullConfiguredList){
+			String[] subConfList = configuredListStr.split(",");
+			String configEnchName = subConfList[0].replace(" ", "").toLowerCase();
+			int configEnchMaxLvl;
+			try {
+				configEnchMaxLvl = Integer.parseInt(subConfList[3].replace(" ", ""));
+				if (inputEnchant.equals(configEnchName.replaceFirst(".+:", ""))){
+					return configEnchMaxLvl;
+				}
+			} catch (Exception e){
+				System.out.println("ERROR! found config max level or name was invalid, exception="+e);
+				System.out.println("configuredListStr="+configuredListStr);
+			}
+		}
+
         return switch (inputEnchant) {
             case "aqua_affinity", "channeling", "flame", "infinity", "mending", "multishot", "silk_touch" -> 1;
             case "fire_aspect", "frost_walker", "knockback", "punch" -> 2;

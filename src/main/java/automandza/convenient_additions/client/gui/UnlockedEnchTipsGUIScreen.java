@@ -1,6 +1,7 @@
 package automandza.convenient_additions.client.gui;
 
 //imports
+import automandza.convenient_additions.config.ConAddCommonConfig;
 import automandza.convenient_additions.network.EnchResearchGUIButtonMessage;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.ImageButton;
@@ -270,6 +271,20 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 	// hints
 	private String hint1Tooltip(String enhInput){
 		String outputStr = "hey guys it doseph, something broke :(";
+
+		// config replacement or new enhancements :o
+		String[] fullConfiguredList = ConAddCommonConfig.CUSTOM_ENHANCE_ENCH_LIST.getRaw().split("\\|");
+		for (String configuredListStr : fullConfiguredList){
+			String[] subConfList = configuredListStr.split(",");
+			String configEnchName = subConfList[0].replace(" ", "").replaceFirst(".+:", "").replace("_", " ").toLowerCase();
+			String configHint = subConfList[2];
+
+			if (configEnchName.equals(enhInput)){
+				// better hope the config makes sense
+				return configHint;
+			}
+		}
+
 		try {
             outputStr = switch (enhInput) {
                 case "fire aspect" -> "Gathered from a flaming entity";
@@ -314,7 +329,8 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
                 case "dwarvern instincts" -> "For rock and stone! but seriously this item is neither of them";
                 case "infusion" -> "Where did his arms and legsgo?";
                 case "curse of binding", "curse of vanishing" -> "This can't be made. You just wasted your XP...";
-                default -> "Use your experience";
+				case "mending" -> "Use your experience";
+                default -> "hey guys it doseph, something broke :(";
             };
 		} catch (Exception e){
 			System.out.println("ERROR! could not be switched, trace="+e);

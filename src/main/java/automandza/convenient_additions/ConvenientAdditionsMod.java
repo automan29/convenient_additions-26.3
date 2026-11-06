@@ -1,6 +1,8 @@
 package automandza.convenient_additions;
 
 //imports
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.config.ModConfig;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -20,7 +22,6 @@ import net.minecraft.server.TickTask;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.FriendlyByteBuf;
-import net.neoforged.neoforge.common.NeoForgeEventHandler;
 
 import javax.annotation.Nullable;
 
@@ -40,6 +41,7 @@ import it.unimi.dsi.fastutil.ints.IntObjectImmutablePair;
 
 import automandza.convenient_additions.world.structure.ConvAdditionsStructures;
 import automandza.convenient_additions.init.*;
+import automandza.convenient_additions.config.*;
 
 
 
@@ -51,7 +53,7 @@ public class ConvenientAdditionsMod {
 	public static final String MODID = "convenient_additions";
 	public static final String CONVEX_MOD_ID = "convenient_extras";
 
-	public ConvenientAdditionsMod(IEventBus modEventBus) {
+	public ConvenientAdditionsMod(IEventBus modEventBus, ModContainer container) {
 		NeoForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::registerNetworking);
 		ConvenientAdditionsModSounds.REGISTRY.register(modEventBus);
@@ -70,6 +72,9 @@ public class ConvenientAdditionsMod {
 		ConvAddModCustomTabs.register(modEventBus);
 		modEventBus.addListener(ConvAddModCustomTabs::addCreativeTab);
 		modEventBus.addListener(ConvenientAdditionsModTabs::buildTabContentsVanilla);
+
+		// config
+		container.registerConfig(ModConfig.Type.SYNCED, ConAddCommonConfig.CONFIG_SPEC);
 	}
 
 
