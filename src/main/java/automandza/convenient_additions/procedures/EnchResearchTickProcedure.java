@@ -135,10 +135,11 @@ public class EnchResearchTickProcedure{
 							// skip lists and go straight for the end string
 							if (enchUnlocksOutputStrBuilder.toString().equals("hard luck")){
 								// end string is empty
-								enchUnlocksOutputStrBuilder = new StringBuilder(foundEnchName + ":" + getUnlockedValueOfEnchLvl(world, 0d, foundEnchLvl));
+								enchUnlocksOutputStrBuilder = new StringBuilder("Enchantment Cappy:1," + foundEnchName + ":" + getUnlockedValueOfEnchLvl(world, 0d, foundEnchLvl));
 							} else {
 								// end string is not empty
 								enchUnlocksOutputStrBuilder.append(",").append(foundEnchName).append(":").append(getUnlockedValueOfEnchLvl(world, 0d, foundEnchLvl));
+								enchUnlocksOutputStrBuilder.append(",Enchantment Cappy:1");
 							}
 						}
 					}
@@ -293,7 +294,7 @@ public class EnchResearchTickProcedure{
 
         return switch (inputEnchant) {
             case "aqua_affinity", "channeling", "flame", "infinity", "mending", "multishot", "silk_touch" -> 1;
-            case "fire_aspect", "frost_walker", "knockback", "punch" -> 2;
+            case "fire_aspect", "frost_walker", "knockback", "punch", "cappy" -> 2;
             case "depth_strider", "fortune", "looting", "loyalty", "luck_of_the_sea", "lunge", "lure", "quick_charge", "respiration", "riptide", "soul_speed", "sweeping_edge", "swift_sneak", "thorns", "unbreaking", "wind_burst", "dwarvern_instincts" -> 3;
             case "blast_protection", "fire_protection", "breach", "feather_falling", "piercing", "projectile_protection" -> 4;
             case "bane_of_arthropods", "density", "efficiency", "impaling", "power", "protection", "sharpness", "smite", "infusion" -> 5;

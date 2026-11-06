@@ -330,6 +330,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
                 case "infusion" -> "Where did his arms and legsgo?";
                 case "curse of binding", "curse of vanishing" -> "This can't be made. You just wasted your XP...";
 				case "mending" -> "Use your experience";
+				case "cappy" -> "Part 1: Shimmering remains of a powerful foe.\rPart 2: ...?";
                 default -> "hey guys it doseph, something broke :(";
             };
 		} catch (Exception e){

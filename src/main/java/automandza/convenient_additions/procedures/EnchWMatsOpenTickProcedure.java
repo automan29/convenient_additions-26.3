@@ -137,11 +137,12 @@ public class EnchWMatsOpenTickProcedure {
 						// or funnis
 						if ( 
 							(outputStack.getItem() == Items.PUFFERFISH && adarMind.equals("[adamsbrain]"))
-							|| (
-								outputStack.has(DataComponents.ENCHANTABLE)
-								&& (
+							|| ((
+									outputStack.has(DataComponents.ENCHANTABLE)
+									|| outputStack.getItem() == Items.ELYTRA
+								) && (
 									   outputStack.getTagEnchantments().isEmpty() 
-									|| enchCompatibleFromSet(outputStack.getTagEnchantments().keySet(), outEnchHolder)
+									|| (enchCompatibleFromSet(outputStack.getTagEnchantments().keySet(), outEnchHolder))
 									|| outputStack.getTagEnchantments().toString().contains(outputEnchantmentStr)
 								)
 							) ){
@@ -328,6 +329,9 @@ public class EnchWMatsOpenTickProcedure {
 		}
 		if (matItem == ConvenientAdditionsModItems.LEGO_GUY.asItem()){
 			return ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse("convenient_additions:infusion"));
+		}
+		if (matItem == Items.NETHER_STAR){
+			return ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse("convenient_additions:cappy"));
 		}
 		
 		return null;
