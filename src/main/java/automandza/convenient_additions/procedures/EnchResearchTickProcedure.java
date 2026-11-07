@@ -2,10 +2,16 @@ package automandza.convenient_additions.procedures;
 
 //imports
 import automandza.convenient_additions.config.ConAddCommonConfig;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.PlayerAdvancements;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.LevelAccessor;
@@ -23,8 +29,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import net.minecraft.server.level.ServerLevel;
-
-
+import net.neoforged.neoforge.attachment.AttachmentType;
 
 
 public class EnchResearchTickProcedure{
@@ -81,8 +86,43 @@ public class EnchResearchTickProcedure{
 			// Get existing ench list from player and item input
 			String[] foundUnlockedEnchList = entity.getPersistentData().getStringOr("unlockedEnchantList", "hard luck").split(",");
 			String enchUnlocksOutputStr;
+			StringBuilder enchUnlocksOutputStrBuilder = new StringBuilder(entity.getPersistentData().getStringOr("unlockedEnchantList", "hard luck"));
+
 			ArrayList<String> unlocksOutputList = new ArrayList<>(Arrays.asList(foundUnlockedEnchList));
 			ItemStack inputIStack = menu1.getSlots().get(0).getItem();
+
+
+			//region Stardust Advancement Check
+			if (world instanceof ServerLevel svrLvl && plyr instanceof ServerPlayer svrPlayer){
+				MinecraftServer mcServer = svrLvl.getServer();
+				PlayerAdvancements playerAchievements = mcServer.getPlayerList().getPlayerAdvancements(svrPlayer);
+				AdvancementHolder stardustAdv = mcServer.getAdvancements().get(Identifier.parse("convenient_extras:embers/stardust"));
+
+				if (stardustAdv != null) {
+					System.out.println("playerAchievements=" + playerAchievements.getOrStartProgress(stardustAdv));
+					if (foundUnlockedEnchList[0].equals("hard luck")){
+						enchUnlocksOutputStrBuilder = new StringBuilder("Enchantment Cappy:2");
+					} else {
+						int i = 0;
+						for (String currUnlockedEnchData : foundUnlockedEnchList){
+							String currUnlockedEnchName = currUnlockedEnchData.substring(0, currUnlockedEnchData.indexOf(":"));
+
+							if (currUnlockedEnchName.equals("Enchantment Cappy")){
+								// upgrade cappy enchantment
+								// each entry structure - "Enchantment <name>:<level>,"
+								unlocksOutputList.set(i, "Enchantment Cappy:2");
+							}
+
+							i++;
+						}
+					}
+
+				} else {
+					System.out.println("Warning! Stardust Advancement not found");
+				}
+			}
+			//endregion
+
 
 			if (inputIStack != ItemStack.EMPTY){
 				String fullComponentString = ""+inputIStack.getComponents();
@@ -102,7 +142,6 @@ public class EnchResearchTickProcedure{
 					String[] itemEnchList = enchantsString.split(",");
 
 					// for each enchantment on inserted item
-                    StringBuilder enchUnlocksOutputStrBuilder = new StringBuilder(entity.getPersistentData().getStringOr("unlockedEnchantList", "hard luck"));
                     for (String currItemEnchFull : itemEnchList){
 						// get ench name
 						String foundEnchName = currItemEnchFull.substring(currItemEnchFull.indexOf("Enchantment "), currItemEnchFull.length()-4);
@@ -117,7 +156,10 @@ public class EnchResearchTickProcedure{
 								String foundUnlkdEnName = currUlkdEnch.substring(0, currUlkdEnch.indexOf(":"));
 								double foundUnlkdEnVal = Double.parseDouble(currUlkdEnch.substring(currUlkdEnch.indexOf(":")+1));
 
-								if (foundEnchName.equals(foundUnlkdEnName)){
+								if (foundEnchName.equals("Enchantment Cappy")){
+									// ignore
+									currEnchUnlocked = true;
+								} else if (foundEnchName.equals(foundUnlkdEnName)){
 									// upgrade player unlocked enchantment
 									// each entry structure - <name>:<level>,
 									unlocksOutputList.set(i, foundUnlkdEnName+":"+Math.min(getUnlockedValueOfEnchLvl(world, foundUnlkdEnVal, foundEnchLvl), convertEnchantmentStrToMaxLvl(foundUnlkdEnName)));
