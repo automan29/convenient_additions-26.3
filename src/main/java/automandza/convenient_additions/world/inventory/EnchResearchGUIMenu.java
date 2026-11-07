@@ -97,8 +97,9 @@ public class EnchResearchGUIMenu extends AbstractContainerMenu implements Conven
 		for (int si = 0; si < 3; ++si)
 			for (int sj = 0; sj < 9; ++sj)
 				this.addSlot(new Slot(inv, sj + (si + 1) * 9, 9 + 8 + sj * 18, 7 + 84 + si * 18));
-		for (int si = 0; si < 9; ++si)
+		for (int si = 0; si < 9; ++si) {
 			this.addSlot(new Slot(inv, si, 9 + 8 + si * 18, 7 + 142));
+		}
 	}
 
 	@Override

@@ -2,8 +2,6 @@ package automandza.convenient_additions.procedures;
 
 //imports
 import automandza.convenient_additions.enchantments.EnchantmentStringConverter;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -15,7 +13,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.effect.MobEffects;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 
 @EventBusSubscriber

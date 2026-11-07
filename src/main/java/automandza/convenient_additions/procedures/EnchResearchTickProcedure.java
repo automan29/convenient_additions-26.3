@@ -307,8 +307,7 @@ public class EnchResearchTickProcedure{
 		return ent != null && !lvlAcc.isClientSide() && tblEnt != null;
 	}
 
-
-	// mcreator generated functions
+	// other functions
 	private static double getBlockNBTNumber(LevelAccessor world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity != null)
