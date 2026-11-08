@@ -28,7 +28,7 @@ public class ConvAddModCustomFuels {
 	@SubscribeEvent
 	public static void furnaceFuelBurnTimeEvent(ModifyDefaultComponentsEvent event) {
 		for (Item bark : new Item[] {ConvenientAdditionsModItems.OAK_BARK.get(), ConvenientAdditionsModItems.BIRCH_BARK.get(), ConvenientAdditionsModItems.JUNGLE_BARK.get(), ConvenientAdditionsModItems.CHERRY_BARK.get(), ConvenientAdditionsModItems.SPRUCE_BARK.get(),
-				ConvenientAdditionsModItems.ACACIA_BARK.get(), ConvenientAdditionsModItems.DARKOAK_BARK.get(), ConvenientAdditionsModItems.PALE_BARK.get(), ConvenientAdditionsModItems.MANGROVE_BARK.get()}) {
+				ConvenientAdditionsModItems.ACACIA_BARK.get(), ConvenientAdditionsModItems.DARKOAK_BARK.get(), ConvenientAdditionsModItems.PALE_BARK.get(), ConvenientAdditionsModItems.MANGROVE_BARK.get(), ConvenientAdditionsModItems.POPLAR_BARK.get()}) {
 			event.modify(bark, (components, context, item) -> components.set(DataComponents.COOKING_FUEL, new CookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_EXTRA_SMALL, ContextFloatProviders.COOKING_DEFAULT_SPEED_MULTIPLIER)));
 		}
 	}

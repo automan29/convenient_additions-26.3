@@ -21,10 +21,12 @@ public class TombstoneRightClickProcedure {
 		if (entity instanceof LivingEntity livinEnt){
 			if (livinEnt.getMainHandItem().getItem() == ConvenientAdditionsModItems.REGULAR_PEARL.asItem() || livinEnt.getOffhandItem().getItem() == ConvenientAdditionsModItems.REGULAR_PEARL.asItem()){
 				try {
-					if (entity instanceof Player _player && !_player.level().isClientSide()) {
-						_player.sendSystemMessage(Component.literal("In loving memory of ..."));
-						_player.sendSystemMessage(Component.literal("A merchant who sought many beautiful pearls."));
-						_player.sendSystemMessage(Component.literal("He had found one pearl of great price, went and sold all that he had, and bought it."));
+					if (entity instanceof Player player && !player.level().isClientSide()) {
+						player.sendSystemMessage(Component.literal("§7In loving memory of ..."));
+						player.sendSystemMessage(Component.literal("§7A merchant who sought many beautiful pearls."));
+						player.sendSystemMessage(Component.literal("§7He had found one pearl of great price, went and sold all that he had, and bought it."));
+						player.sendSystemMessage(Component.empty());
+						player.sendSystemMessage(Component.literal("<"+player.getDisplayName()+">"+"have I read that from somewhere?"));
 						entity.getPersistentData().putBoolean("poison_immune", true);
 					}
 				} catch (Exception e){

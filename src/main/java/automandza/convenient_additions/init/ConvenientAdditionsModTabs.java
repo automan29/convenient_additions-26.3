@@ -20,7 +20,6 @@ public class ConvenientAdditionsModTabs {
 			tabData.accept(ConvenientAdditionsModBlocks.LOCKED_DOOR.get().asItem());
 			tabData.accept(ConvenientAdditionsModBlocks.THE_LOCK_BLOCK.get().asItem());
 			tabData.accept(ConvenientAdditionsModBlocks.SAWMILL.get().asItem());
-			tabData.accept(ConvenientAdditionsModBlocks.DECORATION_STATION.get().asItem());
 			tabData.accept(ConvenientAdditionsModBlocks.KILN.get().asItem());
 			tabData.accept(ConvenientAdditionsModBlocks.ENCH_SCIENCE_RESEARCH_TABLE.get().asItem());
 			tabData.accept(ConvenientAdditionsModBlocks.MATERIALS_TO_ENCHANTMENT_MACHINE.get().asItem());
@@ -46,8 +45,11 @@ public class ConvenientAdditionsModTabs {
 			tabData.accept(ConvenientAdditionsModItems.CHERRY_BARK.get());
 			tabData.accept(ConvenientAdditionsModItems.PALE_BARK.get());
 			tabData.accept(ConvenientAdditionsModItems.MANGROVE_BARK.get());
+			tabData.accept(ConvenientAdditionsModItems.POPLAR_BARK.get());
 			tabData.accept(ConvenientAdditionsModItems.DRILL_HEAD.get());
 			tabData.accept(ConvenientAdditionsModItems.REGULAR_PEARL.get());
+		} else if (tabData.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS){
+			tabData.accept(ConvenientAdditionsModBlocks.DECORATION_STATION.get().asItem());
 		}
 	}
 }

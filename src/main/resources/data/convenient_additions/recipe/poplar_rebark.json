@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "bark_to_log",
+  "category": "building",
+  "ingredients": [
+    "convenient_additions:poplar_bark",
+    "convenient_additions:poplar_bark",
+    "minecraft:stripped_poplar_log",
+    "convenient_additions:poplar_bark",
+    "convenient_additions:poplar_bark"
+  ],
+  "result": {
+    "id": "minecraft:poplar_log",
+    "count": 1
+  }
+}

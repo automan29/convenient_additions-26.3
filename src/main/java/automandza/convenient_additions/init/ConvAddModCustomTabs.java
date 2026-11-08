@@ -23,7 +23,7 @@ public class ConvAddModCustomTabs {
 	}
 
 	public static void addCreativeTab(BuildCreativeModeTabContentsEvent tabData){
-		if (tabData.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+		if (tabData.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 			tabData.accept(ConvenientAdditionsModBlocks.CEILING_LAMP.get().asItem());
 		}
 	}

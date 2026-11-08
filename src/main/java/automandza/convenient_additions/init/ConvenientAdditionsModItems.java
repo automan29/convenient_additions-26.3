@@ -23,21 +23,25 @@ public class ConvenientAdditionsModItems {
 	public static final DeferredItem<Item> GOLDEN_KEY;
 	public static final DeferredItem<Item> LOCKED_DOOR;
 	public static final DeferredItem<Item> THE_LOCK_BLOCK;
+
+	// barks
 	public static final DeferredItem<Item> OAK_BARK;
 	public static final DeferredItem<Item> SPRUCE_BARK;
 	public static final DeferredItem<Item> BIRCH_BARK;
 	public static final DeferredItem<Item> DARKOAK_BARK;
-	public static final DeferredItem<Item> WODDEN_VEST_CHESTPLATE;
-	public static final DeferredItem<Item> WODDEN_VEST_LEGGINGS;
 	public static final DeferredItem<Item> ACACIA_BARK;
 	public static final DeferredItem<Item> JUNGLE_BARK;
 	public static final DeferredItem<Item> CHERRY_BARK;
 	public static final DeferredItem<Item> PALE_BARK;
+	public static final DeferredItem<Item> MANGROVE_BARK;
+	public static final DeferredItem<Item> POPLAR_BARK;
+
+	public static final DeferredItem<Item> WODDEN_VEST_CHESTPLATE;
+	public static final DeferredItem<Item> WODDEN_VEST_LEGGINGS;
 	public static final DeferredItem<Item> SAWMILL;
 	public static final DeferredItem<Item> ARM_ORE_BLOCK;
 	public static final DeferredItem<Item> ARM_ORE;
 	public static final DeferredItem<Item> COOKED_ARM;
-	public static final DeferredItem<Item> MANGROVE_BARK;
 	public static final DeferredItem<Item> LEGO_GUY;
 	public static final DeferredItem<Item> CRUDE_DOOR;
 	public static final DeferredItem<Item> FLAME_CHARGE;
@@ -73,21 +77,25 @@ public class ConvenientAdditionsModItems {
 		GOLDEN_KEY = register("golden_key", KeyItem::new);
 		LOCKED_DOOR = doubleBlock(ConvenientAdditionsModBlocks.LOCKED_DOOR);
 		THE_LOCK_BLOCK = block(ConvenientAdditionsModBlocks.THE_LOCK_BLOCK);
-		OAK_BARK = register("oak_bark", OakBarkItem::new);
-		SPRUCE_BARK = register("spruce_bark", SpruceBarkItem::new);
-		BIRCH_BARK = register("birch_bark", BirchBarkItem::new);
-		DARKOAK_BARK = register("darkoak_bark", DarkoakBarkItem::new);
+
+		// barks
+		OAK_BARK = register("oak_bark", GenericBarkItem::new);
+		SPRUCE_BARK = register("spruce_bark", GenericBarkItem::new);
+		BIRCH_BARK = register("birch_bark", GenericBarkItem::new);
+		DARKOAK_BARK = register("darkoak_bark", GenericBarkItem::new);
+		ACACIA_BARK = register("acacia_bark", GenericBarkItem::new);
+		JUNGLE_BARK = register("jungle_bark", GenericBarkItem::new);
+		CHERRY_BARK = register("cherry_bark", GenericBarkItem::new);
+		PALE_BARK = register("pale_bark", GenericBarkItem::new);
+		MANGROVE_BARK = register("mangrove_bark", GenericBarkItem::new);
+		POPLAR_BARK = register("poplar_bark", GenericBarkItem::new);
+
 		WODDEN_VEST_CHESTPLATE = register("wodden_vest_chestplate", WoddenVestItem.Chestplate::new);
 		WODDEN_VEST_LEGGINGS = register("wodden_vest_leggings", WoddenVestItem.Leggings::new);
-		ACACIA_BARK = register("acacia_bark", AcaciaBarkItem::new);
-		JUNGLE_BARK = register("jungle_bark", JungleBarkItem::new);
-		CHERRY_BARK = register("cherry_bark", CherryBarkItem::new);
-		PALE_BARK = register("pale_bark", PaleBarkItem::new);
 		SAWMILL = block(ConvenientAdditionsModBlocks.SAWMILL);
 		ARM_ORE_BLOCK = block(ConvenientAdditionsModBlocks.ARM_ORE_BLOCK);
 		ARM_ORE = register("arm_ore", ArmOreItem::new);
 		COOKED_ARM = register("cooked_arm", CookedArmItem::new);
-		MANGROVE_BARK = register("mangrove_bark", MangroveBarkItem::new);
 		LEGO_GUY = register("lego_guy", LegoGuyItem::new);
 		CRUDE_DOOR = doubleBlock(ConvenientAdditionsModBlocks.CRUDE_DOOR);
 		FLAME_CHARGE = register("flame_charge", FlameChargeItem::new);
