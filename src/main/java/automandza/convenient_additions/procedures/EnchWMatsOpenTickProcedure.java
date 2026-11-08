@@ -142,8 +142,10 @@ public class EnchWMatsOpenTickProcedure {
 									|| outputStack.getItem() == Items.ELYTRA
 								) && (
 									   outputStack.getTagEnchantments().isEmpty() 
-									|| (enchCompatibleFromSet(outputStack.getTagEnchantments().keySet(), outEnchHolder))
+									|| (enchCompatibleFromSet(outputStack.getTagEnchantments().keySet(), outEnchHolder) && outputStack.supportsEnchantment(outEnchHolder))
 									|| outputStack.getTagEnchantments().toString().contains(outputEnchantmentStr)
+								) && (
+									!(unlkdEnchLvl > 1 && unlkdEnchName.equals("cappy") && enchMaterial.getItem() == Items.NETHER_STAR)
 								)
 							) ){
 							// after that debarkle
@@ -152,7 +154,7 @@ public class EnchWMatsOpenTickProcedure {
 							if (enchMaterial != ItemStack.EMPTY){
 								outputEnchLvl = (int) Math.min(unlkdEnchLvl, Math.min(existingEnchLvl+enchMaterial.getCount(), existingEnchLvl+lapisCount));
 							}
-							
+
 							// actually does the thing and outputs it
 							outputStack.enchant(outEnchHolder, outputEnchLvl);
 							currUImenu.getSlots().get(3).set(outputStack);
@@ -330,7 +332,7 @@ public class EnchWMatsOpenTickProcedure {
 		if (matItem == ConvenientAdditionsModItems.LEGO_GUY.asItem()){
 			return ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse("convenient_additions:infusion"));
 		}
-		if (matItem == Items.NETHER_STAR){
+		if (matItem == Items.NETHER_STAR || matItem.toString().equals("convenient_extras:flame_core")){
 			return ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse("convenient_additions:cappy"));
 		}
 		

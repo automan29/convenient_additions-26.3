@@ -95,19 +95,16 @@ public class EnchResearchTickProcedure{
 			//region Stardust Advancement Check
 			if (world instanceof ServerLevel svrLvl && plyr instanceof ServerPlayer svrPlayer){
 				MinecraftServer mcServer = svrLvl.getServer();
-				PlayerAdvancements playerAchievements = mcServer.getPlayerList().getPlayerAdvancements(svrPlayer);
-				AdvancementHolder stardustAdv = mcServer.getAdvancements().get(Identifier.parse("convenient_extras:embers/stardust"));
-
-				if (stardustAdv != null) {
-					System.out.println("playerAchievements=" + playerAchievements.getOrStartProgress(stardustAdv));
-					if (foundUnlockedEnchList[0].equals("hard luck")){
-						enchUnlocksOutputStrBuilder = new StringBuilder("Enchantment Cappy:2");
+				if (AdvancementChecker.playerHasAdvancementFromMCServer(svrPlayer, mcServer,"convenient_extras:embers/stardust")) {
+					if (foundUnlockedEnchList[0].equals("hard luck")) {
+						foundUnlockedEnchList[0] = "Enchantment Cappy:2";
+						unlocksOutputList = new ArrayList<>(Arrays.asList(foundUnlockedEnchList));
 					} else {
 						int i = 0;
-						for (String currUnlockedEnchData : foundUnlockedEnchList){
+						for (String currUnlockedEnchData : foundUnlockedEnchList) {
 							String currUnlockedEnchName = currUnlockedEnchData.substring(0, currUnlockedEnchData.indexOf(":"));
 
-							if (currUnlockedEnchName.equals("Enchantment Cappy")){
+							if (currUnlockedEnchName.equals("Enchantment Cappy")) {
 								// upgrade cappy enchantment
 								// each entry structure - "Enchantment <name>:<level>,"
 								unlocksOutputList.set(i, "Enchantment Cappy:2");
@@ -116,9 +113,6 @@ public class EnchResearchTickProcedure{
 							i++;
 						}
 					}
-
-				} else {
-					System.out.println("Warning! Stardust Advancement not found");
 				}
 			}
 			//endregion
@@ -129,7 +123,6 @@ public class EnchResearchTickProcedure{
 				if (fullComponentString.contains("minecraft:enchantment /")) {
 					// Check for cheaters
 					if (inputIStack.getCustomName() != null) {
-						//System.out.println(inputIStack.getCustomName().toString());
 						if (inputIStack.getCustomName().toString().contains("minecraft:enchantment /")) {
 							plyr.sendSystemMessage(Component.literal("You filthy rotten cheater! No cheating in free stuff!"));
 							return;
@@ -185,43 +178,43 @@ public class EnchResearchTickProcedure{
 							}
 						}
 					}
-                    enchUnlocksOutputStr = enchUnlocksOutputStrBuilder.toString();
-
-                    // Converts unlocksOutputList to string
-					if (!foundUnlockedEnchList[0].equals("hard luck")){
-						StringBuilder str = new StringBuilder();
-						// Traversing the ArrayList
-						for (String eachstring : unlocksOutputList) {
-							// Each element in ArrayList is appended
-							// followed by comma
-							str.append(eachstring).append(",");
-						}
-						// StringBuffer to String conversion
-						String commaSeparatedList = str.toString();
-						// Condition check to remove the last comma
-						if (!commaSeparatedList.isEmpty()){
-							enchUnlocksOutputStr = commaSeparatedList.substring(0, commaSeparatedList.length() - 1);
-						}
-					}
-
-					
-					// output string not empty
-					if (!enchUnlocksOutputStr.equals("hard luck")){
-						entity.getPersistentData().putString("unlockedEnchantList", enchUnlocksOutputStr);
-						if ((int) getBlockNBTNumber(world, resTablePos) > -1) {
-							plyr.giveExperienceLevels((int) -getBlockNBTNumber(world, resTablePos));
-							menu1.getSlots().get(0).set(ItemStack.EMPTY);
-						}
-					} else {
-						System.out.println("AH HA! There is no such thing as 'Enchantments'!");
-					}
-
-					// Send updates to player and block
-					plyr.containerMenu.broadcastChanges();
-					if (world instanceof Level _level){
-						_level.sendBlockUpdated(resTablePos, resTableState, resTableState, 3);
-					}
 				}
+			}
+			enchUnlocksOutputStr = enchUnlocksOutputStrBuilder.toString();
+
+			// Converts unlocksOutputList to string
+			if (!foundUnlockedEnchList[0].equals("hard luck")){
+				StringBuilder str = new StringBuilder();
+				// Traversing the unlocked output ArrayList
+				for (String eachstring : unlocksOutputList) {
+					// Each element in ArrayList is appended
+					// followed by comma
+					str.append(eachstring).append(",");
+				}
+				// StringBuilder buffer to String conversion
+				String commaSeparatedList = str.toString();
+				// Condition check to remove the last comma
+				if (!commaSeparatedList.isEmpty()){
+					enchUnlocksOutputStr = commaSeparatedList.substring(0, commaSeparatedList.length() - 1);
+				}
+			}
+
+
+			// output string not empty
+			if (!enchUnlocksOutputStr.equals("hard luck")){
+				entity.getPersistentData().putString("unlockedEnchantList", enchUnlocksOutputStr);
+				if ((int) getBlockNBTNumber(world, resTablePos) > -1) {
+					plyr.giveExperienceLevels((int) -getBlockNBTNumber(world, resTablePos));
+					menu1.getSlots().get(0).set(ItemStack.EMPTY);
+				}
+			} else {
+				System.out.println("AH HA! There is no such thing as 'Enchantments'!");
+			}
+
+			// Send updates to player and block
+			plyr.containerMenu.broadcastChanges();
+			if (world instanceof Level _level){
+				_level.sendBlockUpdated(resTablePos, resTableState, resTableState, 3);
 			}
 		}
 	}
