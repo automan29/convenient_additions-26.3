@@ -123,7 +123,8 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 					// info icon
 					guiGraphics.blit(RenderPipelines.GUI_TEXTURED, ConvAddModCustomResourceLoc.INFO_ICON, leftPos+scrollBoxDims[1] - 40, topPos+scrollBoxDims[0] + 3 + currYpos, 0, 0, 12, 12, 12, 12);
 					if (mouseX > leftPos+scrollBoxDims[1] - 41 && mouseX < leftPos+scrollBoxDims[1] - 28 && mouseY > topPos+scrollBoxDims[0] + 2 + currYpos && mouseY < topPos+scrollBoxDims[0] + 16 + currYpos) {
-						guiGraphics.setTooltipForNextFrame(font, Component.literal(hint1Tooltip(currUnlkdEnchName, (int) currUnlkdEnchLvl).toString()), mouseX, mouseY);
+						StringBuilder hintTooltipSB = hint1Tooltip(currUnlkdEnchName, (int) currUnlkdEnchLvl);
+						guiGraphics.setTooltipForNextFrame(font, Component.literal(hintTooltipSB.toString()), mouseX, mouseY);
 						customTooltipShown = true;
 					}
 				}
@@ -337,8 +338,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 			outStringBuilder = new StringBuilder(outputStr);
 
 			if (enhInput.equals("cappy")) {
-				outStringBuilder = new StringBuilder("Part 1: Shimmering remains of a powerful foe.");
-				outStringBuilder.append("\\n");
+				outStringBuilder = new StringBuilder("Part 1: Shimmering remains of a powerful foe. ");
 				if (enchLevel > 1) {
 					outStringBuilder.append("Part 2: This core provides enough heat to form an updraft.");
 				} else {

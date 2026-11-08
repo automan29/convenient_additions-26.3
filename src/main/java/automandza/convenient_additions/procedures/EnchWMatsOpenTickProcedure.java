@@ -138,11 +138,11 @@ public class EnchWMatsOpenTickProcedure {
 						if ( 
 							(outputStack.getItem() == Items.PUFFERFISH && adarMind.equals("[adamsbrain]"))
 							|| ((
-									outputStack.has(DataComponents.ENCHANTABLE)
+									(outputStack.has(DataComponents.ENCHANTABLE) && !unlkdEnchName.equals("cappy"))
 									|| outputStack.getItem() == Items.ELYTRA
 								) && (
 									   outputStack.getTagEnchantments().isEmpty() 
-									|| (enchCompatibleFromSet(outputStack.getTagEnchantments().keySet(), outEnchHolder) && outputStack.supportsEnchantment(outEnchHolder))
+									|| (enchCompatibleFromSet(outputStack.getTagEnchantments().keySet(), outEnchHolder))
 									|| outputStack.getTagEnchantments().toString().contains(outputEnchantmentStr)
 								) && (
 									!(unlkdEnchLvl > 1 && unlkdEnchName.equals("cappy") && enchMaterial.getItem() == Items.NETHER_STAR)
