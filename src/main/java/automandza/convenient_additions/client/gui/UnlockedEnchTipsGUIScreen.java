@@ -273,15 +273,17 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 		String outputStr = "hey guys it doseph, something broke :(";
 
 		// config replacement or new enhancements :o
-		String[] fullConfiguredList = ConAddCommonConfig.CUSTOM_ENHANCE_ENCH_LIST.getRaw().split("\\|");
-		for (String configuredListStr : fullConfiguredList){
-			String[] subConfList = configuredListStr.split(",");
-			String configEnchName = subConfList[0].replaceAll("\s*", "").replaceFirst(".+:", "").replace("_", " ").toLowerCase();
-			String configHint = subConfList[2];
+		if (!ConAddCommonConfig.CUSTOM_ENHANCE_ENCH_LIST.getRaw().isEmpty()) {
+			String[] fullConfiguredList = ConAddCommonConfig.CUSTOM_ENHANCE_ENCH_LIST.getRaw().split("\\|");
+			for (String configuredListStr : fullConfiguredList) {
+				String[] subConfList = configuredListStr.split(",");
+				String configEnchName = subConfList[0].replaceAll("\s*", "").replaceFirst(".+:", "").replace("_", " ").toLowerCase();
+				String configHint = subConfList[2];
 
-			if (configEnchName.equals(enhInput)){
-				// better hope the config makes sense
-				return configHint;
+				if (configEnchName.equals(enhInput)) {
+					// better hope the config makes sense
+					return configHint;
+				}
 			}
 		}
 
