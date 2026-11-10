@@ -15,8 +15,6 @@ public class EnchantmentStringConverter {
             // get ench lvl
             int foundEnchLvl = Integer.parseInt(currItemEnchFull.substring(currItemEnchFull.indexOf("=")+1));
 
-            //System.out.println("foundEnchName="+foundEnchName);
-            //System.out.println("foundEnchLvl="+foundEnchLvl);
 
             if (foundEnchName.equals(enchNameToFind)){
                 return foundEnchLvl;

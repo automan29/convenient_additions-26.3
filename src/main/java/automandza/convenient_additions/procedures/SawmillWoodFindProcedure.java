@@ -2,7 +2,10 @@ package automandza.convenient_additions.procedures;
 
 //imports
 import automandza.convenient_additions.init.ConvenientAdditionsModItems;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 
@@ -12,7 +15,8 @@ import net.minecraft.world.item.ItemStack;
 public class SawmillWoodFindProcedure {
 	public static ItemStack PlanksToSaw(ItemStack iStack, String passCurrRecipe) {
 	    ItemStack outputIStack;
-	    String plankTypeText = iStack.getItem().toString().substring(10,iStack.getItem().toString().indexOf("planks")-1);
+		String iStackString = iStack.getItem().toString();
+	    String plankTypeText = iStackString.substring(iStackString.indexOf(":")+1,iStackString.indexOf("planks")-1);
 		int plankCount = iStack.getCount();
 
 
@@ -49,7 +53,6 @@ public class SawmillWoodFindProcedure {
 			System.out.println("ERROR invalid item stack string iStackString="+iStackString);
 			System.out.println("exception="+e);
 		}
-		//System.out.println("logTypeText="+logTypeText);
 
         outputIStack = switch (logTypeText) {
             case "oak" -> new ItemStack(Items.STRIPPED_OAK_WOOD).copy();
@@ -72,17 +75,17 @@ public class SawmillWoodFindProcedure {
 	
 	public static ItemStack LogsToPlanks(String iStackString){
 		ItemStack outputIStack;
-		String logTypeText = iStackString.substring(10);
+		String logTypeText = iStackString.substring(iStackString.indexOf(":")+1); // works with any mod. Vanilla would go from: minecraft:oak_log -> oak_log
 		SawmillWoodFindProcedure woodTypeDeterminator = new SawmillWoodFindProcedure();
 		
 		try{
-			logTypeText = woodTypeDeterminator.getLogTypeFromString(logTypeText);
+			logTypeText = woodTypeDeterminator.getLogTypeFromString(logTypeText); // removes word log from string and similar
 		} catch(Exception e) {
 			System.out.println("ERROR invalid item stack string iStackString="+iStackString);
 			System.out.println("exception="+e);
 		}
-		//System.out.println("logTypeText="+logTypeText);
 
+		// finds relative planks
         outputIStack = switch (logTypeText) {
             case "oak" -> new ItemStack(Items.OAK_PLANKS).copy();
             case "spruce" -> new ItemStack(Items.SPRUCE_PLANKS).copy();
@@ -98,6 +101,14 @@ public class SawmillWoodFindProcedure {
             case "poplar" -> new ItemStack(Items.POPLAR_PLANKS).copy();
             default -> new ItemStack(Items.AIR).copy();
         };
+
+		if (logTypeText.equals("cloud")){
+			try {
+				outputIStack = new ItemStack(ConvenientAdditionsModItems.CLOUD_PLANKS.asItem()).copy();
+			} catch (Exception e){
+				System.out.println("ERROR! cloud planks could not be converted Exception="+e);
+			}
+		}
 		
 		return outputIStack;
 	}
@@ -325,14 +336,14 @@ public class SawmillWoodFindProcedure {
 		ItemStack woodROutput;
 		switch(currRecipeType){
 			case "split":
-				woodROutput = new ItemStack(Items.POPLAR_SLAB).copy();
+				woodROutput = new ItemStack(ConvenientAdditionsModItems.CLOUD_SLAB.asItem()).copy();
 				woodROutput.setCount(count*2);
 				break;
 			case "cut":
-				woodROutput = new ItemStack(Items.POPLAR_STAIRS).copy();
+				woodROutput = new ItemStack(ConvenientAdditionsModItems.CLOUD_STAIRS.asItem()).copy();
 				break;
 			default:
-				woodROutput = new ItemStack(Items.POPLAR_FENCE).copy();
+				woodROutput = new ItemStack(ConvenientAdditionsModItems.CLOUD_FENCE.asItem()).copy();
 		}
 		return woodROutput;
 	}

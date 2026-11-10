@@ -31,7 +31,7 @@ public class SawmillShiftClickOutputProcedure {
 			ItemStack sawmillOutputItem = _menu.getSlots().get(1).getItem();
 			
 			if (_player.getInventory().getFreeSlot() == -1){
-				System.out.println("info: Player could not receive items as inventory full");
+				System.out.println("Warning! Player could not receive items as inventory full");
 				return;
 			}
 
@@ -48,7 +48,7 @@ public class SawmillShiftClickOutputProcedure {
 						planksQuickStack.setCount(60);
 						// checks there is enough space otherwise stops, but it doesn't work for unknown reasons
 						if (_player.getInventory().getSlotWithRemainingSpace(planksQuickStack) == -1 && _player.getInventory().getFreeSlot() == -1){
-							System.out.println("info: Player could not receive items as inventory full");
+							System.out.println("Warning! Player could not receive items as inventory full");
 							return;
 						}
 						_player.addItem(planksQuickStack);

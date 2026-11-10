@@ -70,9 +70,11 @@ public class SawmillCraftingProcedure {
 				// converts logs to planks at a 1 to 5 ratio
 				} else if (currentSawmillRecipe.equals("cut")){
 					ItemStack _setstack2 = SawmillWoodFindProcedure.LogsToPlanks(inputItemstackFound.getItem().toString());
-					if (_setstack2 != null){ // shut up plz
+					if (!_setstack2.isEmpty() && _setstack2 != null){
 						_setstack2.setCount(5);
 						_menu.getSlots().get((int) outputID).set(_setstack2);
+					} else {
+						System.out.println("Warning! item stack to set was null input Item Stack string="+inputItemstackFound.getItem());
 					}
 					
 				// error happens

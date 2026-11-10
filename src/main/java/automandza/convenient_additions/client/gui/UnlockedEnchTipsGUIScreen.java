@@ -237,7 +237,6 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 			}
 			return true;
 		}
-		//System.out.println("key="+key);
 		return super.keyPressed(event);
 	}
 
@@ -338,7 +337,7 @@ public class UnlockedEnchTipsGUIScreen extends AbstractContainerScreen<UnlockedE
 			StringBuilder outStringBuilder;
 
 			if (enhInput.equals("cappy")) {
-				outStringBuilder = new StringBuilder("Part 1: Shimmering remains of a powerful foe. ");
+				outStringBuilder = new StringBuilder("Part 1: Shimmering remains of a powerful diseased foe. ");
 				if (enchLevel > 1) {
 					outStringBuilder.append("Part 2: This core provides enough heat to form an updraft.");
 				} else {

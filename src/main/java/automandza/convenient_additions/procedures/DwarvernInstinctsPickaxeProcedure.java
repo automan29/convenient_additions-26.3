@@ -57,8 +57,6 @@ public class DwarvernInstinctsPickaxeProcedure {
 			Level world = livinEnt.level();
 			int DwarvInstLvl = livinEnt.getMainHandItem().getEnchantmentLevel(lvlAcc.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse("convenient_additions:dwarvern_instincts"))));
 			if (DwarvInstLvl > 0 && !world.isClientSide() && livinEnt.getMainHandItem().getItem() != ConvenientAdditionsModItems.STONE_DRILL.asItem()) {
-
-				//System.out.println("hiddenDwvTimer="+hiddenDwvTimer);
 				
 				if (hiddenDwvTimer != 0 && hiddenDwvTimer < livinEnt.tickCount){
 					dwarvernFuryValue = 0;

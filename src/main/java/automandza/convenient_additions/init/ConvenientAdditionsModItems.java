@@ -1,6 +1,8 @@
 package automandza.convenient_additions.init;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -61,13 +63,20 @@ public class ConvenientAdditionsModItems {
 
 	public static DeferredRegister.Items CONVEX_REG;
 	public static DeferredItem<Item> CLOUD_PLANKS = null;
+	public static DeferredItem<Item> CLOUD_FENCE = null;
+	public static DeferredItem<Item> CLOUD_STAIRS = null;
+	public static DeferredItem<Item> CLOUD_SLAB = null;
+
 
 
 	static {
 		try {
-			CONVEX_REG = DeferredRegister.createItems(ConvenientAdditionsMod.CONVEX_MOD_ID);
+			CONVEX_REG = DeferredRegister.createItems(ConvenientAdditionsMod.CONVEX_MOD_ID); // might not need
 
-			CLOUD_PLANKS = DeferredItem.createItem(Identifier.parse("convenient_extras:cloud_planks"));
+			CLOUD_PLANKS = DeferredItem.createItem(Identifier.parse("convenient_extras:cloud_planks")); // nvm this just works now ??? wadahecc?
+			CLOUD_FENCE = DeferredItem.createItem(Identifier.parse("convenient_extras:cloud_fence"));
+			CLOUD_STAIRS = DeferredItem.createItem(Identifier.parse("convenient_extras:cloud_stairs"));
+			CLOUD_SLAB = DeferredItem.createItem(Identifier.parse("convenient_extras:cloud_slab"));
         } catch (Exception e){
 			System.out.println("Warning! Convenient Extras was not found");
 			System.out.println("exeption="+e);

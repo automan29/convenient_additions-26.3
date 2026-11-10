@@ -101,6 +101,9 @@ public class GiveOakBarkProcedure {
 				if (blockstate.getBlock() == Blocks.PALE_OAK_LOG || blockstate.getBlock() == Blocks.PALE_OAK_WOOD) {
 					current_bark = new ItemStack(ConvenientAdditionsModItems.PALE_BARK.get()).copy();
 				}
+				if (blockstate.getBlock() == Blocks.POPLAR_LOG || blockstate.getBlock() == Blocks.POPLAR_WOOD){
+					current_bark = new ItemStack(ConvenientAdditionsModItems.POPLAR_BARK.get()).copy();
+				}
 
 				if (!(current_bark.getItem() == ItemStack.EMPTY.getItem())) {
 					// bark odds = 3 + (random 0-1)
