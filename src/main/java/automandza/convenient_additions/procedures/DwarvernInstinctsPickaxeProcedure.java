@@ -71,7 +71,7 @@ public class DwarvernInstinctsPickaxeProcedure {
 				world.playSound(null, pos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("block.note_block.iron_xylophone"))), SoundSource.BLOCKS, 0.8f, (dwarvernFuryValue+1)/5f);
 
 				if(dwarvernFuryValue >= 5){
-					livinEnt.addEffect(new MobEffectInstance(MobEffects.HASTE, 100+(150*DwarvInstLvl), 0));
+					livinEnt.addEffect(new MobEffectInstance(MobEffects.HASTE, 100+(160*DwarvInstLvl), 0));
 					world.playSound(null, pos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.getValue(Identifier.parse("convenient_additions:dwarf_activate"))), SoundSource.BLOCKS, 2f, 1f);
 					dwarvernFuryValue = 0;
 				}

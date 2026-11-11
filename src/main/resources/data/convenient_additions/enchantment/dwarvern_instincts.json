@@ -2,14 +2,8 @@
   "description": {
     "translate": "enchantment.convenient_additions.dwarvern_instincts"
   },
-  "supported_items": [
-    "convenient_additions:stone_drill",
-    "minecraft:diamond_pickaxe",
-    "minecraft:golden_pickaxe",
-    "minecraft:iron_pickaxe",
-    "minecraft:netherite_pickaxe",
-    "minecraft:copper_pickaxe"
-  ],
+  "primary_items": "convenient_additions:stone_drill",
+  "supported_items": "#minecraft:pickaxes",
   "weight": 6,
   "max_level": 3,
   "min_cost": {

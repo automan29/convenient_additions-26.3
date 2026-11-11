@@ -85,7 +85,7 @@ public class StoneDrillItem extends Item {
 		ItemEnchantments currEnchants = itemstack.getTagEnchantments();
 		String currEnchStr = currEnchants.toString();
 
-		// do dwarvern enchant things
+		//region Dwarvern enchant
 		if (List.of(Blocks.COAL_ORE, Blocks.DEEPSLATE_COAL_ORE).contains(blockstate.getBlock()) && currEnchStr.contains("Enchantment Dwarvern Instincts")){
 			dwarvernFuryValue++;
 			
@@ -97,8 +97,9 @@ public class StoneDrillItem extends Item {
 			}
 			dwarvernFuryValue = dwarvernInstEffects(entity, Integer.parseInt(currEnchStr.substring(currEnchStr.indexOf("Enchantment Dwarvern Instincts")+33, currEnchStr.indexOf("Enchantment Dwarvern Instincts")+34)), dwarvernFuryValue);
 		}
+		//endregion
 
-		// do infusion enchant things
+		//region Infusion enchant
 		boolean numbyGoUp = false;
 		if (currEnchStr.contains("Enchantment Infusion")){
 			int enchLvl = Integer.parseInt(currEnchStr.substring(currEnchStr.indexOf("Enchantment Infusion")+23, currEnchStr.indexOf("Enchantment Infusion")+24));
@@ -130,6 +131,7 @@ public class StoneDrillItem extends Item {
 				blocksBroken = 0;
 			}
 		}
+		//endregion
 
 		// adds fuel cost for specific blocks (do this last)
 		if (Stream.of(BlockTags.create(Identifier.parse("c:flowers"))).anyMatch(blockstate::is)
