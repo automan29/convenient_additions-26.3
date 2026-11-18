@@ -5,6 +5,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.jspecify.annotations.Nullable;
 
 import static automandza.convenient_additions.init.ConvenientAdditionsModItems.PREMIUM_INGOT;
@@ -22,7 +23,9 @@ public class ParsePremiumIngot extends Item {
             premiumIStack.setCount(1);
             owner.spawnAtLocation(level, premiumIStack);
         } catch (Exception e){
-            System.out.println("No loot because convex not installed");
+            ItemStack obsiStack = new ItemStack(Items.OBSIDIAN);
+            obsiStack.setCount((int) (1d+Math.round(Math.random()*2d)));
+            owner.spawnAtLocation(level, obsiStack);
         }
     }
 }
