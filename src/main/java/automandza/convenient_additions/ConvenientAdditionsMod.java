@@ -1,6 +1,7 @@
 package automandza.convenient_additions;
 
 //imports
+import automandza.convenient_additions.armTrim.ConvAddArmourTrimMats;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 import org.apache.logging.log4j.Logger;

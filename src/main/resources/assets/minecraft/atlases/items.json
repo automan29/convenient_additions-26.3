@@ -1,0 +1,17 @@
+{
+  "sources": [
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "trims/items/leggings_trim",
+        "trims/items/chestplate_trim",
+        "trims/items/helmet_trim",
+        "trims/items/boots_trim"
+      ],
+      "palette_key": "minecraft:trim_base",
+      "permutations": {
+        "regular_pearl": "convenient_additions:trim/regular_pearl"
+      }
+    }
+  ]
+}

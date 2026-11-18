@@ -19,6 +19,8 @@ import automandza.convenient_additions.item.*;
 import automandza.convenient_additions.block.EnchScienceResearchTableBlock;
 import automandza.convenient_additions.ConvenientAdditionsMod;
 
+import javax.swing.*;
+
 public class ConvenientAdditionsModItems {
 	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(ConvenientAdditionsMod.MODID);
 	public static final DeferredItem<Item> GRS_1600;
@@ -66,6 +68,7 @@ public class ConvenientAdditionsModItems {
 	public static DeferredItem<Item> CLOUD_FENCE = null;
 	public static DeferredItem<Item> CLOUD_STAIRS = null;
 	public static DeferredItem<Item> CLOUD_SLAB = null;
+	public static DeferredItem<Item> PREMIUM_INGOT = null;
 
 
 
@@ -77,6 +80,7 @@ public class ConvenientAdditionsModItems {
 			CLOUD_FENCE = DeferredItem.createItem(Identifier.parse("convenient_extras:cloud_fence"));
 			CLOUD_STAIRS = DeferredItem.createItem(Identifier.parse("convenient_extras:cloud_stairs"));
 			CLOUD_SLAB = DeferredItem.createItem(Identifier.parse("convenient_extras:cloud_slab"));
+			PREMIUM_INGOT = DeferredItem.createItem(Identifier.parse("convenient_extras:premium_ingot"));
         } catch (Exception e){
 			System.out.println("Warning! Convenient Extras was not found");
 			System.out.println("exeption="+e);
@@ -86,6 +90,7 @@ public class ConvenientAdditionsModItems {
 		GOLDEN_KEY = register("golden_key", KeyItem::new);
 		LOCKED_DOOR = doubleBlock(ConvenientAdditionsModBlocks.LOCKED_DOOR);
 		THE_LOCK_BLOCK = block(ConvenientAdditionsModBlocks.THE_LOCK_BLOCK);
+		register("parse_premium_ingot", ParsePremiumIngot::new);
 
 		// barks
 		OAK_BARK = register("oak_bark", GenericBarkItem::new);
