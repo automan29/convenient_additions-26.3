@@ -104,6 +104,9 @@ public class GiveOakBarkProcedure {
 				if (blockstate.getBlock() == Blocks.POPLAR_LOG || blockstate.getBlock() == Blocks.POPLAR_WOOD){
 					current_bark = new ItemStack(ConvenientAdditionsModItems.POPLAR_BARK.get()).copy();
 				}
+				if (blockstate.getBlock().toString().equals("convenient_extras:cloud_wood")){
+					current_bark = new ItemStack(ConvenientAdditionsModItems.CLOUD_BARK.get()).copy();
+				}
 
 				if (!(current_bark.getItem() == ItemStack.EMPTY.getItem())) {
 					// bark odds = 3 + (random 0-1)

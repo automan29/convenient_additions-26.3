@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.BlockItem;
 
+import java.util.List;
 import java.util.function.Function;
 
 import automandza.convenient_additions.item.*;
@@ -69,6 +70,7 @@ public class ConvenientAdditionsModItems {
 	public static DeferredItem<Item> CLOUD_STAIRS = null;
 	public static DeferredItem<Item> CLOUD_SLAB = null;
 	public static DeferredItem<Item> PREMIUM_INGOT = null;
+	public static DeferredItem<Item> CLOUD_BARK = null;
 
 
 
@@ -103,6 +105,12 @@ public class ConvenientAdditionsModItems {
 		PALE_BARK = register("pale_bark", GenericBarkItem::new);
 		MANGROVE_BARK = register("mangrove_bark", GenericBarkItem::new);
 		POPLAR_BARK = register("poplar_bark", GenericBarkItem::new);
+
+		try {
+			CLOUD_BARK = regBarkFromWoodLog("convenient_extras:cloud_wood");
+		} catch (Exception e){
+			System.out.println("ERROR! registering bark was null, e="+e);
+		}
 
 		WODDEN_VEST_CHESTPLATE = register("wodden_vest_chestplate", WoddenVestItem.Chestplate::new);
 		WODDEN_VEST_LEGGINGS = register("wodden_vest_leggings", WoddenVestItem.Leggings::new);
@@ -147,5 +155,19 @@ public class ConvenientAdditionsModItems {
 
 	private static DeferredItem<Item> doubleBlock(DeferredHolder<Block, Block> block, Item.Properties properties) {
 		return REGISTRY.registerItem(block.getId().getPath(), prop -> new DoubleHighBlockItem(block.get(), prop));
+	}
+
+	private static DeferredItem<Item> regBarkFromWoodLog(String logItemID){
+		String logName = logItemID.substring(logItemID.indexOf(":")+1);
+		String barkName;
+		if (logName.contains("_wood")) {
+			barkName = logName.substring(0,logName.indexOf("_wood"))+"_bark";
+		} else if (logName.contains("_log")) {
+			barkName = logName.substring(0,logName.indexOf("_log"))+"_bark";
+		} else {
+			return null;
+		}
+		DeferredItem<Item> barkDefItem = register(barkName, GenericBarkItem::new);
+		return barkDefItem;
 	}
 }

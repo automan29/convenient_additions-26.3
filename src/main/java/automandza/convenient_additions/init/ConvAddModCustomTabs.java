@@ -1,7 +1,9 @@
 package automandza.convenient_additions.init;
 
 //imports
+import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
@@ -12,7 +14,7 @@ import net.minecraft.core.registries.Registries;
 
 import automandza.convenient_additions.ConvenientAdditionsMod;
 
-
+import static automandza.convenient_additions.init.ConvenientAdditionsModItems.CLOUD_BARK;
 
 
 public class ConvAddModCustomTabs {
@@ -25,6 +27,8 @@ public class ConvAddModCustomTabs {
 	public static void addCreativeTab(BuildCreativeModeTabContentsEvent tabData){
 		if (tabData.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
 			tabData.accept(ConvenientAdditionsModBlocks.CEILING_LAMP.get().asItem());
+		} else if (tabData.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+			tabData.accept(CLOUD_BARK.get().asItem());
 		}
 	}
 }
